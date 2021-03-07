@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Models;
+<?php namespace Winter\Forum\Models;
 
 use Html;
 use Model;
@@ -10,12 +10,12 @@ use Markdown;
  */
 class Post extends Model
 {
-    use \October\Rain\Database\Traits\Validation;
+    use \Winter\Storm\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'rainlab_forum_posts';
+    public $table = 'winter_forum_posts';
 
     /**
      * @var array Guarded fields
@@ -45,8 +45,8 @@ class Post extends Model
      * @var array Relations
      */
     public $belongsTo = [
-        'topic'  => ['RainLab\Forum\Models\Topic'],
-        'member' => ['RainLab\Forum\Models\Member'],
+        'topic'  => ['Winter\Forum\Models\Topic'],
+        'member' => ['Winter\Forum\Models\Member'],
     ];
 
     /**

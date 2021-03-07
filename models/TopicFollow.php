@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Models;
+<?php namespace Winter\Forum\Models;
 
 use Mail;
 use Model;
@@ -12,7 +12,7 @@ class TopicFollow extends Model
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'rainlab_forum_topic_followers';
+    public $table = 'winter_forum_topic_followers';
 
     /**
      * @var string Primary key, used to satisfy PostgreSQL
@@ -129,7 +129,7 @@ class TopicFollow extends Model
                 'email' => $member->user->email
             ];
 
-            Mail::queue('rainlab.forum::mail.topic_reply', $data, function($message) use ($vars)
+            Mail::queue('winter.forum::mail.topic_reply', $data, function($message) use ($vars)
             {
                 extract($vars);
                 $message->to($email, $name);

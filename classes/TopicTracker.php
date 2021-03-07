@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Classes;
+<?php namespace Winter\Forum\Classes;
 
 use Db;
 use Carbon\Carbon;
@@ -9,7 +9,7 @@ use Cookie;
  */
 class TopicTracker
 {
-    use \October\Rain\Support\Traits\Singleton;
+    use \Winter\Storm\Support\Traits\Singleton;
 
     public $cookieName = 'forum_cookie_tracker';
 
@@ -144,13 +144,13 @@ class TopicTracker
     {
         $lastLogin = $member->user->last_login;
 
-        $results = Db::table('rainlab_forum_topics')->select([
-                'rainlab_forum_topics.id',
-                'rainlab_forum_topics.channel_id',
-                'rainlab_forum_topics.last_post_at'
+        $results = Db::table('winter_forum_topics')->select([
+                'winter_forum_topics.id',
+                'winter_forum_topics.channel_id',
+                'winter_forum_topics.last_post_at'
             ])
-            ->join('rainlab_forum_channels', 'rainlab_forum_channels.id', '=', 'rainlab_forum_topics.channel_id')
-            ->where('rainlab_forum_topics.last_post_at', '>', $lastLogin)
+            ->join('winter_forum_channels', 'winter_forum_channels.id', '=', 'winter_forum_topics.channel_id')
+            ->where('winter_forum_topics.last_post_at', '>', $lastLogin)
             ->get()
         ;
 

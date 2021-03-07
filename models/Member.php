@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Models;
+<?php namespace Winter\Forum\Models;
 
 use Str;
 use Auth;
@@ -10,13 +10,13 @@ use Carbon\Carbon;
  */
 class Member extends Model
 {
-    use \October\Rain\Database\Traits\Purgeable;
-    use \October\Rain\Database\Traits\Sluggable;
+    use \Winter\Storm\Database\Traits\Purgeable;
+    use \Winter\Storm\Database\Traits\Sluggable;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'rainlab_forum_members';
+    public $table = 'winter_forum_members';
 
     /**
      * @var array Guarded fields
@@ -49,17 +49,17 @@ class Member extends Model
      * @var array Relations
      */
     public $belongsTo = [
-        'user' => ['RainLab\User\Models\User']
+        'user' => ['Winter\User\Models\User']
     ];
 
     public $hasMany = [
-        'posts' => ['RainLab\Forum\Models\Post', 'order' => 'created_at desc']
+        'posts' => ['Winter\Forum\Models\Post', 'order' => 'created_at desc']
     ];
 
     /**
      * Automatically creates a forum member for a user if not one already.
-     * @param  RainLab\User\Models\User $user
-     * @return RainLab\Forum\Models\Member
+     * @param  Winter\User\Models\User $user
+     * @return Winter\Forum\Models\Member
      */
     public static function getFromUser($user = null)
     {

@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Components;
+<?php namespace Winter\Forum\Components;
 
 use Auth;
 use Mail;
@@ -8,20 +8,20 @@ use Redirect;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
 use ApplicationException;
-use RainLab\Forum\Models\Member as MemberModel;
-use RainLab\User\Models\User as UserModel;
-use RainLab\User\Models\MailBlocker;
+use Winter\Forum\Models\Member as MemberModel;
+use Winter\User\Models\User as UserModel;
+use Winter\User\Models\MailBlocker;
 use Exception;
 
 class Member extends ComponentBase
 {
     /**
-     * @var RainLab\Forum\Models\Member Member cache
+     * @var Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
     /**
-     * @var RainLab\Forum\Models\Member Other member cache
+     * @var Winter\Forum\Models\Member Other member cache
      */
     protected $otherMember = null;
 
@@ -43,8 +43,8 @@ class Member extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.memberpage.name',
-            'description' => 'rainlab.forum::lang.memberpage.self_desc'
+            'name'        => 'winter.forum::lang.memberpage.name',
+            'description' => 'winter.forum::lang.memberpage.self_desc'
         ];
     }
 
@@ -52,32 +52,32 @@ class Member extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'rainlab.forum::lang.memberpage.slug_name',
-                'description' => 'rainlab.forum::lang.memberpage.slug_desc',
+                'title'       => 'winter.forum::lang.memberpage.slug_name',
+                'description' => 'winter.forum::lang.memberpage.slug_desc',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string'
             ],
             'viewMode' => [
-                'title'       => 'rainlab.forum::lang.memberpage.view_title',
-                'description' => 'rainlab.forum::lang.memberpage.view_desc',
+                'title'       => 'winter.forum::lang.memberpage.view_title',
+                'description' => 'winter.forum::lang.memberpage.view_desc',
                 'type'        => 'dropdown',
                 'default'     => ''
             ],
             'channelPage' => [
-                'title'       => 'rainlab.forum::lang.memberpage.ch_title',
-                'description' => 'rainlab.forum::lang.memberpage.ch_desc',
+                'title'       => 'winter.forum::lang.memberpage.ch_title',
+                'description' => 'winter.forum::lang.memberpage.ch_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
             'topicPage' => [
-                'title'       => 'rainlab.forum::lang.memberpage.topic_title',
-                'description' => 'rainlab.forum::lang.memberpage.topic_desc',
+                'title'       => 'winter.forum::lang.memberpage.topic_title',
+                'description' => 'winter.forum::lang.memberpage.topic_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
             'includeStyles' => [
-                'title'       => 'rainlab.forum::components.general.properties.includeStyles',
-                'description' => 'rainlab.forum::components.general.properties.includeStyles_desc',
+                'title'       => 'winter.forum::components.general.properties.includeStyles',
+                'description' => 'winter.forum::components.general.properties.includeStyles_desc',
                 'type'        => 'checkbox',
                 'default'     => true
             ],
@@ -234,7 +234,7 @@ class Member extends ComponentBase
 
     protected function getMailTemplates()
     {
-        return ['topic_reply' => 'rainlab.forum::mail.topic_reply'];
+        return ['topic_reply' => 'winter.forum::mail.topic_reply'];
     }
 
     public function onPurgePosts()
@@ -321,7 +321,7 @@ class Member extends ComponentBase
                 'otherMember'    => $otherMember,
                 'otherMemberUrl' => $otherMemberUrl,
             ];
-            Mail::sendTo($moderators, 'rainlab.forum::mail.member_report', $params);
+            Mail::sendTo($moderators, 'winter.forum::mail.member_report', $params);
         }
 
         return $this->redirectToSelf();

@@ -1,9 +1,9 @@
-<?php namespace RainLab\Forum\Updates;
+<?php namespace Winter\Forum\Updates;
 
 use Schema;
-use October\Rain\Database\Updates\Migration;
-use RainLab\Forum\Models\Post;
-use RainLab\Forum\Models\TopicFollow;
+use Winter\Storm\Database\Updates\Migration;
+use Winter\Forum\Models\Post;
+use Winter\Forum\Models\TopicFollow;
 
 class CreateTopicFollowersTable extends Migration
 {

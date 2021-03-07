@@ -1,9 +1,9 @@
-<?php namespace RainLab\Forum\Components;
+<?php namespace Winter\Forum\Components;
 
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use RainLab\Forum\Models\Topic as TopicModel;
-use RainLab\Forum\Models\Channel as ChannelModel;
+use Winter\Forum\Models\Topic as TopicModel;
+use Winter\Forum\Models\Channel as ChannelModel;
 use Exception;
 
 class EmbedChannel extends ComponentBase
@@ -16,8 +16,8 @@ class EmbedChannel extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.embedch.channel_name',
-            'description' => 'rainlab.forum::lang.embedch.channel_self_desc'
+            'name'        => 'winter.forum::lang.embedch.channel_name',
+            'description' => 'winter.forum::lang.embedch.channel_self_desc'
         ];
     }
 
@@ -25,26 +25,26 @@ class EmbedChannel extends ComponentBase
     {
         return [
             'embedCode' => [
-                'title'       => 'rainlab.forum::lang.embedch.embed_title',
-                'description' => 'rainlab.forum::lang.embedch.embed_desc',
+                'title'       => 'winter.forum::lang.embedch.embed_title',
+                'description' => 'winter.forum::lang.embedch.embed_desc',
                 'type'        => 'string',
                 'group'       => 'Parameters',
             ],
             'channelSlug' => [
-                'title'       => 'rainlab.forum::lang.embedch.channel_title',
-                'description' => 'rainlab.forum::lang.embedch.channel_desc',
+                'title'       => 'winter.forum::lang.embedch.channel_title',
+                'description' => 'winter.forum::lang.embedch.channel_desc',
                 'type'        => 'dropdown'
             ],
             'topicSlug' => [
-                'title'       => 'rainlab.forum::lang.embedch.topic_name',
-                'description' => 'rainlab.forum::lang.embedch.topic_desc',
+                'title'       => 'winter.forum::lang.embedch.topic_name',
+                'description' => 'winter.forum::lang.embedch.topic_desc',
                 'type'        => 'string',
                 'default'     => '{{ :topicSlug }}',
                 'group'       => 'Parameters',
             ],
             'memberPage' => [
-                'title'       => 'rainlab.forum::lang.member.page_name',
-                'description' => 'rainlab.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.member.page_name',
+                'description' => 'winter.forum::lang.member.page_help',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
@@ -91,7 +91,7 @@ class EmbedChannel extends ComponentBase
          */
         if (input('channel') || $this->property('topicSlug')) {
             $properties['slug'] = '{{' . $this->propertyName('topicSlug') . '}}';
-            $component = $this->addComponent('RainLab\Forum\Components\Topic', $this->alias, $properties);
+            $component = $this->addComponent('Winter\Forum\Components\Topic', $this->alias, $properties);
         }
         /*
          * Proxy as channel
@@ -102,7 +102,7 @@ class EmbedChannel extends ComponentBase
             }
 
             $properties['topicPage'] = $this->page->baseFileName;
-            $component = $this->addComponent('RainLab\Forum\Components\Channel', $this->alias, $properties);
+            $component = $this->addComponent('Winter\Forum\Components\Channel', $this->alias, $properties);
             $component->embedTopicParam = $this->paramName('topicSlug');
 
             /*
