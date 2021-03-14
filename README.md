@@ -1,6 +1,6 @@
 # Forum plugin
 
-This plugin adds a simple embeddable forum to [Winter CMS](http://octobercms.com).
+This plugin adds a simple embeddable forum to [Winter CMS](https://wintercms.com).
 
 A video demonstration of this plugin can be seen here:
 https://vimeo.com/97088926
