@@ -26,7 +26,8 @@ class Plugin extends PluginBase
             'description' => 'winter.forum::lang.plugin.description',
             'author'      => 'Alexey Bobkov, Samuel Georges',
             'icon'        => 'icon-comments',
-            'homepage'    => 'https://github.com/wintercms/wn-forum-plugin'
+            'homepage'    => 'https://github.com/wintercms/wn-forum-plugin',
+            'replaces'    => 'RainLab.Forum'
         ];
     }
 
