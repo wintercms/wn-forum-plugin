@@ -21,5 +21,8 @@
         "php": ">=7.0",
         "composer/installers": "~1.0"
     },
-    "minimum-stability": "dev"
+    "extra": {
+        "installer-name": "forum"
+    },
+    "minimum-stability": "dev",
 }
