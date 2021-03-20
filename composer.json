@@ -1,28 +1,37 @@
 {
-    "name": "winter/forum-plugin",
+    "name": "winter/wn-forum-plugin",
     "type": "winter-plugin",
     "description": "Forum plugin for Winter CMS",
     "homepage": "https://github.com/wintercms/wn-forum-plugin",
-    "keywords": ["october", "octobercms", "blog", "forum"],
+    "keywords": ["winter", "wintercms", "forum"],
     "license": "MIT",
     "authors": [
         {
             "name": "Alexey Bobkov",
             "email": "aleksey.bobkov@gmail.com",
-            "role": "Co-founder"
+            "role": "Original Author"
         },
         {
             "name": "Samuel Georges",
             "email": "daftspunky@gmail.com",
-            "role": "Co-founder"
+            "role": "Original Author"
+        },
+        {
+            "name": "Winter CMS Maintainers",
+            "homepage": "https://wintercms.com",
+            "role": "Maintainer"
         }
     ],
+    "support": {
+        "issues": "https://github.com/wintercms/wn-forum-plugin/issues",
+        "discord": "https://discord.gg/D5MFSPH6Ux",
+        "source": "https://github.com/wintercms/wn-forum-plugin"
+    },
     "require": {
         "php": ">=7.0",
         "composer/installers": "~1.0"
     },
     "extra": {
         "installer-name": "forum"
-    },
-    "minimum-stability": "dev",
+    }
 }
