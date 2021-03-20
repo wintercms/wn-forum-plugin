@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Models;
+<?php namespace Winter\Forum\Models;
 
 use Config;
 use Db;
@@ -12,14 +12,14 @@ use ApplicationException;
  */
 class Topic extends Model
 {
-    use \October\Rain\Database\Traits\Purgeable;
-    use \October\Rain\Database\Traits\Sluggable;
-    use \October\Rain\Database\Traits\Validation;
+    use \Winter\Storm\Database\Traits\Purgeable;
+    use \Winter\Storm\Database\Traits\Sluggable;
+    use \Winter\Storm\Database\Traits\Validation;
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'rainlab_forum_topics';
+    public $table = 'winter_forum_topics';
 
     /**
      * @var array Guarded fields
@@ -64,25 +64,25 @@ class Topic extends Model
      * @var array Relations
      */
     public $hasMany = [
-        'posts' => ['RainLab\Forum\Models\Post'],
+        'posts' => ['Winter\Forum\Models\Post'],
     ];
 
     /**
      * @var array Relations
      */
     public $hasOne = [
-        'first_post' => ['RainLab\Forum\Models\Post', 'order' => 'created_at asc']
+        'first_post' => ['Winter\Forum\Models\Post', 'order' => 'created_at asc']
     ];
 
     public $belongsTo = [
-        'channel'          => ['RainLab\Forum\Models\Channel'],
-        'start_member'     => ['RainLab\Forum\Models\Member'],
-        'last_post'        => ['RainLab\Forum\Models\Post'],
-        'last_post_member' => ['RainLab\Forum\Models\Member'],
+        'channel'          => ['Winter\Forum\Models\Channel'],
+        'start_member'     => ['Winter\Forum\Models\Member'],
+        'last_post'        => ['Winter\Forum\Models\Post'],
+        'last_post_member' => ['Winter\Forum\Models\Member'],
     ];
 
     public $belongsToMany = [
-        'followers' => ['RainLab\Forum\Models\Member', 'table' => 'rainlab_forum_topic_followers', 'timestamps' => true]
+        'followers' => ['Winter\Forum\Models\Member', 'table' => 'winter_forum_topic_followers', 'timestamps' => true]
     ];
 
     /**
@@ -130,8 +130,8 @@ class Topic extends Model
         if (!$member) {
             return false;
         }
-        $throttleCount = Config::get('rainlab.forum::throttleCount', 2);
-        $throttleMinutes = Config::get('rainlab.forum::throttleMinutes', 15);
+        $throttleCount = Config::get('winter.forum::throttleCount', 2);
+        $throttleMinutes = Config::get('winter.forum::throttleMinutes', 15);
 
         $timeLimit = Carbon::now()->subMinutes($throttleMinutes);
         $count = static::make()

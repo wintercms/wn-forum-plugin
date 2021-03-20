@@ -1,13 +1,13 @@
-<?php namespace RainLab\Forum\Updates;
+<?php namespace Winter\Forum\Updates;
 
 use Schema;
-use October\Rain\Database\Updates\Migration;
+use Winter\Storm\Database\Updates\Migration;
 
 class CreateMembersTable extends Migration
 {
     public function up()
     {
-        Schema::create('rainlab_forum_members', function($table)
+        Schema::create('winter_forum_members', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -23,6 +23,6 @@ class CreateMembersTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('rainlab_forum_members');
+        Schema::dropIfExists('winter_forum_members');
     }
 }

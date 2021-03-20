@@ -1,13 +1,13 @@
-<?php namespace RainLab\Forum\Updates;
+<?php namespace Winter\Forum\Updates;
 
 use Schema;
-use October\Rain\Database\Updates\Migration;
+use Winter\Storm\Database\Updates\Migration;
 
 class CreateChannelWatchesTable extends Migration
 {
     public function up()
     {
-        Schema::create('rainlab_forum_channel_watches', function($table)
+        Schema::create('winter_forum_channel_watches', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -20,6 +20,6 @@ class CreateChannelWatchesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('rainlab_forum_channel_watches');
+        Schema::dropIfExists('winter_forum_channel_watches');
     }
 }

@@ -4,9 +4,9 @@
 
 columns:
     title:
-        label: rainlab.forum::lang.data.title
+        label: winter.forum::lang.data.title
         searchable: true
 
     description:
-        label: rainlab.forum::lang.data.desc
+        label: winter.forum::lang.data.desc
         searchable: true

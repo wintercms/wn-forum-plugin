@@ -1,8 +1,8 @@
 {
-    "name": "rainlab/forum-plugin",
-    "type": "october-plugin",
-    "description": "Forum plugin for October CMS",
-    "homepage": "https://octobercms.com/plugin/rainlab-forum",
+    "name": "winter/forum-plugin",
+    "type": "winter-plugin",
+    "description": "Forum plugin for Winter CMS",
+    "homepage": "https://github.com/wintercms/wn-forum-plugin",
     "keywords": ["october", "octobercms", "blog", "forum"],
     "license": "MIT",
     "authors": [
@@ -21,5 +21,8 @@
         "php": ">=7.0",
         "composer/installers": "~1.0"
     },
-    "minimum-stability": "dev"
+    "extra": {
+        "installer-name": "forum"
+    },
+    "minimum-stability": "dev",
 }

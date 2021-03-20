@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Models;
+<?php namespace Winter\Forum\Models;
 
 use Model;
 use ApplicationException;
@@ -9,17 +9,17 @@ use ApplicationException;
 class Channel extends Model
 {
 
-    use \October\Rain\Database\Traits\Purgeable;
-    use \October\Rain\Database\Traits\Sluggable;
-    use \October\Rain\Database\Traits\Validation;
-    use \October\Rain\Database\Traits\NestedTree;
+    use \Winter\Storm\Database\Traits\Purgeable;
+    use \Winter\Storm\Database\Traits\Sluggable;
+    use \Winter\Storm\Database\Traits\Validation;
+    use \Winter\Storm\Database\Traits\NestedTree;
 
-    public $implement = ['@RainLab.Translate.Behaviors.TranslatableModel'];
+    public $implement = ['@Winter.Translate.Behaviors.TranslatableModel'];
 
     /**
      * @var string The database table used by the model.
      */
-    public $table = 'rainlab_forum_channels';
+    public $table = 'winter_forum_channels';
 
     /**
      * @var array Guarded fields
@@ -57,14 +57,14 @@ class Channel extends Model
      * @var array Relations
      */
     public $hasMany = [
-        'topics' => ['RainLab\Forum\Models\Topic']
+        'topics' => ['Winter\Forum\Models\Topic']
     ];
 
     /**
      * @var array Relations
      */
     public $hasOne = [
-        'first_topic' => ['RainLab\Forum\Models\Topic', 'order' => 'updated_at desc']
+        'first_topic' => ['Winter\Forum\Models\Topic', 'order' => 'updated_at desc']
     ];
 
     /**

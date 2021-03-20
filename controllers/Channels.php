@@ -1,9 +1,9 @@
-<?php namespace RainLab\Forum\Controllers;
+<?php namespace Winter\Forum\Controllers;
 
 use Flash;
 use BackendMenu;
 use Backend\Classes\Controller;
-use RainLab\Forum\Models\Channel;
+use Winter\Forum\Models\Channel;
 use System\Classes\SettingsManager;
 
 /**
@@ -21,14 +21,14 @@ class Channels extends Controller
     public $listConfig = 'config_list.yaml';
     public $reorderConfig = 'config_reorder.yaml';
     
-    public $requiredPermissions = ['rainlab.forum::lang.settings.channels'];
+    public $requiredPermissions = ['winter.forum::lang.settings.channels'];
 
     public function __construct()
     {
         parent::__construct();
 
-        BackendMenu::setContext('October.System', 'system', 'settings');
-        SettingsManager::setContext('RainLab.Forum', 'settings');
+        BackendMenu::setContext('Winter.System', 'system', 'settings');
+        SettingsManager::setContext('Winter.Forum', 'settings');
     }
 
     public function index_onDelete()

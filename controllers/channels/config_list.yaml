@@ -3,16 +3,16 @@
 # ===================================
 
 # Model List Column configuration
-list: ~/plugins/rainlab/forum/models/channel/columns.yaml
+list: ~/plugins/winter/forum/models/channel/columns.yaml
 
 # Model Class name
-modelClass: RainLab\Forum\Models\Channel
+modelClass: Winter\Forum\Models\Channel
 
 # List Title
-title: rainlab.forum::lang.channels.manage
+title: winter.forum::lang.channels.manage
 
 # Link URL for each record
-recordUrl: rainlab/forum/channels/update/:id
+recordUrl: winter/forum/channels/update/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records

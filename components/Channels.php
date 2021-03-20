@@ -1,20 +1,20 @@
-<?php namespace RainLab\Forum\Components;
+<?php namespace Winter\Forum\Components;
 
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use RainLab\Forum\Models\Channel;
-use RainLab\Forum\Models\Member as MemberModel;
-use RainLab\Forum\Classes\TopicTracker;
+use Winter\Forum\Models\Channel;
+use Winter\Forum\Models\Member as MemberModel;
+use Winter\Forum\Classes\TopicTracker;
 
 class Channels extends ComponentBase
 {
     /**
-     * @var RainLab\Forum\Models\Member Member cache
+     * @var Winter\Forum\Models\Member Member cache
      */
     protected $member;
 
     /**
-     * @var RainLab\Forum\Models\Channel Channel collection cache
+     * @var Winter\Forum\Models\Channel Channel collection cache
      */
     protected $channels;
 
@@ -36,8 +36,8 @@ class Channels extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.channels.list_name',
-            'description' => 'rainlab.forum::lang.channels.list_desc'
+            'name'        => 'winter.forum::lang.channels.list_name',
+            'description' => 'winter.forum::lang.channels.list_desc'
         ];
     }
 
@@ -45,23 +45,23 @@ class Channels extends ComponentBase
     {
         return [
             'memberPage' => [
-                'title'       => 'rainlab.forum::lang.member.page_name',
-                'description' => 'rainlab.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.member.page_name',
+                'description' => 'winter.forum::lang.member.page_help',
                 'type'        => 'dropdown',
             ],
             'channelPage' => [
-                'title'       => 'rainlab.forum::lang.channel.page_name',
-                'description' => 'rainlab.forum::lang.channel.page_help',
+                'title'       => 'winter.forum::lang.channel.page_name',
+                'description' => 'winter.forum::lang.channel.page_help',
                 'type'        => 'dropdown',
             ],
             'topicPage' => [
-                'title'       => 'rainlab.forum::lang.topic.page_name',
-                'description' => 'rainlab.forum::lang.topic.page_help',
+                'title'       => 'winter.forum::lang.topic.page_name',
+                'description' => 'winter.forum::lang.topic.page_help',
                 'type'        => 'dropdown',
             ],
             'includeStyles' => [
-                'title'       => 'rainlab.forum::lang.components.general.properties.includeStyles',
-                'description' => 'rainlab.forum::lang.components.general.properties.includeStyles_desc',
+                'title'       => 'winter.forum::lang.components.general.properties.includeStyles',
+                'description' => 'winter.forum::lang.components.general.properties.includeStyles_desc',
                 'type'        => 'checkbox',
                 'default'     => true
             ],

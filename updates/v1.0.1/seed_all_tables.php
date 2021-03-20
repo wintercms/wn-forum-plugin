@@ -1,11 +1,11 @@
-<?php namespace RainLab\Forum\Updates;
+<?php namespace Winter\Forum\Updates;
 
 use Schema;
-use RainLab\Forum\Models\Post;
-use RainLab\Forum\Models\Topic;
-use RainLab\Forum\Models\Member;
-use RainLab\Forum\Models\Channel;
-use October\Rain\Database\Updates\Seeder;
+use Winter\Forum\Models\Post;
+use Winter\Forum\Models\Topic;
+use Winter\Forum\Models\Member;
+use Winter\Forum\Models\Channel;
+use Winter\Storm\Database\Updates\Seeder;
 
 class SeedAllTables extends Seeder
 {
@@ -27,7 +27,7 @@ class SeedAllTables extends Seeder
         ]);
 
         $october = $autumn->children()->create([
-            'title' => 'October',
+            'title' => 'Winter CMS',
             'description' => 'The middle of the fall season.'
         ]);
 
@@ -59,7 +59,7 @@ class SeedAllTables extends Seeder
         // if (!Schema::hasTable('users'))
         //     return;
 
-        // $user = \RainLab\User\Models\User::first();
+        // $user = \Winter\User\Models\User::first();
         // if (!$user) return;
 
         // $member = Member::getFromUser($user);

@@ -1,12 +1,12 @@
-<?php namespace RainLab\Forum\Components;
+<?php namespace Winter\Forum\Components;
 
 use Auth;
 use Request;
 use Redirect;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use RainLab\Forum\Models\Post as PostModel;
-use RainLab\Forum\Models\Member as MemberModel;
+use Winter\Forum\Models\Post as PostModel;
+use Winter\Forum\Models\Member as MemberModel;
 
 /**
  * Post list component
@@ -16,12 +16,12 @@ use RainLab\Forum\Models\Member as MemberModel;
 class Posts extends ComponentBase
 {
     /**
-     * @var RainLab\Forum\Models\Member Member cache
+     * @var Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
     /**
-     * @var RainLab\Forum\Models\Member Other member cache
+     * @var Winter\Forum\Models\Member Other member cache
      */
     protected $otherMember = null;
 
@@ -43,8 +43,8 @@ class Posts extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.posts.component_name',
-            'description' => 'rainlab.forum::lang.posts.component_description',
+            'name'        => 'winter.forum::lang.posts.component_name',
+            'description' => 'winter.forum::lang.posts.component_description',
         ];
     }
 
@@ -52,25 +52,25 @@ class Posts extends ComponentBase
     {
         return [
             'memberPage' => [
-                'title'       => 'rainlab.forum::lang.member.page_name',
-                'description' => 'rainlab.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.member.page_name',
+                'description' => 'winter.forum::lang.member.page_help',
                 'type'        => 'dropdown'
             ],
             'topicPage' => [
-                'title'       => 'rainlab.forum::lang.topic.page_name',
-                'description' => 'rainlab.forum::lang.topic.page_help',
+                'title'       => 'winter.forum::lang.topic.page_name',
+                'description' => 'winter.forum::lang.topic.page_help',
                 'type'        => 'dropdown',
             ],
             'postsPerPage' =>  [
-                'title'             => 'rainlab.forum::lang.posts.per_page',
+                'title'             => 'winter.forum::lang.posts.per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'rainlab.forum::lang.posts.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.posts.per_page_validation',
                 'default'           => '20',
             ],
             'includeStyles' => [
-                'title'       => 'rainlab.forum::lang.components.general.properties.includeStyles',
-                'description' => 'rainlab.forum::lang.components.general.properties.includeStyles_desc',
+                'title'       => 'winter.forum::lang.components.general.properties.includeStyles',
+                'description' => 'winter.forum::lang.components.general.properties.includeStyles_desc',
                 'type'        => 'checkbox',
                 'default'     => true
             ],

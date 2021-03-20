@@ -1,4 +1,4 @@
-<?php namespace RainLab\Forum\Components;
+<?php namespace Winter\Forum\Components;
 
 use Auth;
 use Flash;
@@ -6,16 +6,16 @@ use Event;
 use Request;
 use Redirect;
 use Cms\Classes\Page;
-use RainLab\User\Models\User as UserModel;
-use RainLab\User\Models\MailBlocker;
+use Winter\User\Models\User as UserModel;
+use Winter\User\Models\MailBlocker;
 use Cms\Classes\ComponentBase;
 use ApplicationException;
-use RainLab\Forum\Models\Topic as TopicModel;
-use RainLab\Forum\Models\Channel as ChannelModel;
-use RainLab\Forum\Models\Member as MemberModel;
-use RainLab\Forum\Models\Post as PostModel;
-use RainLab\Forum\Models\TopicFollow;
-use RainLab\Forum\Classes\TopicTracker;
+use Winter\Forum\Models\Topic as TopicModel;
+use Winter\Forum\Models\Channel as ChannelModel;
+use Winter\Forum\Models\Member as MemberModel;
+use Winter\Forum\Models\Post as PostModel;
+use Winter\Forum\Models\TopicFollow;
+use Winter\Forum\Classes\TopicTracker;
 use Exception;
 
 class Topic extends ComponentBase
@@ -26,17 +26,17 @@ class Topic extends ComponentBase
     public $embedMode = false;
 
     /**
-     * @var RainLab\Forum\Models\Topic Topic cache
+     * @var Winter\Forum\Models\Topic Topic cache
      */
     protected $topic = null;
 
     /**
-     * @var RainLab\Forum\Models\Channel Channel cache
+     * @var Winter\Forum\Models\Channel Channel cache
      */
     protected $channel = null;
 
     /**
-     * @var RainLab\Forum\Models\Member Member cache
+     * @var Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
@@ -63,8 +63,8 @@ class Topic extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.topicpage.name',
-            'description' => 'rainlab.forum::lang.topicpage.self_desc'
+            'name'        => 'winter.forum::lang.topicpage.name',
+            'description' => 'winter.forum::lang.topicpage.self_desc'
         ];
     }
 
@@ -72,33 +72,33 @@ class Topic extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'rainlab.forum::lang.topicpage.slug_name',
-                'description' => 'rainlab.forum::lang.topicpage.slug_desc',
+                'title'       => 'winter.forum::lang.topicpage.slug_name',
+                'description' => 'winter.forum::lang.topicpage.slug_desc',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string',
             ],
             'postsPerPage' => [
-                'title'             => 'rainlab.forum::lang.posts.per_page',
+                'title'             => 'winter.forum::lang.posts.per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'rainlab.forum::lang.posts.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.posts.per_page_validation',
                 'default'           => '20',
             ],
             'memberPage' => [
-                'title'       => 'rainlab.forum::lang.member.page_name',
-                'description' => 'rainlab.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.member.page_name',
+                'description' => 'winter.forum::lang.member.page_help',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
             'channelPage' => [
-                'title'       => 'rainlab.forum::lang.topicpage.channel_title',
-                'description' => 'rainlab.forum::lang.topicpage.channel_desc',
+                'title'       => 'winter.forum::lang.topicpage.channel_title',
+                'description' => 'winter.forum::lang.topicpage.channel_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
             'includeStyles' => [
-                'title'       => 'rainlab.forum::lang.components.general.properties.includeStyles',
-                'description' => 'rainlab.forum::lang.components.general.properties.includeStyles_desc',
+                'title'       => 'winter.forum::lang.components.general.properties.includeStyles',
+                'description' => 'winter.forum::lang.components.general.properties.includeStyles_desc',
                 'type'        => 'checkbox',
                 'default'     => true
             ],
@@ -301,7 +301,7 @@ class Topic extends ComponentBase
          * Unsubscribe link
          */
         if ($action == 'unsubscribe' && $member->user) {
-            MailBlocker::addBlock('rainlab.forum::mail.topic_reply', $member->user);
+            MailBlocker::addBlock('winter.forum::mail.topic_reply', $member->user);
             Flash::success('You will no longer receive notifications about any topics in this forum.');
         }
 
@@ -337,7 +337,7 @@ class Topic extends ComponentBase
             /*
              * Extensbility
              */
-            Event::fire('rainlab.forum.topic.create', [$this, $topic, $topicUrl]);
+            Event::fire('winter.forum.topic.create', [$this, $topic, $topicUrl]);
             $this->fireEvent('topic.create', [$topic, $topicUrl]);
 
             /*
@@ -375,7 +375,7 @@ class Topic extends ComponentBase
             /*
              * Extensbility
              */
-            Event::fire('rainlab.forum.topic.post', [$this, $post, $postUrl]);
+            Event::fire('winter.forum.topic.post', [$this, $post, $postUrl]);
             $this->fireEvent('topic.post', [$post, $postUrl]);
 
             /*

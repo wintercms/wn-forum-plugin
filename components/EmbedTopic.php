@@ -1,9 +1,9 @@
-<?php namespace RainLab\Forum\Components;
+<?php namespace Winter\Forum\Components;
 
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use RainLab\Forum\Models\Topic as TopicModel;
-use RainLab\Forum\Models\Channel as ChannelModel;
+use Winter\Forum\Models\Topic as TopicModel;
+use Winter\Forum\Models\Channel as ChannelModel;
 use Exception;
 
 class EmbedTopic extends ComponentBase
@@ -16,8 +16,8 @@ class EmbedTopic extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.embedtopic.topic_name',
-            'description' => 'rainlab.forum::lang.embedtopic.topic_self_desc'
+            'name'        => 'winter.forum::lang.embedtopic.topic_name',
+            'description' => 'winter.forum::lang.embedtopic.topic_self_desc'
         ];
     }
 
@@ -25,18 +25,18 @@ class EmbedTopic extends ComponentBase
     {
         return [
             'embedCode' => [
-                'title'       => 'rainlab.forum::lang.embedtopic.embed_title',
-                'description' => 'rainlab.forum::lang.embedtopic.embed_desc',
+                'title'       => 'winter.forum::lang.embedtopic.embed_title',
+                'description' => 'winter.forum::lang.embedtopic.embed_desc',
                 'type'        => 'string',
             ],
             'channelSlug' => [
-                'title'       => 'rainlab.forum::lang.embedtopic.target_name',
-                'description' => 'rainlab.forum::lang.embedtopic.target_desc',
+                'title'       => 'winter.forum::lang.embedtopic.target_name',
+                'description' => 'winter.forum::lang.embedtopic.target_desc',
                 'type'        => 'dropdown'
             ],
             'memberPage' => [
-                'title'       => 'rainlab.forum::lang.member.page_name',
-                'description' => 'rainlab.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.member.page_name',
+                'description' => 'winter.forum::lang.member.page_help',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
@@ -79,7 +79,7 @@ class EmbedTopic extends ComponentBase
             $properties['slug'] = $topic->slug;
         }
 
-        $component = $this->addComponent('RainLab\Forum\Components\Topic', $this->alias, $properties);
+        $component = $this->addComponent('Winter\Forum\Components\Topic', $this->alias, $properties);
 
         /*
          * If a topic does not already exist, generate it when the page ends.

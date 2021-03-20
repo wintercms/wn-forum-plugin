@@ -1,18 +1,18 @@
-<?php namespace RainLab\Forum;
+<?php namespace Winter\Forum;
 
 use Event;
 use Backend;
-use RainLab\User\Models\User;
-use RainLab\Forum\Models\Member;
+use Winter\User\Models\User;
+use Winter\Forum\Models\Member;
 use System\Classes\PluginBase;
-use RainLab\User\Controllers\Users as UsersController;
+use Winter\User\Controllers\Users as UsersController;
 
 /**
  * Forum Plugin Information File
  */
 class Plugin extends PluginBase
 {
-    public $require = ['RainLab.User'];
+    public $require = ['Winter.User'];
 
     /**
      * Returns information about this plugin.
@@ -22,18 +22,19 @@ class Plugin extends PluginBase
     public function pluginDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.plugin.name',
-            'description' => 'rainlab.forum::lang.plugin.description',
+            'name'        => 'winter.forum::lang.plugin.name',
+            'description' => 'winter.forum::lang.plugin.description',
             'author'      => 'Alexey Bobkov, Samuel Georges',
             'icon'        => 'icon-comments',
-            'homepage'    => 'https://github.com/rainlab/forum-plugin'
+            'homepage'    => 'https://github.com/wintercms/wn-forum-plugin',
+            'replaces'    => 'RainLab.Forum'
         ];
     }
 
     public function boot()
     {
         User::extend(function($model) {
-            $model->hasOne['forum_member'] = ['RainLab\Forum\Models\Member'];
+            $model->hasOne['forum_member'] = ['Winter\Forum\Models\Member'];
 
             $model->bindEvent('model.beforeDelete', function() use ($model) {
                 $model->forum_member && $model->forum_member->delete();
@@ -42,7 +43,7 @@ class Plugin extends PluginBase
 
         UsersController::extendFormFields(function($widget, $model, $context) {
             // Prevent extending of related form instead of the intended User form
-            if (!$widget->model instanceof \RainLab\User\Models\User) {
+            if (!$widget->model instanceof \Winter\User\Models\User) {
                 return;
             }
             if ($context != 'update') {
@@ -54,35 +55,35 @@ class Plugin extends PluginBase
 
             $widget->addFields([
                 'forum_member[username]' => [
-                    'label'   => 'rainlab.forum::lang.settings.username',
+                    'label'   => 'winter.forum::lang.settings.username',
                     'tab'     => 'Forum',
-                    'comment' => 'rainlab.forum::lang.settings.username_comment'
+                    'comment' => 'winter.forum::lang.settings.username_comment'
                 ],
                 'forum_member[is_moderator]' => [
-                    'label'   => 'rainlab.forum::lang.settings.moderator',
+                    'label'   => 'winter.forum::lang.settings.moderator',
                     'type'    => 'checkbox',
                     'tab'     => 'Forum',
                     'span'    => 'auto',
-                    'comment' => 'rainlab.forum::lang.settings.moderator_comment'
+                    'comment' => 'winter.forum::lang.settings.moderator_comment'
                 ],
                 'forum_member[is_banned]' => [
-                    'label'   => 'rainlab.forum::lang.settings.banned',
+                    'label'   => 'winter.forum::lang.settings.banned',
                     'type'    => 'checkbox',
                     'tab'     => 'Forum',
                     'span'    => 'auto',
-                    'comment' => 'rainlab.forum::lang.settings.banned_comment'
+                    'comment' => 'winter.forum::lang.settings.banned_comment'
                 ]
             ], 'primary');
         });
 
         UsersController::extendListColumns(function($widget, $model) {
-            if (!$model instanceof \RainLab\User\Models\User) {
+            if (!$model instanceof \Winter\User\Models\User) {
                 return;
             }
 
             $widget->addColumns([
                 'forum_member_username' => [
-                    'label'      => 'rainlab.forum::lang.settings.forum_username',
+                    'label'      => 'winter.forum::lang.settings.forum_username',
                     'relation'   => 'forum_member',
                     'select'     => 'username',
                     'searchable' => false,
@@ -95,24 +96,24 @@ class Plugin extends PluginBase
     public function registerComponents()
     {
         return [
-           '\RainLab\Forum\Components\Channels'     => 'forumChannels',
-           '\RainLab\Forum\Components\Channel'      => 'forumChannel',
-           '\RainLab\Forum\Components\Topic'        => 'forumTopic',
-           '\RainLab\Forum\Components\Topics'       => 'forumTopics',
-           '\RainLab\Forum\Components\Posts'        => 'forumPosts',
-           '\RainLab\Forum\Components\Member'       => 'forumMember',
-           '\RainLab\Forum\Components\EmbedTopic'   => 'forumEmbedTopic',
-           '\RainLab\Forum\Components\EmbedChannel' => 'forumEmbedChannel',
-           '\RainLab\Forum\Components\RssFeed'      => 'forumRssFeed'
+           '\Winter\Forum\Components\Channels'     => 'forumChannels',
+           '\Winter\Forum\Components\Channel'      => 'forumChannel',
+           '\Winter\Forum\Components\Topic'        => 'forumTopic',
+           '\Winter\Forum\Components\Topics'       => 'forumTopics',
+           '\Winter\Forum\Components\Posts'        => 'forumPosts',
+           '\Winter\Forum\Components\Member'       => 'forumMember',
+           '\Winter\Forum\Components\EmbedTopic'   => 'forumEmbedTopic',
+           '\Winter\Forum\Components\EmbedChannel' => 'forumEmbedChannel',
+           '\Winter\Forum\Components\RssFeed'      => 'forumRssFeed'
         ];
     }
 
     public function registerPermissions()
     {
         return [
-            'rainlab.forum::lang.settings.channels' => [
-                'tab'   => 'rainlab.forum::lang.settings.channels',
-                'label' => 'rainlab.forum::lang.settings.channels_desc'
+            'winter.forum::lang.settings.channels' => [
+                'tab'   => 'winter.forum::lang.settings.channels',
+                'label' => 'winter.forum::lang.settings.channels_desc'
             ]
         ];
     }
@@ -121,13 +122,13 @@ class Plugin extends PluginBase
     {
         return [
             'settings' => [
-                'label'       => 'rainlab.forum::lang.settings.channels',
-                'description' => 'rainlab.forum::lang.settings.channels_desc',
+                'label'       => 'winter.forum::lang.settings.channels',
+                'description' => 'winter.forum::lang.settings.channels_desc',
                 'icon'        => 'icon-comments',
-                'url'         => Backend::url('rainlab/forum/channels'),
-                'category'    => 'rainlab.forum::lang.plugin.name',
+                'url'         => Backend::url('winter/forum/channels'),
+                'category'    => 'winter.forum::lang.plugin.name',
                 'order'       => 500,
-                'permissions' => ['rainlab.forum::lang.settings.channels'],
+                'permissions' => ['winter.forum::lang.settings.channels'],
             ]
         ];
     }
@@ -135,8 +136,8 @@ class Plugin extends PluginBase
     public function registerMailTemplates()
     {
         return [
-            'rainlab.forum::mail.topic_reply'   => 'Notification to followers when a post is made to a topic.',
-            'rainlab.forum::mail.member_report' => 'Notification to moderators when a member is reported to be a spammer.'
+            'winter.forum::mail.topic_reply'   => 'Notification to followers when a post is made to a topic.',
+            'winter.forum::mail.member_report' => 'Notification to moderators when a member is reported to be a spammer.'
         ];
     }
 }

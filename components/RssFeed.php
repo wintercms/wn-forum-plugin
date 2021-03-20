@@ -1,11 +1,11 @@
-<?php namespace RainLab\Forum\Components;
+<?php namespace Winter\Forum\Components;
 
 use Lang;
 use Response;
 use Cms\Classes\Page;
 use Cms\Classes\ComponentBase;
-use RainLab\Forum\Models\Topic as ForumTopic;
-use RainLab\Forum\Models\Channel as ForumChannel;
+use Winter\Forum\Models\Topic as ForumTopic;
+use Winter\Forum\Models\Channel as ForumChannel;
 
 class RssFeed extends ComponentBase
 {
@@ -36,8 +36,8 @@ class RssFeed extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'rainlab.forum::lang.settings.rssfeed_title',
-            'description' => 'rainlab.forum::lang.settings.rssfeed_description'
+            'name'        => 'winter.forum::lang.settings.rssfeed_title',
+            'description' => 'winter.forum::lang.settings.rssfeed_description'
         ];
     }
 
@@ -45,27 +45,27 @@ class RssFeed extends ComponentBase
     {
         return [
             'channelFilter' => [
-                'title'       => 'rainlab.forum::lang.settings.channels_filter',
-                'description' => 'rainlab.forum::lang.settings.channels_filter_description',
+                'title'       => 'winter.forum::lang.settings.channels_filter',
+                'description' => 'winter.forum::lang.settings.channels_filter_description',
                 'type'        => 'string',
                 'default'     => '',
             ],
             'topicsPerPage' => [
-                'title'             => 'rainlab.forum::lang.topics.per_page',
+                'title'             => 'winter.forum::lang.topics.per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'rainlab.forum::lang.topics.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.topics.per_page_validation',
                 'default'           => '20',
             ],
             'forumPage' => [
-                'title'       => 'rainlab.forum::lang.settings.rssfeed_forum',
-                'description' => 'rainlab.forum::lang.settings.rssfeed_forum_description',
+                'title'       => 'winter.forum::lang.settings.rssfeed_forum',
+                'description' => 'winter.forum::lang.settings.rssfeed_forum_description',
                 'type'        => 'dropdown',
                 'default'     => 'blog/post',
             ],
             'topicPage' => [
-                'title'       => 'rainlab.forum::lang.topic.page_name',
-                'description' => 'rainlab.forum::lang.topic.page_help',
+                'title'       => 'winter.forum::lang.topic.page_name',
+                'description' => 'winter.forum::lang.topic.page_help',
                 'type'        => 'dropdown',
             ],
         ];
