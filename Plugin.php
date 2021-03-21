@@ -24,7 +24,7 @@ class Plugin extends PluginBase
         return [
             'name'        => 'winter.forum::lang.plugin.name',
             'description' => 'winter.forum::lang.plugin.description',
-            'author'      => 'Alexey Bobkov, Samuel Georges',
+            'author'      => 'Winter CMS',
             'icon'        => 'icon-comments',
             'homepage'    => 'https://github.com/wintercms/wn-forum-plugin',
             'replaces'    => 'RainLab.Forum'

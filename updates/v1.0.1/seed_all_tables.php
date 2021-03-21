@@ -26,7 +26,7 @@ class SeedAllTables extends Seeder
             'description' => 'The start of the fall season.'
         ]);
 
-        $october = $autumn->children()->create([
+        $winter = $autumn->children()->create([
             'title' => 'Winter CMS',
             'description' => 'The middle of the fall season.'
         ]);
@@ -63,9 +63,9 @@ class SeedAllTables extends Seeder
         // if (!$user) return;
 
         // $member = Member::getFromUser($user);
-        // Topic::createInChannel($october, $member, ['subject' => 'First post!', 'content' => 'Welcome to the forum!']);
+        // Topic::createInChannel($winter, $member, ['subject' => 'First post!', 'content' => 'Welcome to the forum!']);
 
-        // $topic = Topic::createInChannel($october, $member, ['subject' => 'Lots of posts in here!', 'content' => 'Another post!']);
+        // $topic = Topic::createInChannel($winter, $member, ['subject' => 'Lots of posts in here!', 'content' => 'Another post!']);
 
         // Post::createInTopic($topic, $member, ['content' => 'Test content']);
         // Post::createInTopic($topic, $member, ['content' => 'Plugins are the foundation for adding new features to the CMS by extending it']);
