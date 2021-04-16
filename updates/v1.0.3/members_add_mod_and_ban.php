@@ -7,7 +7,7 @@ class MembersAddModAndBan extends Migration
 {
     public function up()
     {
-        Schema::table('winter_forum_members', function($table)
+        Schema::table('rainlab_forum_members', function($table)
         {
             $table->boolean('is_moderator')->default(0)->index();
             $table->boolean('is_banned')->default(0);
@@ -16,7 +16,7 @@ class MembersAddModAndBan extends Migration
 
     public function down()
     {
-        Schema::table('winter_forum_members', function($table)
+        Schema::table('rainlab_forum_members', function($table)
         {
             $table->dropColumn('is_moderator', 'is_banned');
         });

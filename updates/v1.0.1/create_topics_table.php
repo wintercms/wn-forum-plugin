@@ -7,7 +7,7 @@ class CreateTopicsTable extends Migration
 {
     public function up()
     {
-        Schema::create('winter_forum_topics', function($table)
+        Schema::create('rainlab_forum_topics', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -30,6 +30,6 @@ class CreateTopicsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('winter_forum_topics');
+        Schema::dropIfExists('rainlab_forum_topics');
     }
 }

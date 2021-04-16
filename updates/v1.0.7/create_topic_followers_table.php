@@ -9,7 +9,7 @@ class CreateTopicFollowersTable extends Migration
 {
     public function up()
     {
-        Schema::create('winter_forum_topic_followers', function($table)
+        Schema::create('rainlab_forum_topic_followers', function($table)
         {
             $table->engine = 'InnoDB';
             $table->integer('topic_id')->unsigned();
@@ -23,7 +23,7 @@ class CreateTopicFollowersTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('winter_forum_topic_followers');
+        Schema::dropIfExists('rainlab_forum_topic_followers');
     }
 
     private function followExistingPosts()

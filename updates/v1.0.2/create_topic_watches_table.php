@@ -7,7 +7,7 @@ class CreateTopicWatchesTable extends Migration
 {
     public function up()
     {
-        Schema::create('winter_forum_topic_watches', function($table)
+        Schema::create('rainlab_forum_topic_watches', function($table)
         {
             $table->engine = 'InnoDB';
             $table->increments('id');
@@ -20,6 +20,6 @@ class CreateTopicWatchesTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('winter_forum_topic_watches');
+        Schema::dropIfExists('rainlab_forum_topic_watches');
     }
 }

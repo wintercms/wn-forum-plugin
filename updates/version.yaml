@@ -47,6 +47,6 @@
     - v1.2.0/members_add_spam_guard.php
 "1.2.1": Made plugin compatible with PHP 7.3. Improved translations.
 "1.2.2": The default CSS can now be disabled for all components. Changed `getChannelSlugOptions` method in EmbedChannel component from protected to public.
-"1.3.0":
+"2.0.0":
     - Rebrand to Winter.forum
-    - v1.3.0/rename_tables.php
+    - v2.0.0/rename_tables.php
