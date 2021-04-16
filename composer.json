@@ -29,6 +29,7 @@
     },
     "require": {
         "php": ">=7.0",
+        "winter/wn-user-plugin": "dev-main",
         "composer/installers": "~1.0"
     },
     "extra": {
