@@ -31,6 +31,14 @@ class CreateTopicFollowersTable extends Migration
         /*
          * Follow exisiting posts
          */
+        Post::extend(function ($model) {
+            $model->setTable('rainlab_forum_posts');
+        });
+
+        TopicFollow::extend(function ($model) {
+            $model->setTable('rainlab_forum_topic_followers');
+        });
+
         $migrated = [];
         foreach (Post::all() as $post) {
             $code = $post->topic_id.'!'.$post->member_id;
@@ -46,5 +54,13 @@ class CreateTopicFollowersTable extends Migration
                 'updated_at' => $post->updated_at
             ]);
         }
+
+        Post::extend(function ($model) {
+            $model->setTable('winter_forum_posts');
+        });
+
+        TopicFollow::extend(function ($model) {
+            $model->setTable('winter_forum_topic_followers');
+        });
     }
 }
