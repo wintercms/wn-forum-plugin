@@ -27,7 +27,7 @@ class Plugin extends PluginBase
             'author'      => 'Winter CMS',
             'icon'        => 'icon-comments',
             'homepage'    => 'https://github.com/wintercms/wn-forum-plugin',
-            'replaces'    => 'RainLab.Forum'
+            'replaces'    => ['RainLab.Forum' => '<= 1.2.2'],
         ];
     }
 
