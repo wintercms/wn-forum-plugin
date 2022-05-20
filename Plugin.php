@@ -2,6 +2,8 @@
 
 use Event;
 use Backend;
+use Winter\Forum\Models\Channel;
+use Winter\Forum\Models\Topic;
 use Winter\User\Models\User;
 use Winter\Forum\Models\Member;
 use System\Classes\PluginBase;
@@ -56,20 +58,20 @@ class Plugin extends PluginBase
             $widget->addFields([
                 'forum_member[username]' => [
                     'label'   => 'winter.forum::lang.settings.username',
-                    'tab'     => 'winter.forum::lang.plugin.name',
+                    'tab'     => 'Forum',
                     'comment' => 'winter.forum::lang.settings.username_comment'
                 ],
                 'forum_member[is_moderator]' => [
                     'label'   => 'winter.forum::lang.settings.moderator',
                     'type'    => 'checkbox',
-                    'tab'     => 'winter.forum::lang.plugin.name',
+                    'tab'     => 'Forum',
                     'span'    => 'auto',
                     'comment' => 'winter.forum::lang.settings.moderator_comment'
                 ],
                 'forum_member[is_banned]' => [
                     'label'   => 'winter.forum::lang.settings.banned',
                     'type'    => 'checkbox',
-                    'tab'     => 'winter.forum::lang.plugin.name',
+                    'tab'     => 'Forum',
                     'span'    => 'auto',
                     'comment' => 'winter.forum::lang.settings.banned_comment'
                 ]
@@ -90,6 +92,31 @@ class Plugin extends PluginBase
                     'invisible'  => true
                 ]
             ]);
+        });
+
+        Event::listen('pages.menuitem.listTypes', function() {
+            return [
+                'forum-channel'=>'Forum channel',
+                'all-forum-channels'=>'All forum channels',
+                'forum-topic'=>'Forum topic',
+                'all-forum-topics'=>'All forum topics',
+            ];
+        });
+
+        Event::listen('pages.menuitem.getTypeInfo', function($type) {
+            if ($type == 'forum-channel' || $type == 'all-forum-channels') {
+                return Channel::getMenuTypeInfo($type);
+            } elseif ($type == 'forum-topic' || $type == 'all-forum-topics') {
+                return Topic::getMenuTypeInfo($type);
+            }
+        });
+
+        Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
+            if ($type == 'forum-channel' || $type == 'all-forum-channels') {
+                return Channel::resolveMenuItem($item, $url, $theme);
+            } elseif ($type == 'all-forum-topics') {
+                return Topic::resolveMenuItem($item, $url, $theme);
+            }
         });
     }
 

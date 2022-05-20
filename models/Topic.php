@@ -6,6 +6,9 @@ use App;
 use Model;
 use Carbon\Carbon;
 use ApplicationException;
+use Url;
+use Cms\Classes\Page as CmsPage;
+use Cms\Classes\Theme;
 
 /**
  * Topic Model
@@ -317,5 +320,126 @@ class Topic extends Model
     {
         $this->is_locked = ($this->is_locked == 1 ? 0 : 1);
         $this->save();
+    }
+
+    /**
+     * Handler for the pages.menuitem.getTypeInfo event.
+     * Returns a menu item type information. The type information is returned as array
+     * with the following elements:
+     * - references - a list of the item type reference options. The options are returned in the
+     *   ["key"] => "title" format for options that don't have sub-options, and in the format
+     *   ["key"] => ["title"=>"Option title", "items"=>[...]] for options that have sub-options. Optional,
+     *   required only if the menu item type requires references.
+     * - nesting - Boolean value indicating whether the item type supports nested items. Optional,
+     *   false if omitted.
+     * - dynamicItems - Boolean value indicating whether the item type could generate new menu items.
+     *   Optional, false if omitted.
+     * - cmsPages - a list of CMS pages (objects of the Cms\Classes\Page class), if the item type requires a CMS page reference to
+     *   resolve the item URL.
+     * @param string $type Specifies the menu item type
+     * @return array Returns an array
+     */
+    public static function getMenuTypeInfo($type)
+    {
+        $result = [
+            'dynamicItems' => true
+        ];
+
+        $theme = Theme::getActiveTheme();
+
+        $pages = CmsPage::listInTheme($theme, true);
+        $cmsPages = [];
+        foreach ($pages as $page) {
+            if (!$page->hasComponent('forumTopic')) {
+                continue;
+            }
+
+            /*
+             * Component must use a slug topic filter with a routing parameter
+             * eg: slug = "{{ :somevalue }}"
+             */
+            $properties = $page->getComponentProperties('forumTopic');
+            if (!isset($properties['slug']) || !preg_match('/{{\s*:/', $properties['slug'])) {
+                continue;
+            }
+
+            $cmsPages[] = $page;
+        }
+
+        $result['cmsPages'] = $cmsPages;
+
+        return $result;
+    }
+
+    /**
+     * Handler for the pages.menuitem.resolveItem event.
+     * Returns information about a menu item. The result is an array
+     * with the following keys:
+     * - url - the menu item URL. Not required for menu item types that return all available records.
+     *   The URL should be returned relative to the website root and include the subdirectory, if any.
+     *   Use the Url::to() helper to generate the URLs.
+     * - isActive - determines whether the menu item is active. Not required for menu item types that
+     *   return all available records.
+     * - items - an array of arrays with the same keys (url, isActive, items) + the title key.
+     *   The items array should be added only if the $item's $nesting property value is TRUE.
+     * @param \Winter\Pages\Classes\MenuItem $item Specifies the menu item.
+     * @param \Cms\Classes\Theme $theme Specifies the current theme.
+     * @param string $url Specifies the current page URL, normalized, in lower case
+     * The URL is specified relative to the website root, it includes the subdirectory name, if any.
+     * @return mixed Returns an array. Returns null if the item cannot be resolved.
+     */
+    public static function resolveMenuItem($item, $url, $theme)
+    {
+        $result = [
+            'items' => []
+        ];
+
+        $topics = self::orderBy('subject')->get();
+        foreach ($topics as $topic) {
+            $topicItem = [
+                'title' => $topic->subject,
+                'url'   => self::getTopicPageUrl($item->cmsPage, $topic, $theme),
+                'mtime' => $topic->updated_at
+            ];
+
+            $topicItem['isActive'] = $topicItem['url'] == $url;
+
+            $result['items'][] = $topicItem;
+        }
+
+        return $result;
+    }
+
+    /**
+     * Returns URL of a topic page.
+     *
+     * @param $pageCode
+     * @param $topic
+     * @param $theme
+     */
+    protected static function getTopicPageUrl($pageCode, $topic, $theme)
+    {
+        $page = CmsPage::loadCached($theme, $pageCode);
+        if (!$page) {
+            return;
+        }
+
+        $properties = $page->getComponentProperties('forumTopic');
+        if (!isset($properties['slug'])) {
+            return;
+        }
+
+        /*
+         * Extract the routing parameter name from the topic filter
+         * eg: {{ :someRouteParam }}
+         */
+        if (!preg_match('/^\{\{([^\}]+)\}\}$/', $properties['slug'], $matches)) {
+            return;
+        }
+
+        $paramName = substr(trim($matches[1]), 1);
+        $url = CmsPage::url($page->getBaseFileName(), [$paramName => $topic->slug]);
+
+        return $url;
     }
 }
