@@ -97,53 +97,60 @@ class Channel extends Model
      * @param string $type Specifies the menu item type
      * @return array Returns an array
      */
-      public static function getMenuTypeInfo($type)
-      {
-          $result = [];
+    public static function getMenuTypeInfo($type)
+    {
+        $result = [];
 
-          if ($type == 'forum-channel') {
-              $result = [
-                  'references'   => self::listChildrenOptions(),
-                  'nesting'      => true,
-                  'dynamicItems' => true
-              ];
-          }
+        if ($type == 'forum-channel') {
+            $result = [
+                'references' => self::listChildrenOptions(),
+                'nesting' => true,
+                'dynamicItems' => true
+            ];
+        }
 
-          if ($type == 'all-forum-channels') {
-              $result = [
-                  'dynamicItems' => true
-              ];
-          }
+        if ($type == 'all-forum-channels') {
+            $result = [
+                'dynamicItems' => true
+            ];
+        }
 
-          if ($result) {
-              $theme = Theme::getActiveTheme();
+        if ($result) {
+            $theme = Theme::getActiveTheme();
 
-              $pages = CmsPage::listInTheme($theme, true);
-              $cmsPages = [];
-              foreach ($pages as $page) {
-                  if (!$page->hasComponent('forumChannel')) {
-                      continue;
-                  }
+            $pages = CmsPage::listInTheme($theme, true);
+            $cmsPages = [];
+            foreach ($pages as $page) {
+                if (!$page->hasComponent('forumChannel')) {
+                    continue;
+                }
 
-                  /*
-                   * Component must use a slug channel filter with a routing parameter
-                   * eg: slug = "{{ :somevalue }}"
-                   */
-                  $properties = $page->getComponentProperties('forumChannel');
-                  if (!isset($properties['slug']) || !preg_match('/{{\s*:/', $properties['slug'])) {
-                      continue;
-                  }
+                /*
+                 * Component must use a slug channel filter with a routing parameter
+                 * eg: slug = "{{ :somevalue }}"
+                 */
+                $properties = $page->getComponentProperties('forumChannel');
+                if (!isset($properties['slug']) || !preg_match('/{{\s*:/', $properties['slug'])) {
+                    continue;
+                }
 
-                  $cmsPages[] = $page;
-              }
+                $cmsPages[] = $page;
+            }
 
-              $result['cmsPages'] = $cmsPages;
-          }
+            $result['cmsPages'] = $cmsPages;
+        }
 
-          return $result;
-      }
+        return $result;
+    }
 
-    protected static function listChildrenOptions()
+    /**
+     * Return the list of children of this channel. The children list is returned as array
+     * identified by the child id as key and with the following elements for each key:
+     *  - title - The channel title
+     *  - items - An array containing the channel children (recursive)
+     * @return array
+     */
+    protected static function listChildrenOptions(): array
     {
         $channel = self::getNested();
 
