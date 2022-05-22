@@ -152,7 +152,7 @@ class Channel extends Model
      */
     protected static function listChildrenOptions(): array
     {
-        $channel = self::getNested();
+        $channel = self::isVisible()->getNested();
 
         $iterator = function($children) use (&$iterator) {
             $result = [];
@@ -219,7 +219,7 @@ class Channel extends Model
             $result['mtime'] = $channel->updated_at;
 
             if ($item->nesting) {
-                $channels = $channel->getNested();
+                $channels = $channel->isVisible()->getNested();
                 $iterator = function($channels) use (&$iterator, &$item, &$theme, $url) {
                     $branch = [];
 
@@ -248,7 +248,7 @@ class Channel extends Model
                 'items' => []
             ];
 
-            $channels = self::orderBy('title')->get();
+            $channels = self::isVisible()->orderBy('title')->get();
             foreach ($channels as $channel) {
                 $channelItem = [
                     'title' => $channel->name,
