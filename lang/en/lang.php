@@ -140,4 +140,9 @@ return [
             ],
         ],
     ],
+    'menuitem' => [
+        'forum_channel' => 'Forum channel',
+        'all_forum_channels' => 'All forum channels',
+        'all_forum_topics' => 'All forum topics'
+    ],
 ];

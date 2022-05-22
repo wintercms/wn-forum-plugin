@@ -96,10 +96,9 @@ class Plugin extends PluginBase
 
         Event::listen('pages.menuitem.listTypes', function() {
             return [
-                'forum-channel'=>'Forum channel',
-                'all-forum-channels'=>'All forum channels',
-                'forum-topic'=>'Forum topic',
-                'all-forum-topics'=>'All forum topics',
+                'forum-channel' => 'winter.forum::lang.menuitem.forum_channel',
+                'all-forum-channels' => 'winter.forum::lang.menuitem.all_forum_channels',
+                'all-forum-topics' => 'winter.forum::lang.menuitem.all_forum_topics',
             ];
         });
 
