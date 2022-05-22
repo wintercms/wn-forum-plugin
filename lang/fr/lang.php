@@ -5,27 +5,27 @@ return [
         'component_name' => 'Liste de topics',
         'component_description' => 'Affiche la liste de tous les topics.',
         'per_page' => 'Topics par page',
-        'per_page_validation' => 'Format invalide de topics par page'
+        'per_page_validation' => 'Format invalide de topics par page',
     ],
     'topic' => [
         'page_name' => 'Page Topic',
-        'page_help' => 'Nom de la page à utiliser lors du clic sur un sujet.'
+        'page_help' => 'Nom de la page à utiliser lors du clic sur un sujet.',
     ],
     'posts' => [
         'component_name' => 'Liste de messages',
         'component_description' => 'Affiche la liste de tous les messages.',
         'per_page' => 'Messages par page',
-        'per_page_validation' => 'Message par page doit être un nombre'
+        'per_page_validation' => 'Message par page doit être un nombre',
     ],
     'member' => [
         'page_name' => 'Page Membre',
-        'page_help' => 'Nom de la page à utiliser lors du clic sur un membre.'
+        'page_help' => 'Nom de la page à utiliser lors du clic sur un membre.',
     ],
     'channel' => [
         'component_name' => 'Canal',
         'component_description' => 'Affiche la liste des topics d\'un canal.',
         'page_name' => 'Page Canal',
-        'page_help' => 'Nom de la page à utiliser lors du clic sur un canal.'
+        'page_help' => 'Nom de la page à utiliser lors du clic sur un canal.',
     ],
     'channels' => [
         'new_channel' => 'Nouveau Canal',
@@ -50,19 +50,19 @@ return [
         'deleting' => 'Suppression du Canal...',
         'really' => 'Êtes vous sûr de vouloir supprimer ce Canal?',
         'list_name' => 'Liste des canaux',
-        'list_desc' => 'Affiche la liste de tous les canaux visibles.'
+        'list_desc' => 'Affiche la liste de tous les canaux visibles.',
     ],
     'slug' => [
         'name' => 'Nom du paramètre slug',
-        'desc' => 'Le paramètre dans l\'URL utilisé pour retrouvé un canal par son slug. Un slug écris en dur peut aussi être utilisé.'
+        'desc' => 'Le paramètre dans l\'URL utilisé pour retrouvé un canal par son slug. Un slug écris en dur peut aussi être utilisé.',
     ],
     'frontend' => [
-        'notopic' => 'Il n\'y a aucun topic dans ce canal.'
+        'notopic' => 'Il n\'y a aucun topic dans ce canal.',
     ],
 
     'plugin' => [
         'name' => 'Forum',
-        'description' => 'Un forum basique intégrable.'
+        'description' => 'Un forum basique intégrable.',
     ],
     'data' => [
         'title' => 'Titre',
@@ -75,7 +75,7 @@ return [
         'hidden' => 'Caché',
         'is_hidden' => 'Cacher ce canal dans la liste principale des canaux.',
         'guarded' => 'Protection anti-spam',
-        'is_guarded' => 'Les membres doivent être approuvés par les modérateurs avant que leurs messages ne soient diffusés aux visiteurs non-enregistrés.'
+        'is_guarded' => 'Les membres doivent être approuvés par les modérateurs avant que leurs messages ne soient diffusés aux visiteurs non-enregistrés.',
     ],
     'settings' => [
         'username' => 'Nom d\'utilisateur',
@@ -102,7 +102,7 @@ return [
         'embed_title' => 'Paramètre du code d\'intégration',
         'embed_desc' => 'Un code unique pour le canal généré. Un paramètre de routage peut aussi être utilisé.',
         'topic_name' => 'Paramètre du code du topic',
-        'topic_desc' => 'Le paramètre de routage d\'URL utilisé pour rechercher le topic par son slug.'
+        'topic_desc' => 'Le paramètre de routage d\'URL utilisé pour rechercher le topic par son slug.',
     ],
     'embedtopic' => [
         'topic_name' => 'Topic intégré',
@@ -110,7 +110,7 @@ return [
         'target_name' => 'Canal visé',
         'target_desc' => 'Specifie le canal dans lequel créer le nouveau topic ou nouveau canal',
         'embed_title' => 'Code d\'intégration',
-        'embed_desc' => 'Un code unique pour la génération du topic ou du canal. Un paramètre de routage peut aussi être utilisé.'
+        'embed_desc' => 'Un code unique pour la génération du topic ou du canal. Un paramètre de routage peut aussi être utilisé.',
     ],
     'memberpage' => [
         'name' => 'Membre',
@@ -122,7 +122,7 @@ return [
         'ch_title' => 'Page Canal',
         'ch_desc' => 'NoPage name to use for clicking on a channel.',
         'topic_title' => 'Topic page',
-        'topic_desc' => 'Page name to use for clicking on a conversation topic.'
+        'topic_desc' => 'Page name to use for clicking on a conversation topic.',
     ],
     'topicpage' => [
         'name' => 'Topic',
@@ -130,7 +130,7 @@ return [
         'slug_name' => 'Nom du paramètre slug',
         'slug_desc' => 'Le paramètre dans l\'URL utilisé pour retrouvé un topic par son slug. Un slug écris en dur peut aussi être utilisé.',
         'channel_title' => 'Channel Page',
-        'channel_desc' => 'Nom de la page à utiliser lors du clic sur un canal.'
+        'channel_desc' => 'Nom de la page à utiliser lors du clic sur un canal.',
     ],
     'components' => [
         'general' => [
