@@ -394,7 +394,10 @@ class Topic extends Model
             'items' => []
         ];
 
-        $topics = self::orderBy('subject')->get();
+        $topics = self::whereHas('channel', function ($query) {
+            $query->isVisible();
+        })->orderBy('subject')->get();
+
         foreach ($topics as $topic) {
             $topicItem = [
                 'title' => $topic->subject,
