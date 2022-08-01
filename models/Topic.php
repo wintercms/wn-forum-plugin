@@ -416,9 +416,10 @@ class Topic extends Model
     /**
      * Returns URL of a topic page.
      *
-     * @param $pageCode
-     * @param $topic
-     * @param $theme
+     * @param string $pageCode
+     * @param \Winter\Forum\Models\Topic $topic
+     * @param \Cms\Classes\Theme $theme
+     * @return string|null
      */
     protected static function getTopicPageUrl($pageCode, $topic, $theme)
     {
