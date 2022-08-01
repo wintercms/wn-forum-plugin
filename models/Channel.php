@@ -1,8 +1,8 @@
 <?php namespace Winter\Forum\Models;
 
+use Url;
 use Model;
 use ApplicationException;
-use Url;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
 
@@ -101,17 +101,17 @@ class Channel extends Model
     {
         $result = [];
 
-        if ($type == 'forum-channel') {
+        if ($type === 'forum-channel') {
             $result = [
                 'references' => self::listChildrenOptions(),
                 'nesting' => true,
-                'dynamicItems' => true
+                'dynamicItems' => true,
             ];
         }
 
-        if ($type == 'all-forum-channels') {
+        if ($type === 'all-forum-channels') {
             $result = [
-                'dynamicItems' => true
+                'dynamicItems' => true,
             ];
         }
 
@@ -154,17 +154,16 @@ class Channel extends Model
     {
         $channel = self::isVisible()->getNested();
 
-        $iterator = function($children) use (&$iterator) {
+        $iterator = function ($children) use (&$iterator) {
             $result = [];
 
             foreach ($children as $child) {
                 if (!$child->children) {
                     $result[$child->id] = $child->title;
-                }
-                else {
+                } else {
                     $result[$child->id] = [
                         'title' => $child->title,
-                        'items' => $iterator($child->children)
+                        'items' => $iterator($child->children),
                     ];
                 }
             }
@@ -196,7 +195,7 @@ class Channel extends Model
     {
         $result = null;
 
-        if ($item->type == 'forum-channel') {
+        if ($item->type === 'forum-channel') {
             if (!$item->reference || !$item->cmsPage) {
                 return;
             }
@@ -215,12 +214,12 @@ class Channel extends Model
 
             $result = [];
             $result['url'] = $pageUrl;
-            $result['isActive'] = $pageUrl == $url;
+            $result['isActive'] = ($pageUrl === $url);
             $result['mtime'] = $channel->updated_at;
 
             if ($item->nesting) {
                 $channels = $channel->isVisible()->getNested();
-                $iterator = function($channels) use (&$iterator, &$item, &$theme, $url) {
+                $iterator = function ($channels) use (&$iterator, &$item, &$theme, $url) {
                     $branch = [];
 
                     foreach ($channels as $channel) {
@@ -243,9 +242,9 @@ class Channel extends Model
                 $result['items'] = $iterator($channels);
             }
         }
-        elseif ($item->type == 'all-forum-channels') {
+        elseif ($item->type === 'all-forum-channels') {
             $result = [
-                'items' => []
+                'items' => [],
             ];
 
             $channels = self::isVisible()->orderBy('title')->get();
@@ -253,10 +252,10 @@ class Channel extends Model
                 $channelItem = [
                     'title' => $channel->name,
                     'url'   => self::getChannelPageUrl($item->cmsPage, $channel, $theme),
-                    'mtime' => $channel->updated_at
+                    'mtime' => $channel->updated_at,
                 ];
 
-                $channelItem['isActive'] = $channelItem['url'] == $url;
+                $channelItem['isActive'] = ($channelItem['url'] === $url);
 
                 $result['items'][] = $channelItem;
             }

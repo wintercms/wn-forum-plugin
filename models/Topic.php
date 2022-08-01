@@ -342,7 +342,7 @@ class Topic extends Model
     public static function getMenuTypeInfo($type)
     {
         $result = [
-            'dynamicItems' => true
+            'dynamicItems' => true,
         ];
 
         $theme = Theme::getActiveTheme();
@@ -391,7 +391,7 @@ class Topic extends Model
     public static function resolveMenuItem($item, $url, $theme)
     {
         $result = [
-            'items' => []
+            'items' => [],
         ];
 
         $topics = self::whereHas('channel', function ($query) {
@@ -402,7 +402,7 @@ class Topic extends Model
             $topicItem = [
                 'title' => $topic->subject,
                 'url'   => self::getTopicPageUrl($item->cmsPage, $topic, $theme),
-                'mtime' => $topic->updated_at
+                'mtime' => $topic->updated_at,
             ];
 
             $topicItem['isActive'] = $topicItem['url'] == $url;
