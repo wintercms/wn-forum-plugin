@@ -139,4 +139,9 @@ return [
             ],
         ],
     ],
+    'menuitem' => [
+        'forum_channel' => 'Catégorie du forum',
+        'all_forum_channels' => 'Toutes les catégories du forum',
+        'all_forum_topics' => 'Tous les sujets du forum'
+    ],
 ];
