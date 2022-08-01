@@ -94,7 +94,7 @@ class Plugin extends PluginBase
             ]);
         });
 
-        Event::listen('pages.menuitem.listTypes', function() {
+        Event::listen('pages.menuitem.listTypes', function () {
             return [
                 'forum-channel' => 'winter.forum::lang.menuitem.forum_channel',
                 'all-forum-channels' => 'winter.forum::lang.menuitem.all_forum_channels',
