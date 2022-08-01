@@ -267,9 +267,9 @@ class Channel extends Model
     /**
      * Returns URL of a channel page.
      *
-     * @param $pageCode
-     * @param $channel
-     * @param $theme
+     * @param string $pageCode
+     * @param \Winter\Forum\Models\Channel $channel
+     * @param \Cms\Classes\Theme $theme
      */
     protected static function getChannelPageUrl($pageCode, $channel, $theme)
     {
