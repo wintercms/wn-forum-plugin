@@ -405,7 +405,7 @@ class Topic extends Model
                 'mtime' => $topic->updated_at,
             ];
 
-            $topicItem['isActive'] = $topicItem['url'] == $url;
+            $topicItem['isActive'] = ($topicItem['url'] === $url);
 
             $result['items'][] = $topicItem;
         }
