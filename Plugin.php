@@ -110,10 +110,10 @@ class Plugin extends PluginBase
             }
         });
 
-        Event::listen('pages.menuitem.resolveItem', function($type, $item, $url, $theme) {
-            if ($type == 'forum-channel' || $type == 'all-forum-channels') {
+        Event::listen('pages.menuitem.resolveItem', function ($type, $item, $url, $theme) {
+            if ($type === 'forum-channel' || $type === 'all-forum-channels') {
                 return Channel::resolveMenuItem($item, $url, $theme);
-            } elseif ($type == 'all-forum-topics') {
+            } elseif ($type === 'all-forum-topics') {
                 return Topic::resolveMenuItem($item, $url, $theme);
             }
         });
