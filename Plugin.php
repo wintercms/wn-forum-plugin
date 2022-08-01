@@ -2,6 +2,8 @@
 
 use Event;
 use Backend;
+use Winter\Forum\Models\Channel;
+use Winter\Forum\Models\Topic;
 use Winter\User\Models\User;
 use Winter\Forum\Models\Member;
 use System\Classes\PluginBase;
@@ -90,6 +92,30 @@ class Plugin extends PluginBase
                     'invisible'  => true
                 ]
             ]);
+        });
+
+        Event::listen('pages.menuitem.listTypes', function () {
+            return [
+                'forum-channel' => 'winter.forum::lang.menuitem.forum_channel',
+                'all-forum-channels' => 'winter.forum::lang.menuitem.all_forum_channels',
+                'all-forum-topics' => 'winter.forum::lang.menuitem.all_forum_topics',
+            ];
+        });
+
+        Event::listen('pages.menuitem.getTypeInfo', function ($type) {
+            if ($type === 'forum-channel' || $type === 'all-forum-channels') {
+                return Channel::getMenuTypeInfo($type);
+            } elseif ($type === 'all-forum-topics') {
+                return Topic::getMenuTypeInfo($type);
+            }
+        });
+
+        Event::listen('pages.menuitem.resolveItem', function ($type, $item, $url, $theme) {
+            if ($type === 'forum-channel' || $type === 'all-forum-channels') {
+                return Channel::resolveMenuItem($item, $url, $theme);
+            } elseif ($type === 'all-forum-topics') {
+                return Topic::resolveMenuItem($item, $url, $theme);
+            }
         });
     }
 
