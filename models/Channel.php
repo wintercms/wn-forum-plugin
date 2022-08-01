@@ -225,7 +225,7 @@ class Channel extends Model
                     foreach ($channels as $channel) {
                         $branchItem = [];
                         $branchItem['url'] = self::getChannelPageUrl($item->cmsPage, $channel, $theme);
-                        $branchItem['isActive'] = $branchItem['url'] == $url;
+                        $branchItem['isActive'] = ($branchItem['url'] === $url);
                         $branchItem['title'] = $channel->name;
                         $branchItem['mtime'] = $channel->updated_at;
 
