@@ -422,8 +422,8 @@ class Topic extends ComponentBase
             /*
              * Extensbility
              */
-            Event::fire('winter.forum.topic.post-update', [$this, $post]);
-            $this->fireEvent('topic.post-update', [$post]);
+            Event::fire('winter.forum.topic.postUpdate', [$this, $post]);
+            $this->fireEvent('topic.postUpdate', [$post]);
         }
         elseif ($mode == 'delete') {
             $post->delete();
