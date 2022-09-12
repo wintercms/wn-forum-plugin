@@ -418,6 +418,12 @@ class Topic extends ComponentBase
                 $topic->fill(['subject' => post('subject')]);
                 $topic->save();
             }
+
+            /*
+             * Extensbility
+             */
+            Event::fire('winter.forum.topic.post-update', [$this, $post]);
+            $this->fireEvent('topic.post-update', [$post]);
         }
         elseif ($mode == 'delete') {
             $post->delete();
