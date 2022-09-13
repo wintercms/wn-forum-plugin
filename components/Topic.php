@@ -427,6 +427,12 @@ class Topic extends ComponentBase
         }
         elseif ($mode == 'delete') {
             $post->delete();
+
+            /*
+             * Extensbility
+             */
+            Event::fire('winter.forum.topic.postDelete', [$this, $post]);
+            $this->fireEvent('topic.postDelete', [$post]);
         }
 
         $this->page['mode'] = $mode;
