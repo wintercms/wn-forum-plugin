@@ -418,9 +418,21 @@ class Topic extends ComponentBase
                 $topic->fill(['subject' => post('subject')]);
                 $topic->save();
             }
+
+            /*
+             * Extensbility
+             */
+            Event::fire('winter.forum.topic.postUpdate', [$this, $post]);
+            $this->fireEvent('topic.postUpdate', [$post]);
         }
         elseif ($mode == 'delete') {
             $post->delete();
+
+            /*
+             * Extensbility
+             */
+            Event::fire('winter.forum.topic.postDelete', [$this, $post]);
+            $this->fireEvent('topic.postDelete', [$post]);
         }
 
         $this->page['mode'] = $mode;
