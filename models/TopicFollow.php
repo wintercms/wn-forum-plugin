@@ -71,7 +71,7 @@ class TopicFollow extends Model
      */
     public static function check($topic, $member)
     {
-        return self::where('member_id', $member->id)->where('topic_id', $topic->id)->count() > 0;
+        return self::where('member_id', $member->id)->where('topic_id', $topic->id)->exists();
     }
 
     /**
