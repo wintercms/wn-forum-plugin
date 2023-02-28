@@ -18,10 +18,8 @@ class Plugin extends PluginBase
 
     /**
      * Returns information about this plugin.
-     *
-     * @return array
      */
-    public function pluginDetails()
+    public function pluginDetails(): array
     {
         return [
             'name'        => 'winter.forum::lang.plugin.name',
@@ -33,7 +31,7 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function boot()
+    public function boot(): void
     {
         User::extend(function($model) {
             $model->hasOne['forum_member'] = ['Winter\Forum\Models\Member'];
@@ -119,7 +117,7 @@ class Plugin extends PluginBase
         });
     }
 
-    public function registerComponents()
+    public function registerComponents(): array
     {
         return [
            '\Winter\Forum\Components\Channels'     => 'forumChannels',
@@ -134,7 +132,7 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerPermissions()
+    public function registerPermissions(): array
     {
         return [
             'winter.forum::lang.settings.channels' => [
@@ -144,7 +142,7 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerSettings()
+    public function registerSettings(): array
     {
         return [
             'settings' => [
@@ -159,7 +157,7 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerMailTemplates()
+    public function registerMailTemplates(): array
     {
         return [
             'winter.forum::mail.topic_reply'   => 'Notification to followers when a post is made to a topic.',
@@ -167,7 +165,7 @@ class Plugin extends PluginBase
         ];
     }
 
-    public function registerClassAliases()
+    public function registerClassAliases(): array
     {
         /**
          * To allow compatibility with plugins that extend the original RainLab.Forum plugin,
