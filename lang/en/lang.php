@@ -32,6 +32,7 @@ return [
         'delete_selected_confirm' => 'Are you sure?',
         'delete' => 'Delete',
         'manage' => 'Manage Channel Order',
+        'reorder_title' => 'Reorder Channels',
         'return' => 'Return to Channels',
         'name' => 'Channels',
         'create' => 'Create Channels',
@@ -50,7 +51,7 @@ return [
         'deleting' => 'Deleting Channel...',
         'really' => 'Do you really want to delete this channel?',
         'list_name' => 'Channel List',
-        'list_desc' => 'Displays a list of all visible channels.'
+        'list_desc' => 'Displays a list of all visible channels.',
     ],
     'slug' => [
         'name' => 'Slug param name',
