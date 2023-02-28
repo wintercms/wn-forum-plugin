@@ -5,27 +5,27 @@ return [
         'component_name' => 'Topic List',
         'component_description' => 'Displays a list of all topics.',
         'per_page' => 'Topics per page',
-        'per_page_validation' => 'Invalid format of the topics per page value'
+        'per_page_validation' => 'Invalid format of the topics per page value',
     ],
     'topic' => [
         'page_name' => 'Topic Page',
-        'page_help' => 'Page name to use for clicking on a conversation topic.'
+        'page_help' => 'Page name to use for clicking on a conversation topic.',
     ],
     'posts' => [
         'component_name' => 'Posts List',
         'component_description' => 'Displays a list of all posts.',
         'per_page' => 'Posts per page',
-        'per_page_validation' => 'Posts per page must be a number'
+        'per_page_validation' => 'Posts per page must be a number',
     ],
     'member' => [
         'page_name' => 'Member Page',
-        'page_help' => 'Page name to use for clicking on a Member.'
+        'page_help' => 'Page name to use for clicking on a Member.',
     ],
     'channel' => [
         'component_name' => 'Channel',
         'component_description' => 'Displays a list of posts belonging to a channel.',
         'page_name' => 'Channel Page',
-        'page_help' => 'Page name to use for clicking on a Channel.'
+        'page_help' => 'Page name to use for clicking on a Channel.',
     ],
     'channels' => [
         'new_channel' => 'New Channel',
@@ -58,12 +58,12 @@ return [
         'desc' => 'The URL route parameter used for looking up the channel by its slug. A hard coded slug can also be used.'
     ],
     'frontend' => [
-        'notopic' => 'There are no topics in this channel.'
+        'notopic' => 'There are no topics in this channel.',
     ],
 
     'plugin' => [
         'name' => 'Forum',
-        'description' => 'A simple embeddable forum'
+        'description' => 'A simple embeddable forum',
     ],
     'data' => [
         'title' => 'Title',
@@ -76,7 +76,7 @@ return [
         'hidden' => 'Hidden',
         'is_hidden' => 'Hide this category from the main category list.',
         'guarded' => 'Spam Guarded',
-        'is_guarded' => 'Members must be approved by moderators before their posts appear to unregistered users.'
+        'is_guarded' => 'Members must be approved by moderators before their posts appear to unregistered users.',
     ],
     'settings' => [
         'username' => 'Username',
@@ -103,7 +103,7 @@ return [
         'embed_title' => 'Embed code param',
         'embed_desc' => 'A unique code for the generated channel. A routing parameter can also be used.',
         'topic_name' => 'Topic code param',
-        'topic_desc' => 'The URL route parameter used for looking up a topic by its slug.'
+        'topic_desc' => 'The URL route parameter used for looking up a topic by its slug.',
     ],
     'embedtopic' => [
         'topic_name' => 'Embed Topic',
@@ -111,7 +111,7 @@ return [
         'target_name' => 'Target Channel',
         'target_desc' => 'Specify the channel to create the new topic or channel in',
         'embed_title' => 'Embed Code',
-        'embed_desc' => 'A unique code for the generated topic or channel. A routing parameter can also be used.'
+        'embed_desc' => 'A unique code for the generated topic or channel. A routing parameter can also be used.',
     ],
     'memberpage' => [
         'name' => 'Member',
@@ -123,7 +123,7 @@ return [
         'ch_title' => 'Channel page',
         'ch_desc' => 'Page name to use for clicking on a channel.',
         'topic_title' => 'Topic page',
-        'topic_desc' => 'Page name to use for clicking on a conversation topic.'
+        'topic_desc' => 'Page name to use for clicking on a conversation topic.',
     ],
     'topicpage' => [
         'name' => 'Topic',
@@ -131,7 +131,7 @@ return [
         'slug_name' => 'Slug param name',
         'slug_desc' => 'The URL route parameter used for looking up the topic by its slug. A hard coded slug can also be used.',
         'channel_title' => 'Channel Page',
-        'channel_desc' => 'Page name to use for clicking on a channel.'
+        'channel_desc' => 'Page name to use for clicking on a channel.',
     ],
     'components' => [
         'general' => [
@@ -144,6 +144,6 @@ return [
     'menuitem' => [
         'forum_channel' => 'Forum channel',
         'all_forum_channels' => 'All forum channels',
-        'all_forum_topics' => 'All forum topics'
+        'all_forum_topics' => 'All forum topics',
     ],
 ];
