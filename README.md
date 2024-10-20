@@ -1,9 +1,31 @@
-# Forum plugin
+# Forum Plugin
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/wintercms/wn-forum-plugin/blob/main/LICENSE)
 
-This plugin adds a simple embeddable forum to [Winter CMS](https://wintercms.com).
+This plugin adds a simple embeddable forum to [Winter CMS](https://wintercms.com) websites.
 
 A video demonstration of this plugin can be seen here:
 https://vimeo.com/97088926
+
+Supports:
+- Topics
+- Channels
+- Members
+- Posts
+- RSS Feeds
+
+## Installation
+
+This plugin is available for installation via [Composer](http://getcomposer.org/).
+
+```bash
+composer require winter/wn-forum-plugin
+```
+
+After installing the plugin you will need to run the migrations and (if you are using a [public folder](https://wintercms.com/docs/develop/docs/setup/configuration#using-a-public-folder)) [republish your public directory](https://wintercms.com/docs/develop/docs/console/setup-maintenance#mirror-public-files).
+
+```bash
+php artisan migrate
+```
 
 ## Configuration
 
