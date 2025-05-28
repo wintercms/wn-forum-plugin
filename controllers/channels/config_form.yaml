@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: winter.forum::lang.channels.name
+name: winter.forum::lang.channel.label
 
 # Model Form Field configuration
 form: ~/plugins/winter/forum/models/channel/fields.yaml
