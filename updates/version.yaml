@@ -62,3 +62,4 @@
     - "Added description to email templates & Updated Russian language"
     - "Fix reorder title"
     - "Improve English translation"
+"2.1.0": "Use new controller behavior default views from Winter v1.2.8+"
