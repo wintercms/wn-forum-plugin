@@ -56,3 +56,9 @@
     - v2.0.1/rename_indexes.php
     - v2.0.1/fix_translate_records.php
 "2.0.2": Channels and topics can now be added to static menus (via the Pages plugin) and sitemaps (via the Sitemap plugin). Translation improvements.
+"2.0.3":
+    - "Add postUpdate and postDelete events to Topic component"
+    - "SQL performance improvement on TopicFollow::check"
+    - "Added description to email templates & Updated Russian language"
+    - "Fix reorder title"
+    - "Improve English translation"
