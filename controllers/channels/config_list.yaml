@@ -9,7 +9,7 @@ list: ~/plugins/winter/forum/models/channel/columns.yaml
 modelClass: Winter\Forum\Models\Channel
 
 # List Title
-title: winter.forum::lang.channels.manage
+title: winter.forum::lang.channel.label_plural
 
 # Link URL for each record
 recordUrl: winter/forum/channels/update/:id

@@ -22,6 +22,8 @@ return [
         'page_help' => 'Page name to use for clicking on a Member.',
     ],
     'channel' => [
+        'label' => 'Channel',
+        'label_plural' => 'Channels',
         'component_name' => 'Channel',
         'component_description' => 'Displays a list of posts belonging to a channel.',
         'page_name' => 'Channel Page',
