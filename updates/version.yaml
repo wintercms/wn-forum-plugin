@@ -63,3 +63,4 @@
     - "Fix reorder title"
     - "Improve English translation"
 "2.1.0": "Use new controller behavior default views from Winter v1.2.8+"
+"2.1.1": "Widened the winter/wn-backend-module requirement to ^1.2.8|dev-develop."
