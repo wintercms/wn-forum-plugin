@@ -1,6 +1,60 @@
 <?php
 
 return [
+    'plugin' => [
+        'name' => 'Forum',
+        'description' => 'Un forum basique intégrable.',
+    ],
+    'permissions' => [
+        'manage_categories' => 'Gérer les catégories du forum',
+    ],
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Créé le',
+            'updated_at' => 'Mis à jour le',
+        ],
+        'channel' => [
+            'label' => 'Catégorie',
+            'label_plural' => 'Catégories',
+            'title' => 'Titre',
+            'desc' => 'Description',
+            'slug' => 'Slug',
+            'parent' => 'Parent',
+            'noparent' => '-- Aucun parent --',
+            'moderated' => 'Modéré',
+            'is_mod' => 'Seul les modérateurs peuvent discuter dans cette catégorie.',
+            'hidden' => 'Cachée',
+            'is_hidden' => 'Cacher cette catégorie dans la liste principale des catégories.',
+            'guarded' => 'Protection anti-spam',
+            'is_guarded' => 'Les membres doivent être approuvés par les modérateurs avant que leurs messages ne soient diffusés aux visiteurs non-enregistrés.',
+        ],
+    ],
+    'controllers' => [
+        'channels' => [
+            'new' => 'Nouvelle Catégorie',
+            'delete' => 'Supprimer les catégories sélectionnées',
+            'delete_selected_confirm' => 'Êtes-vous sûr? Toutes les catégories sélectionnées et leurs sous-catégories seront supprimées.',
+            'reorder' => 'Gérer l\'ordre des catégories',
+            'reorder_title' => 'Réorganiser les catégories',
+            'create' => 'Créer une Catégorie',
+            'update' => 'Modifier la Catégorie',
+            'preview' => 'Prévisualiser la Catégorie',
+        ],
+    ],
+    'components' => [
+        'general' => [
+            'properties' => [
+                'includeStyles' => 'Activer le CSS',
+                'includeStyles_desc' => 'Intègre les fichiers CSS par défaut pour le forum',
+            ],
+        ],
+        'channel' => [
+            'name' => 'Catégorie',
+            'description' => 'Affiche la liste des sujets appartenant à une catégorie.',
+        ],
+    ],
+
     'topics' => [
         'component_name' => 'Liste de sujets',
         'component_description' => 'Affiche la liste de tous les sujets.',
@@ -22,8 +76,6 @@ return [
         'page_help' => 'Nom de la page à utiliser lors du clic sur un membre.',
     ],
     'channel' => [
-        'component_name' => 'Catégorie',
-        'component_description' => "Affiche la liste des sujets d'une catégorie.",
         'page_name' => 'Page Catégorie',
         'page_help' => 'Nom de la page à utiliser lors du clic sur une catégorie.',
     ],
@@ -32,14 +84,15 @@ return [
         'delete_selected_confirm' => 'Êtes-vous sûr?',
         'delete' => 'Supprimer',
         'manage' => "Gérer l'ordre des catégories",
+        'reorder_title' => 'Réorganiser les catégories',
         'return' => 'Retour aux Catégories',
         'name' => 'Catégories',
         'create' => 'Créer une Catégorie',
         'update' => 'Modifier la Catégorie',
         'preview' => 'Prévisualiser la Catégorie',
-        'manage' => 'Gérer les Catégories',
+        // 'manage' => 'Gérer les Catégories',
         'creating' => 'Création de la Catégorie...',
-        'create' => 'Créer',
+        // 'create' => 'Créer',
         'createnclose' => 'Créer et Fermer',
         'cancel' => 'Annuler',
         'or' => 'ou',
@@ -58,23 +111,6 @@ return [
     ],
     'frontend' => [
         'notopic' => "Il n'y a aucun sujet dans cette catégorie.",
-    ],
-    'plugin' => [
-        'name' => 'Forum',
-        'description' => 'Un forum basique intégrable.',
-    ],
-    'data' => [
-        'title' => 'Titre',
-        'desc' => 'Description',
-        'slug' => 'Slug',
-        'parent' => 'Parent',
-        'noparent' => '-- Aucun parent --',
-        'moderated' => 'Modéré',
-        'is_mod' => 'Seul les modérateurs peuvent discuter dans cette catégorie.',
-        'hidden' => 'Cachée',
-        'is_hidden' => 'Cacher cette catégorie dans la liste principale des catégories.',
-        'guarded' => 'Protection anti-spam',
-        'is_guarded' => 'Les membres doivent être approuvés par les modérateurs avant que leurs messages ne soient diffusés aux visiteurs non-enregistrés.',
     ],
     'settings' => [
         'username' => "Nom d'utilisateur",
@@ -130,14 +166,6 @@ return [
         'slug_desc' => "Le paramètre dans l'URL utilisé pour retrouver un sujet par son slug. Un slug écris en dur peut aussi être utilisé.",
         'channel_title' => 'Page catégorie',
         'channel_desc' => 'Nom de la page à utiliser lors du clic sur une catégorie.',
-    ],
-    'components' => [
-        'general' => [
-            'properties' => [
-                'includeStyles' => 'Activer le CSS',
-                'includeStyles_desc' => 'Intègre les fichiers CSS par défaut pour le forum',
-            ],
-        ],
     ],
     'menuitem' => [
         'forum_channel' => 'Catégorie du forum',

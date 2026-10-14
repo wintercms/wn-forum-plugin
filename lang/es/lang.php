@@ -1,6 +1,58 @@
 <?php
 
 return [
+    'plugin'     => [
+        'name'        => 'Foro',
+        'description' => 'Un sencillo y poderoso foro embebible.'
+    ],
+    'permissions' => [
+        'manage_categories' => 'Administrar categorías del foro',
+    ],
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Creado En',
+            'updated_at' => 'Actualizado En',
+        ],
+        'channel' => [
+            'label' => 'Canal',
+            'label_plural' => 'Canales',
+            'title'     => 'Título',
+            'desc'      => 'Descripción',
+            'slug'      => 'Slug',
+            'parent'    => 'Padre',
+            'noparent'  => '-- Ningún padre --',
+            'moderated' => 'Moderado',
+            'is_mod'    => 'Solamente los moderadores pueden escribir en este canal.',
+            'hidden'    => 'Oculto',
+            'is_hidden' => 'Ocultar esta categoría de la lista principal categoría.',
+        ],
+    ],
+    'controllers' => [
+        'channels' => [
+            'new' => 'Nuevo Canal',
+            'delete' => 'Borrar canales seleccionados',
+            'delete_selected_confirm' => '¿Está seguro? Todos los canales seleccionados y sus hijos serán eliminados.',
+            'reorder' => 'Administrar orden del canal',
+            'reorder_title' => 'Reordenar Canales',
+            'create' => 'Crear Canal',
+            'update' => 'Editar Canal',
+            'preview' => 'Previsualizar Canal',
+        ],
+    ],
+    'components' => [
+        'general' => [
+            'properties' => [
+                'includeStyles' => 'Habilitar CSS',
+                'includeStyles_desc' => 'Incluir los archivos CSS con los estilos predeterminados para el foro',
+            ],
+        ],
+        'channel' => [
+            'name' => 'Canal',
+            'description' => 'Muestra un listado de temas que pertenecen a un canal.',
+        ],
+    ],
+
     'topics'     => [
         'component_name'        => 'Listado de temas',
         'component_description' => 'Muestra un listado de todos los temas.',
@@ -16,8 +68,6 @@ return [
         'page_help' => 'Nombre de la página que se utilizará al hacer clic en un miembro.'
     ],
     'channel'    => [
-        'component_name'        => 'Canal',
-        'component_description' => 'Muestra un listado de temas que pertenecen a un canal.',
         'page_name'             => 'Página del Canal',
         'page_help'             => 'Nombre de la página que se utilizará al hacer clic en un canal.'
     ],
@@ -52,22 +102,6 @@ return [
     ],
     'frontend'   => [
         'notopic' => 'No hay temas en este canal.'
-    ],
-
-    'plugin'     => [
-        'name'        => 'Foro',
-        'description' => 'Un sencillo y poderoso foro embebible.'
-    ],
-    'data'       => [
-        'title'     => 'Título',
-        'desc'      => 'Descripción',
-        'slug'      => 'Slug',
-        'parent'    => 'Padre',
-        'noparent'  => '-- Ningún padre --',
-        'moderated' => 'Moderado',
-        'is_mod'    => 'Solamente los moderadores pueden escribir en este canal.',
-        'hidden'    => 'Oculto',
-        'is_hidden' => 'Ocultar esta categoría de la lista principal categoría.'
     ],
     'settings'   => [
         'username'          => 'Nombre de usuario',

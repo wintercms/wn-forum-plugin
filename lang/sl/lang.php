@@ -1,6 +1,60 @@
 <?php
 
 return [
+    'plugin' => [
+        'name' => 'Forum',
+        'description' => 'Enostavni vdelani forum',
+    ],
+    'permissions' => [
+        'manage_categories' => 'Upravljanje kategorij foruma',
+    ],
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Ustvarjeno',
+            'updated_at' => 'Posodobljeno',
+        ],
+        'channel' => [
+            'label' => 'Kanal',
+            'label_plural' => 'Kanali',
+            'title' => 'Naslov',
+            'desc' => 'Opis',
+            'slug' => 'Povezava',
+            'parent' => 'Nadrejeni',
+            'noparent' => '-- Ni nadrejenega --',
+            'moderated' => 'Moderirano',
+            'is_mod' => 'Samo moderatorji lahko objavljajo na tem kanalu.',
+            'hidden' => 'Skrito',
+            'is_hidden' => 'Skrij to kategorijo z glavnega seznama kategorij.',
+            'guarded' => 'Zaščiteno pred neželeno pošto',
+            'is_guarded' => 'Člane morajo odobriti moderatorji, preden se njihove objave prikažejo neregistriranim uporabnikom.',
+        ],
+    ],
+    'controllers' => [
+        'channels' => [
+            'new' => 'Nov kanal',
+            'delete' => 'Izbriši izbrane kanale',
+            'delete_selected_confirm' => 'Ali ste prepričani? Vsi izbrani kanali in njihovi podkanali bodo izbrisani.',
+            'reorder' => 'Upravljanje vrstnega reda kanalov',
+            'reorder_title' => 'Preuredi kanale',
+            'create' => 'Ustvari kanal',
+            'update' => 'Uredi kanal',
+            'preview' => 'Predogled kanala',
+        ],
+    ],
+    'components' => [
+        'general' => [
+            'properties' => [
+                'includeStyles' => 'Omogoči CSS',
+                'includeStyles_desc' => 'Vključi datoteke CSS s privzetimi slogi foruma',
+            ],
+        ],
+        'channel' => [
+            'name' => 'Kanal',
+            'description' => 'Prikaže seznam objav, ki pripadajo kanalu.',
+        ],
+    ],
+
     'topics' => [
         'component_name' => 'Seznam tem',
         'component_description' => 'Prikaže seznam vseh tem.',
@@ -22,8 +76,6 @@ return [
         'page_help' => 'Ime strani za klik na člana.',
     ],
     'channel' => [
-        'component_name' => 'Kanal',
-        'component_description' => 'Prikaže seznam objav, ki pripadajo kanalu.',
         'page_name' => 'Stran kanala',
         'page_help' => 'Ime strani za klik na kanal.',
     ],
@@ -58,24 +110,6 @@ return [
     ],
     'frontend' => [
         'notopic' => 'V tem kanalu ni tem.',
-    ],
-
-    'plugin' => [
-        'name' => 'Forum',
-        'description' => 'Enostavni vdelani forum',
-    ],
-    'data' => [
-        'title' => 'Naslov',
-        'desc' => 'Opis',
-        'slug' => 'Povezava',
-        'parent' => 'Nadrejeni',
-        'noparent' => '-- Ni nadrejenega --',
-        'moderated' => 'Moderirano',
-        'is_mod' => 'Samo moderatorji lahko objavljajo na tem kanalu.',
-        'hidden' => 'Skrito',
-        'is_hidden' => 'Skrij to kategorijo z glavnega seznama kategorij.',
-        'guarded' => 'Zaščiteno pred neželeno pošto',
-        'is_guarded' => 'Člane morajo odobriti moderatorji, preden se njihove objave prikažejo neregistriranim uporabnikom.',
     ],
     'settings' => [
         'username' => 'Uporabniško ime',
@@ -131,13 +165,5 @@ return [
         'slug_desc' => 'Parameter URL povezave, ki se uporablja za prikaz teme. Uporabi se lahko tudi statično definirana povezava.',
         'channel_title' => 'Stran kanala',
         'channel_desc' => 'Ime strani za klik na kanal.',
-    ],
-    'components' => [
-        'general' => [
-            'properties' => [
-                'includeStyles' => 'Omogoči CSS',
-                'includeStyles_desc' => 'Vključi datoteke CSS s privzetimi slogi foruma',
-            ],
-        ],
     ],
 ];

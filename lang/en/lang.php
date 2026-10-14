@@ -1,6 +1,60 @@
 <?php
 
 return [
+    'plugin' => [
+        'name' => 'Forum',
+        'description' => 'A simple embeddable forum',
+    ],
+    'permissions' => [
+        'manage_categories' => 'Manage forum categories',
+    ],
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Created At',
+            'updated_at' => 'Updated At',
+        ],
+        'channel' => [
+            'label' => 'Channel',
+            'label_plural' => 'Channels',
+            'title' => 'Title',
+            'desc' => 'Description',
+            'slug' => 'Slug',
+            'parent' => 'Parent',
+            'noparent' => '-- No parent --',
+            'moderated' => 'Moderated',
+            'is_mod' => 'Only moderators can post to this channel.',
+            'hidden' => 'Hidden',
+            'is_hidden' => 'Hide this category from the main category list.',
+            'guarded' => 'Spam Guarded',
+            'is_guarded' => 'Members must be approved by moderators before their posts appear to unregistered users.',
+        ],
+    ],
+    'controllers' => [
+        'channels' => [
+            'new' => 'New Channel',
+            'delete' => 'Delete selected channels',
+            'delete_selected_confirm' => 'Are you sure? All selected channels and children will be deleted.',
+            'reorder' => 'Manage Channel Order',
+            'reorder_title' => 'Reorder Channels',
+            'create' => 'Create Channel',
+            'update' => 'Edit Channel',
+            'preview' => 'Preview Channel',
+        ],
+    ],
+    'components' => [
+        'general' => [
+            'properties' => [
+                'includeStyles' => 'Enable CSS',
+                'includeStyles_desc' => 'Include the CSS files with default styles for the forum',
+            ],
+        ],
+        'channel' => [
+            'name' => 'Channel',
+            'description' => 'Displays a list of posts belonging to a channel.',
+        ],
+    ],
+
     'topics' => [
         'component_name' => 'Topic List',
         'component_description' => 'Displays a list of all topics.',
@@ -22,19 +76,10 @@ return [
         'page_help' => 'Page name to use for clicking on a Member.',
     ],
     'channel' => [
-        'label' => 'Channel',
-        'label_plural' => 'Channels',
-        'component_name' => 'Channel',
-        'component_description' => 'Displays a list of posts belonging to a channel.',
         'page_name' => 'Channel Page',
         'page_help' => 'Page name to use for clicking on a Channel.',
     ],
     'channels' => [
-        'new_channel' => 'New Channel',
-        'delete_selected_confirm' => 'Are you sure?',
-        'delete' => 'Delete',
-        'manage' => 'Manage Channel Order',
-        'reorder_title' => 'Reorder Channels',
         'return' => 'Return to Channels',
         'name' => 'Channels',
         'create' => 'Create Channel',
@@ -59,24 +104,6 @@ return [
     ],
     'frontend' => [
         'notopic' => 'There are no topics in this channel.',
-    ],
-
-    'plugin' => [
-        'name' => 'Forum',
-        'description' => 'A simple embeddable forum',
-    ],
-    'data' => [
-        'title' => 'Title',
-        'desc' => 'Description',
-        'slug' => 'Slug',
-        'parent' => 'Parent',
-        'noparent' => '-- No parent --',
-        'moderated' => 'Moderated',
-        'is_mod' => 'Only moderators can post to this channel.',
-        'hidden' => 'Hidden',
-        'is_hidden' => 'Hide this category from the main category list.',
-        'guarded' => 'Spam Guarded',
-        'is_guarded' => 'Members must be approved by moderators before their posts appear to unregistered users.',
     ],
     'settings' => [
         'username' => 'Username',
@@ -132,14 +159,6 @@ return [
         'slug_desc' => 'The URL route parameter used for looking up the topic by its slug. A hard coded slug can also be used.',
         'channel_title' => 'Channel Page',
         'channel_desc' => 'Page name to use for clicking on a channel.',
-    ],
-    'components' => [
-        'general' => [
-            'properties' => [
-                'includeStyles' => 'Enable CSS',
-                'includeStyles_desc' => 'Include the CSS files with default styles for the forum',
-            ],
-        ],
     ],
     'menuitem' => [
         'forum_channel' => 'Forum channel',

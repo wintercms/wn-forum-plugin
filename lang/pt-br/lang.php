@@ -1,6 +1,58 @@
 <?php
 
 return [
+    'plugin' => [
+        'name' => 'Fórum',
+        'description' => 'Um simples fórum incorporável'
+    ],
+    'permissions' => [
+        'manage_categories' => 'Gerenciar categorias do fórum',
+    ],
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Criado em',
+            'updated_at' => 'Atualizado em',
+        ],
+        'channel' => [
+            'label' => 'Tema',
+            'label_plural' => 'Temas',
+            'title' => 'Título',
+            'desc' => 'Descrição',
+            'slug' => 'Slug',
+            'parent' => 'Pai',
+            'noparent' => '-- Sem pai --',
+            'moderated' => 'Moderado',
+            'is_mod' => 'Apenas moderadores podem postar neste tema.',
+            'hidden' => 'Oculto',
+            'is_hidden' => 'Oculte essa categoria da lista principal de categorias.',
+        ],
+    ],
+    'controllers' => [
+        'channels' => [
+            'new' => 'Novo Tema',
+            'delete' => 'Apagar temas selecionados',
+            'delete_selected_confirm' => 'Você tem certeza? Todos os temas selecionados e seus subtemas serão apagados.',
+            'reorder' => 'Gerenciar Ordem dos Temas',
+            'reorder_title' => 'Reordenar Temas',
+            'create' => 'Criar Tema',
+            'update' => 'Editar Tema',
+            'preview' => 'Visualizar Tema',
+        ],
+    ],
+    'components' => [
+        'general' => [
+            'properties' => [
+                'includeStyles' => 'Habilitar CSS',
+                'includeStyles_desc' => 'Incluir os arquivos CSS com os estilos padrão para o fórum',
+            ],
+        ],
+        'channel' => [
+            'name' => 'Tema',
+            'description' => 'Mostra uma lista de postagens pertecentes à um tema.',
+        ],
+    ],
+
     'topics'     => [
         'component_name' => 'Lista de Tópicos',
         'component_description' => 'Mostra um lista de todos os tópicos.',
@@ -16,8 +68,6 @@ return [
         'page_help' => 'Nome da página para usar ao clicar em um membro.'
     ],
     'channel'    => [
-        'component_name' => 'Tema',
-        'component_description' => 'Mostra uma lista de postagens pertecentes à um tema.',
         'page_name' => 'Página do Tema',
         'page_help' => 'Nome da página para usar ao clicar em um tema.'
     ],
@@ -52,21 +102,6 @@ return [
     ],
     'frontend' => [
         'notopic' => 'não existe tópicos neste tema.'
-    ],
-    'plugin' => [
-        'name' => 'Fórum',
-        'description' => 'Um simples fórum incorporável'
-    ],
-    'data' => [
-        'title' => 'Título',
-        'desc' => 'Descrição',
-        'slug' => 'Slug',
-        'parent' => 'Pai',
-        'noparent' => '-- Sem pai --',
-        'moderated' => 'Moderado',
-        'is_mod' => 'Apenas moderadores podem postar neste tema.',
-        'hidden' => 'Oculto',
-        'is_hidden' => 'Oculte essa categoria da lista principal de categorias.'
     ],
     'settings' => [
         'username' => 'Usuário',

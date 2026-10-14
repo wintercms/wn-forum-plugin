@@ -55,8 +55,8 @@ class Channel extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.channel.component_name',
-            'description' => 'winter.forum::lang.channel.component_description',
+            'name'        => 'winter.forum::lang.components.channel.name',
+            'description' => 'winter.forum::lang.components.channel.description',
         ];
     }
 
@@ -147,7 +147,7 @@ class Channel extends ComponentBase
             /*
              * Add a "url" helper attribute for linking to each topic
              */
-            $topics->each(function($topic) {
+            $topics->each(function ($topic) {
                 if ($this->embedMode) {
                     $topic->url = $this->pageUrl($this->topicPage, [$this->embedTopicParam => $topic->slug]);
                 }

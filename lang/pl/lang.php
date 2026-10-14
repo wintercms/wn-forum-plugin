@@ -1,6 +1,58 @@
 <?php
 
 return [
+    'plugin' => [
+        'name' => 'Forum',
+        'description' => 'Proste forum do osadzania'
+    ],
+    'permissions' => [
+        'manage_categories' => 'Zarządzaj kategoriami forum',
+    ],
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Utworzono',
+            'updated_at' => 'Zaktualizowano',
+        ],
+        'channel' => [
+            'label' => 'Kanał',
+            'label_plural' => 'Kanały',
+            'title' => 'Tytuł',
+            'desc' => 'Opis',
+            'slug' => 'Slug',
+            'parent' => 'Rodzic',
+            'noparent' => '-- Brak rodzica --',
+            'moderated' => 'Moderowany',
+            'is_mod' => 'Tylko moderatorzy mogą publikować posty na tym kanale.',
+            'hidden' => 'Ukryty',
+            'is_hidden' => 'Ukryj tę kategorię na głównej liście kategorii.',
+        ],
+    ],
+    'controllers' => [
+        'channels' => [
+            'new' => 'Nowy kanał',
+            'delete' => 'Usuń wybrane kanały',
+            'delete_selected_confirm' => 'Czy na pewno? Wszystkie wybrane kanały i ich podkanały zostaną usunięte.',
+            'reorder' => 'Zarządzaj kolejnością kanałów',
+            'reorder_title' => 'Zmień kolejność kanałów',
+            'create' => 'Utwórz kanał',
+            'update' => 'Edytuj kanał',
+            'preview' => 'Podejrzyj kanał',
+        ],
+    ],
+    'components' => [
+        'general' => [
+            'properties' => [
+                'includeStyles' => 'Włącz CSS',
+                'includeStyles_desc' => 'Dołącz pliki CSS z domyślnymi stylami dla forum',
+            ],
+        ],
+        'channel' => [
+            'name' => 'Kanał',
+            'description' => 'Wyświetla listę postów należących do kanału.',
+        ],
+    ],
+
     'topics' => [
         'component_name' => 'Lista tematów',
         'component_description' => 'Wyświetla listę wszystkich tematów.',
@@ -16,8 +68,6 @@ return [
         'page_help' => 'Nazwa strony wyświetlającej się po kliknięciu w użytkownika.'
     ],
     'channel' => [
-        'component_name' => 'Kanał',
-        'component_description' => 'Wyświetla listę postów należących do kanału.',
         'page_name' => 'Strona kanału',
         'page_help' => 'Nazwa strony wyświetlającej się po kliknięciu w kanał.'
     ],
@@ -52,22 +102,6 @@ return [
     ],
     'frontend' => [
         'notopic' => 'Brak tematów w tym kanale.'
-    ],
-
-    'plugin' => [
-        'name' => 'Forum',
-        'description' => 'Proste forum do osadzania'
-    ],
-    'data' => [
-        'title' => 'Tytuł',
-        'desc' => 'Opis',
-        'slug' => 'Slug',
-        'parent' => 'Rodzic',
-        'noparent' => '-- Brak rodzica --',
-        'moderated' => 'Moderowany',
-        'is_mod' => 'Tylko moderatorzy mogą publikować posty na tym kanale.',
-        'hidden' => 'Ukryty',
-        'is_hidden' => 'Ukryj tę kategorię na głównej liście kategorii.'
     ],
     'settings' => [
         'username' => 'Nazwa użytkownika',

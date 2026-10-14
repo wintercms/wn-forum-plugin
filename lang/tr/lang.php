@@ -1,6 +1,60 @@
 <?php
 
 return [
+    'plugin' => [
+        'name' => 'Forum',
+        'description' => 'Basit, sayfa içerisine gömülebilir forum',
+    ],
+    'permissions' => [
+        'manage_categories' => 'Forum kategorilerini yönet',
+    ],
+    'models' => [
+        'general' => [
+            'id' => 'ID',
+            'created_at' => 'Oluşturulma Tarihi',
+            'updated_at' => 'Güncellenme Tarihi',
+        ],
+        'channel' => [
+            'label' => 'Kanal',
+            'label_plural' => 'Kanallar',
+            'title' => 'Başlık',
+            'desc' => 'Tanım',
+            'slug' => 'Takma ad',
+            'parent' => 'Üst Kanal',
+            'noparent' => '-- Üst Kanal Yok --',
+            'moderated' => 'Sadece Yöneticiler',
+            'is_mod' => 'Bu kanalı sadece yöneticiler görebilir.',
+            'hidden' => 'Gizli',
+            'is_hidden' => 'Bu kanalı ana listeden gizle.',
+            'guarded' => 'Spam Koruması',
+            'is_guarded' => 'Üyeler, gönderileri diğer üyelere görünmeden önce moderatörler tarafından onaylanmalıdır.',
+        ],
+    ],
+    'controllers' => [
+        'channels' => [
+            'new' => 'Yeni Kanal',
+            'delete' => 'Seçili kanalları sil',
+            'delete_selected_confirm' => 'Emin misiniz? Seçili tüm kanallar ve alt kanalları silinecek.',
+            'reorder' => 'Kanal Sırasını Yönet',
+            'reorder_title' => 'Kanalları Yeniden Sırala',
+            'create' => 'Kanal Oluştur',
+            'update' => 'Kanalı Düzenle',
+            'preview' => 'Kanalı Önizle',
+        ],
+    ],
+    'components' => [
+        'general' => [
+            'properties' => [
+                'includeStyles' => 'CSS\'i Etkinleştir',
+                'includeStyles_desc' => 'Forum için varsayılan stillerle CSS dosyalarını dahil et',
+            ],
+        ],
+        'channel' => [
+            'name' => 'Kanal',
+            'description' => 'Bir kanala ait mesajların listesini görüntüler.',
+        ],
+    ],
+
     'topics' => [
         'component_name' => 'Konu Listesi',
         'component_description' => 'Tüm konu başlıklarının bir listesini görüntüler.',
@@ -16,8 +70,6 @@ return [
         'page_help' => 'Her bir üye için kullanılacak sayfa adı.',
     ],
     'channel' => [
-        'component_name' => 'Kanal',
-        'component_description' => 'Bir kanala ait mesajların listesini görüntüler.',
         'page_name' => 'Kanal Sayfası',
         'page_help' => 'Kanal için kullanılacak sayfa adı.',
     ],
@@ -52,24 +104,6 @@ return [
     ],
     'frontend' => [
         'notopic' => 'Bu kanalda konu yok.',
-    ],
-
-    'plugin' => [
-        'name' => 'Forum',
-        'description' => 'Basit, sayfa içerisine gömülebilir forum',
-    ],
-    'data' => [
-        'title' => 'Başlık',
-        'desc' => 'Tanım',
-        'slug' => 'Takma ad',
-        'parent' => 'Üst Kanal',
-        'noparent' => '-- Üst Kanal Yok --',
-        'moderated' => 'Sadece Yöneticiler',
-        'is_mod' => 'Bu kanalı sadece yöneticiler görebilir.',
-        'hidden' => 'Gizli',
-        'is_hidden' => 'Bu kanalı ana listeden gizle.',
-        'guarded' => 'Spam Koruması',
-        'is_guarded' => 'Üyeler, gönderileri diğer üyelere görünmeden önce moderatörler tarafından onaylanmalıdır.',
     ],
     'settings' => [
         'username' => 'Kullanıcı Adı',
