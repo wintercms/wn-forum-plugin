@@ -43,8 +43,8 @@ class Member extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.memberpage.name',
-            'description' => 'winter.forum::lang.memberpage.self_desc'
+            'name'        => 'winter.forum::lang.components.member.name',
+            'description' => 'winter.forum::lang.components.member.description'
         ];
     }
 
@@ -64,8 +64,8 @@ class Member extends ComponentBase
                 'default'     => ''
             ],
             'channelPage' => [
-                'title'       => 'winter.forum::lang.memberpage.ch_title',
-                'description' => 'winter.forum::lang.memberpage.ch_desc',
+                'title'       => 'winter.forum::lang.components.general.properties.channel_page',
+                'description' => 'winter.forum::lang.components.general.properties.channel_page_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],

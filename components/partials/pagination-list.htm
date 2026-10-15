@@ -48,13 +48,13 @@
         {% if records.currentPage > 1 %}
             <li>
                 <a href="{{ paginationUrl ~ (records.currentPage - 1) }}">
-                    &larr; Previous
+                    &larr; {{ 'winter.forum::lang.components.general.pagination.previous' | trans }}
                 </a>
             </li>
         {% else %}
             <li class="disabled">
                 <span>
-                    &larr; Previous
+                    &larr; {{ 'winter.forum::lang.components.general.pagination.previous' | trans }}
                 </span>
             </li>
         {% endif %}
@@ -74,13 +74,13 @@
         {% if records.lastPage > records.currentPage %}
             <li>
                 <a href="{{ paginationUrl ~ (records.currentPage + 1) }}">
-                    Next &rarr;
+                    {{ 'winter.forum::lang.components.general.pagination.next' | trans }} &rarr;
                 </a>
             </li>
         {% else %}
             <li class="disabled">
                 <span>
-                    Next &rarr;
+                    {{ 'winter.forum::lang.components.general.pagination.next' | trans }} &rarr;
                 </span>
             </li>
         {% endif %}

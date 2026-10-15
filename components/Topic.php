@@ -63,8 +63,8 @@ class Topic extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.topicpage.name',
-            'description' => 'winter.forum::lang.topicpage.self_desc'
+            'name'        => 'winter.forum::lang.components.topic.name',
+            'description' => 'winter.forum::lang.components.topic.description'
         ];
     }
 
@@ -72,27 +72,27 @@ class Topic extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'winter.forum::lang.topicpage.slug_name',
-                'description' => 'winter.forum::lang.topicpage.slug_desc',
+                'title'       => 'winter.forum::lang.components.topic.properties.slug',
+                'description' => 'winter.forum::lang.components.topic.properties.slug_desc',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string',
             ],
             'postsPerPage' => [
-                'title'             => 'winter.forum::lang.posts.per_page',
+                'title'             => 'winter.forum::lang.components.general.properties.posts_per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'winter.forum::lang.posts.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.components.general.properties.posts_per_page_validation',
                 'default'           => '20',
             ],
             'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
             'channelPage' => [
-                'title'       => 'winter.forum::lang.topicpage.channel_title',
-                'description' => 'winter.forum::lang.topicpage.channel_desc',
+                'title'       => 'winter.forum::lang.components.general.properties.channel_page',
+                'description' => 'winter.forum::lang.components.general.properties.channel_page_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],

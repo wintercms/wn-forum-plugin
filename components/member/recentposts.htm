@@ -2,8 +2,8 @@
 
 <table class="forum-table">
     <tr>
-        <th>Post</th>
-        <th class="activity-column">When</th>
+        <th>{{ 'winter.forum::lang.models.post.label' | trans }}</th>
+        <th class="activity-column">{{ 'winter.forum::lang.components.general.when' | trans }}</th>
     </tr>
 
     {% for post in posts %}
@@ -14,9 +14,10 @@
             </td>
             <td class="activity-column">
                 <p>
-                    Posted in
+                    {{ 'winter.forum::lang.components.general.posted_in' | trans }}
                     <a href="{{ topic.url }}?page=last#post-{{ post.id }}">{{ topic.subject }}</a>
-                    {% partial __SELF__ ~ "::timestamp" date=post.updated_at %}
+                    <br />
+                    <small>{% partial __SELF__ ~ "::timestamp" date=post.updated_at %}</small>
                 </p>
             </td>
         </tr>

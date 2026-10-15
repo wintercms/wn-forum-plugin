@@ -27,6 +27,14 @@ return [
             'hidden' => 'Oculto',
             'is_hidden' => 'Oculte essa categoria da lista principal de categorias.',
         ],
+        'post' => [
+            'label' => 'Post',
+            'label_plural' => 'Posts',
+        ],
+        'topic' => [
+            'label' => 'Tópico',
+            'label_plural' => 'Tópicos',
+        ],
     ],
     'controllers' => [
         'channels' => [
@@ -42,23 +50,115 @@ return [
     ],
     'components' => [
         'general' => [
+            'back_to' => 'Voltar para',
+            'by' => 'por',
+            'cancel' => 'Cancelar',
+            'can_use_syntax' => 'Você pode usar a sintaxe :syntax',
+            'delete' => 'Apagar',
+            'edit' => 'Editar',
+            'last_post' => 'Último post',
+            'locked' => 'Bloqueado',
+            'posted' => 'Publicado',
+            'posted_in' => 'Publicado em',
+            'quote' => 'Citar',
+            'save' => 'Salvar',
+            'sticky' => 'Fixado',
+            'when' => 'Quando',
+            'pagination' => [
+                'previous' => 'Anterior',
+                'next' => 'Próximo',
+                'first' => 'Primeiro',
+                'last' => 'Último',
+                'of' => 'de',
+            ],
             'properties' => [
                 'includeStyles' => 'Habilitar CSS',
                 'includeStyles_desc' => 'Incluir os arquivos CSS com os estilos padrão para o fórum',
+                'posts_per_page' => 'Posts por página',
+                'posts_per_page_validation' => 'Posts por página devem ser um número',
+                'channel_page' => 'Página do Tema',
+                'channel_page_desc' => 'Nome da página para usar quando clicar no tema.',
+                'member_page' => 'Página do membro',
+                'member_page_desc' => 'A página para vincular aos perfis dos membros.',
+                'topic_page' => 'Página do tópico',
+                'topic_page_desc' => 'A página para vincular aos tópicos.',
             ],
         ],
         'channel' => [
             'name' => 'Tema',
             'description' => 'Mostra uma lista de postagens pertecentes à um tema.',
+            'replies' => 'Respostas',
+            'views' => 'Visualizações',
+            'no_topic' => 'Não há tópicos neste tema.',
+            'search_placeholder' => 'Pesquisar tópicos...',
+            'log_to_post' => 'Faça login para postar um novo tópico',
+            'post_new_topic' => 'Postar um novo tópico',
+        ],
+        'channels' => [
+            'name' => 'Lista de Temas',
+            'description' => 'Mostra uma lista de todos os temas visíveis.',
+            'recent_topic' => 'Tópico Recente',
+        ],
+        'member' => [
+            'name' => 'Membro',
+            'description' => 'Mostra as informações e atividades de um membro do fórum.',
+            'member_not_found' => 'Membro do fórum não encontrado.',
+            'approve' => 'Aprovar membro',
+            'unapprove' => 'Desaprovar membro',
+            'ban' => 'Banir membro',
+            'unban' => 'Desbanir membro',
+            'report' => 'Denunciar spammer',
+            'report_confirm' => 'Tem certeza de que deseja marcar este membro como spammer?',
+            'purge_posts' => 'Apagar postagens',
+            'purge_posts_confirm' => 'Tem certeza? Isso irá deletar todas as postagens deste membro.',
+            'edit' => 'Editar detalhes',
+            'member_since' => 'Membro desde',
+            'recent_posts' => 'Postagens recentes',
+            'no_recent_posts' => 'Este membro não participou do fórum.',
+            'is_not_approved' => ':name requer aprovação antes de postar em canais protegidos',
+            'is_banned' => ':name foi banido de postar',
+            'is_moderator' => ':name é um moderador do fórum',
+            'username' => 'Nome de usuário',
+            'notify_me' => 'Notificar-me sobre respostas aos tópicos que estou acompanhando',
+            'banned' => 'Banido',
+            'unapproved' => 'Não aprovado',
+            'moderator' => 'Moderador',
+        ],
+        'posts' => [
+            'name' => 'Lista de Postagens',
+            'description' => 'Mostra uma lista de todas as postagens.',
+            'no_posts_message' => 'Não há postagens para exibir.',
+        ],
+        'topic' => [
+            'name' => 'Tópico',
+            'description' => 'Mostre um tópico e postagens.',
+            'banned_account' => 'Sua conta está banida.',
+            'content' => 'Conteúdo',
+            'must_login' => 'Você deve estar logado antes de poder postar.',
+            'new_topic' => 'Criar um novo tópico de discussão',
+            'no_reply_message' => 'Você não pode editar postagens nem fazer respostas:',
+            'no_topic_message' => 'Tópico não encontrado.',
+            'reply_to' => 'Responder a esta discussão',
+            'save_topic' => 'Salvar este tópico',
+            'subject' => 'Assunto',
+            'topic_locked' => 'Este tópico está bloqueado.',
+            'properties' => [
+                'slug' => 'Nome do parâmetro Slug',
+                'slug_desc' => 'A rota de parâmetro de URL usado para ver o tópico por esse Slug. Um hard coded slug também pode ser usado.',
+            ],
+        ],
+        'topics'     => [
+            'name' => 'Lista de Tópicos',
+            'description' => 'Mostra um lista de todos os tópicos.',
+            'search_placeholder' => 'Pesquisar tópicos...',
+            'no_topics_message' => 'Não há postagens recentes em nenhum tópico.',
+            'properties' => [
+                'per_page' => 'Tópicos por página',
+                'per_page_validation' => 'Formato inválido do valor de tópicos por página'
+            ],
         ],
     ],
 
-    'topics'     => [
-        'component_name' => 'Lista de Tópicos',
-        'component_description' => 'Mostra um lista de todos os tópicos.',
-        'per_page' => 'Tópicos por página',
-        'per_page_validation' => 'Formato inválido do valor de tópicos por página'
-    ],
     'topic'      => [
         'page_name' => 'Página do Tópico',
         'page_help' => 'Nome da página para usar ao clicar em um tópico de discussão.'
@@ -93,8 +193,6 @@ return [
         'savenclose' => 'Salvar e Fechar',
         'deleting' => 'Deletando Tema...',
         'really' => 'Você realmente quer apagar esse tema?',
-        'list_name' => 'Lista de Temas',
-        'list_desc' => 'Mostra uma lista de todos os temas visíveis.'
     ],
     'slug' => [
         'name' => 'Nome do parâmetro Slug',
@@ -133,8 +231,6 @@ return [
         'embed_desc' => 'Um código único para o tópico ou tema criado. Um parâmetro de rota também pode ser usado.'
     ],
     'memberpage' => [
-        'name' => 'Membro',
-        'self_desc' => 'Mostra as informações e atividades de um membro do fórum.',
         'slug_name' => 'Nome do paramêtro Slug',
         'slug_desc' => 'A rota de parâmetro de URL usado para ver o usuário por esse Slug. Um hard coded slug também pode ser usado.',
         'view_title' => 'Modo de Visualização',
@@ -144,12 +240,4 @@ return [
         'topic_title' => 'Página do Tópico',
         'topic_desc' => 'Nome da página para usar quando clicar no tópico.'
     ],
-    'topicpage' => [
-        'name' => 'Tópico',
-        'self_desc' => 'Mostre um tópico e postagens.',
-        'slug_name' => 'Nome do parâmetro Slug',
-        'slug_desc' => 'A rota de parâmetro de URL usado para ver o tópico por esse Slug. Um hard coded slug também pode ser usado.',
-        'channel_title' => 'Página do Tema',
-        'channel_desc' => 'Nome da página para usar quando clicar no tema.'
-    ]
 ];

@@ -27,6 +27,14 @@ return [
             'hidden' => 'Ukryty',
             'is_hidden' => 'Ukryj tę kategorię na głównej liście kategorii.',
         ],
+        'post' => [
+            'label' => 'Post',
+            'label_plural' => 'Posty',
+        ],
+        'topic' => [
+            'label' => 'Temat',
+            'label_plural' => 'Tematy',
+        ],
     ],
     'controllers' => [
         'channels' => [
@@ -42,23 +50,115 @@ return [
     ],
     'components' => [
         'general' => [
+            'back_to' => 'Powrót do',
+            'by' => 'przez',
+            'cancel' => 'Anuluj',
+            'can_use_syntax' => 'Możesz używać składni :syntax',
+            'delete' => 'Usuń',
+            'edit' => 'Edytuj',
+            'last_post' => 'Ostatni post',
+            'locked' => 'Zamknięty',
+            'posted' => 'Opublikowano',
+            'posted_in' => 'Opublikowano w',
+            'quote' => 'Cytuj',
+            'save' => 'Zapisz',
+            'sticky' => 'Przypięty',
+            'when' => 'Kiedy',
+            'pagination' => [
+                'previous' => 'Poprzednia',
+                'next' => 'Następna',
+                'first' => 'Pierwsza',
+                'last' => 'Ostatnia',
+                'of' => 'z',
+            ],
             'properties' => [
                 'includeStyles' => 'Włącz CSS',
                 'includeStyles_desc' => 'Dołącz pliki CSS z domyślnymi stylami dla forum',
+                'posts_per_page' => 'Posty na stronę',
+                'posts_per_page_validation' => 'Posty na stronę muszą być liczbą',
+                'channel_page' => 'Strona kanału',
+                'channel_page_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w kanał.',
+                'member_page' => 'Strona członka',
+                'member_page_desc' => 'Strona do linkowania do profili członków.',
+                'topic_page' => 'Strona tematu',
+                'topic_page_desc' => 'Strona do linkowania do tematów.',
             ],
         ],
         'channel' => [
             'name' => 'Kanał',
             'description' => 'Wyświetla listę postów należących do kanału.',
+            'replies' => 'Odpowiedzi',
+            'views' => 'Wyświetlenia',
+            'no_topic' => 'W tym kanale nie ma żadnych tematów.',
+            'search_placeholder' => 'Szukaj tematów...',
+            'log_to_post' => 'Zaloguj się, aby opublikować nowy temat',
+            'post_new_topic' => 'Opublikuj nowy temat',
+        ],
+        'channels' => [
+            'name' => 'Lista kanałów',
+            'description' => 'Wyświetla listę wszystkich widocznych kanałów.',
+            'recent_topic' => 'Ostatni temat',
+        ],
+        'member' => [
+            'name' => 'Użytkownik',
+            'description' => 'Wyświetla informacje o użytkowniku forum i jego aktywność.',
+            'member_not_found' => 'Nie znaleziono użytkownika forum.',
+            'approve' => 'Zatwierdź użytkownika',
+            'unapprove' => 'Odmów zatwierdzenia użytkownika',
+            'ban' => 'Zablokuj użytkownika',
+            'unban' => 'Odblokuj użytkownika',
+            'report' => 'Zgłoś spamera',
+            'report_confirm' => 'Czy na pewno chcesz oznaczyć tego użytkownika jako spamera?',
+            'purge_posts' => 'Usuń posty',
+            'purge_posts_confirm' => 'Czy na pewno? Spowoduje to usunięcie wszystkich postów tego użytkownika.',
+            'edit' => 'Edytuj szczegóły',
+            'member_since' => 'Członek od',
+            'recent_posts' => 'Ostatnie posty',
+            'no_recent_posts' => 'Ten użytkownik nie brał udziału w forum.',
+            'is_not_approved' => ':name wymaga zatwierdzenia przed publikowaniem w chronionych kanałach',
+            'is_banned' => ':name został zablokowany przed publikowaniem',
+            'is_moderator' => ':name jest moderatorem forum',
+            'username' => 'Nazwa użytkownika',
+            'notify_me' => 'Powiadamiaj mnie o odpowiedziach na tematy, które obserwuję',
+            'banned' => 'Zablokowany',
+            'unapproved' => 'Niezatwierdzony',
+            'moderator' => 'Moderator',
+        ],
+        'posts' => [
+            'name' => 'Lista postów',
+            'description' => 'Wyświetla listę wszystkich postów.',
+            'no_posts_message' => 'Brak postów do wyświetlenia.',
+        ],
+        'topic' => [
+            'name' => 'Temat',
+            'description' => 'Wyświetla temat i posty.',
+            'banned_account' => 'Twoje konto jest zablokowane.',
+            'content' => 'Treść',
+            'must_login' => 'Musisz być zalogowany, aby móc publikować.',
+            'new_topic' => 'Utwórz nowy temat dyskusji',
+            'no_reply_message' => 'Nie możesz edytować postów ani odpowiadać:',
+            'no_topic_message' => 'Nie znaleziono tematu.',
+            'reply_to' => 'Odpowiedz na tę dyskusję',
+            'save_topic' => 'Zapisz ten temat',
+            'subject' => 'Temat',
+            'topic_locked' => 'Ten temat jest zablokowany.',
+            'properties' => [
+                'slug' => 'Nazwa parametru slug',
+                'slug_desc' => 'Parametr URL używany do wyszukiwania tematu przez jego slug. Można również użyć twardo zakodowanego sluga.',
+            ],
+        ],
+        'topics' => [
+            'name' => 'Lista tematów',
+            'description' => 'Wyświetla listę wszystkich tematów.',
+            'search_placeholder' => 'Szukaj tematów...',
+            'no_topics_message' => 'Brak ostatnich postów w żadnym temacie.',
+            'properties' => [
+                'per_page' => 'Liczba tematów na stronie',
+                'per_page_validation' => 'Niepoprawny format liczby tematów na stronie'
+            ],
         ],
     ],
 
-    'topics' => [
-        'component_name' => 'Lista tematów',
-        'component_description' => 'Wyświetla listę wszystkich tematów.',
-        'per_page' => 'Liczba tematów na stronie',
-        'per_page_validation' => 'Niepoprawny format liczby tematów na stronie'
-    ],
     'topic' => [
         'page_name' => 'Strona tematu',
         'page_help' => 'Nazwa strony wyświetlającej się po kliknięciu w temat.'
@@ -93,8 +193,6 @@ return [
         'savenclose' => 'Zapisz i zamknij',
         'deleting' => 'Usuwanie kanału...',
         'really' => 'Czy na pewno chcesz usunąć ten kanał?',
-        'list_name' => 'Lista kanałów',
-        'list_desc' => 'Wyświetla listę wszystkich widocznych kanałów.'
     ],
     'slug' => [
         'name' => 'Nazwa parametru slug',
@@ -133,8 +231,6 @@ return [
         'embed_desc' => 'Unikalny kod dla wygenerowanego tematu lub kanału. Można również użyć parametru routingu.'
     ],
     'memberpage' => [
-        'name' => 'Użytkownik',
-        'self_desc' => 'Wyświetla informacje o użytkowniku forum i jego aktywność.',
         'slug_name' => 'Nazwa parametru slug',
         'slug_desc' => 'Parametr URL używany do wyszukiwania użytkowników forum przez ich slug. Można również użyć twardo zakodowanego sluga.',
         'view_title' => 'Sposób wyświetlania',
@@ -144,12 +240,4 @@ return [
         'topic_title' => 'Strona tematu',
         'topic_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w temat.'
     ],
-    'topicpage' => [
-        'name' => 'Temat',
-        'self_desc' => 'Wyświetla temat i posty.',
-        'slug_name' => 'Nazwa parametru slug',
-        'slug_desc' => 'Parametr URL używany do wyszukiwania tematu przez jego slug. Można również użyć twardo zakodowanego sluga.',
-        'channel_title' => 'Strona kanału',
-        'channel_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w kanał.'
-    ]
 ];

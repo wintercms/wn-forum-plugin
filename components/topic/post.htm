@@ -11,15 +11,15 @@
         </div>
         {% if post.member.is_banned %}
             <div class="status text-danger">
-                <i class="icon-exclamation"></i> Banned
+                <i class="icon-exclamation"></i> {{ 'winter.forum::lang.components.member.banned' | trans }}
             </div>
         {% elseif topic.channel.is_guarded and not post.member.is_approved %}
             <div class="status text-warning">
-                <i class="icon-lock"></i> Unapproved
+                <i class="icon-lock"></i> {{ 'winter.forum::lang.components.member.unapproved' | trans }}
             </div>
         {% elseif post.member.is_moderator %}
             <div class="status">
-                <i class="icon-star"></i> Moderator
+                <i class="icon-star"></i> {{ 'winter.forum::lang.components.member.moderator' | trans }}
             </div>
         {% endif %}
     </div>
@@ -36,38 +36,37 @@
             {% endif %}
 
             <div class="text">
-                <textarea
-                    rows="5"
-                    name="content"
-                    class="form-control"
-                    >{{ post.content }}</textarea>
+                <textarea rows="5" name="content" class="form-control">
+                    {{ post.content }}
+                </textarea>
             </div>
             <div class="actions">
-                <a
-                    href="javascript:;"
+                <a href="javascript:;"
                     data-request="{{ __SELF__ }}::onUpdate"
                     data-request-data="post: {{ post.id }}"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    class="save">
-                    Save
+                    class="save"
+                >
+                    {{ 'winter.forum::lang.components.general.save' | trans }}
                 </a>
 
-                <a
-                    href="javascript:;"
+                <a href="javascript:;"
                     data-request="{{ __SELF__ }}::onUpdate"
                     data-request-data="post: {{ post.id }}, mode: 'delete'"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
                     data-request-confirm="Are you sure?"
-                    class="delete">
-                    Delete
+                    class="delete"
+                >
+                    {{ 'winter.forum::lang.components.general.delete' | trans }}
                 </a>
 
                 <a href="javascript:;"
                     data-request="{{ __SELF__ }}::onUpdate"
                     data-request-data="post: {{ post.id }}, mode: 'view'"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    class="cancel">
-                    Cancel
+                    class="cancel"
+                >
+                    {{ 'winter.forum::lang.components.general.cancel' | trans }}
                 </a>
             </div>
         {{ form_close() }}
@@ -91,8 +90,9 @@
                 <a href="javascript:;"
                     class="quote"
                     data-request-data="post: {{ post.id }}"
-                    data-quote-button>
-                    Quote
+                    data-quote-button
+                >
+                    {{ 'winter.forum::lang.components.general.quote' | trans }}
                 </a>
             {% endif %}
             {% if topic.canPost and post.canEdit and mode != 'edit' and mode != 'delete' %}
@@ -100,8 +100,9 @@
                     class="edit"
                     data-request="onUpdate"
                     data-request-data="post: {{ post.id }}"
-                    data-request-update="'{{ __SELF__ ~ '::post' }}': '#post-{{ post.id }}'">
-                    Edit
+                    data-request-update="'{{ __SELF__ ~ '::post' }}': '#post-{{ post.id }}'"
+                >
+                    {{ 'winter.forum::lang.components.general.edit' | trans }}
                 </a>
             {% endif %}
         </div>

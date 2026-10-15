@@ -8,7 +8,7 @@
     <div class="col-md-8">
         {% partial __SELF__ ~ "::pagination-list" records=posts %}
     </div>
-    <div class="col-md-4 text-right posts-total-summary">
-        <p>{{ posts.firstItem }}-{{ posts.lastItem }} of {{ posts.total }}</p>
+    <div class="text-right col-md-4 posts-total-summary">
+        <p>{{ posts.firstItem }}-{{ posts.lastItem }} {{ 'winter.forum::lang.components.general.pagination.of' | trans }} {{ posts.total }}</p>
     </div>
 </div>

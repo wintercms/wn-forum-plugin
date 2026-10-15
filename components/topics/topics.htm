@@ -1,8 +1,8 @@
 <table class="forum-table">
     <tr>
-        <th colspan="2">Topic</th>
-        <th class="channel-column">Channel</th>
-        <th class="activity-column">Last post</th>
+        <th colspan="2">{{ 'winter.forum::lang.models.topic.label' | trans }}</th>
+        <th class="channel-column">{{ 'winter.forum::lang.models.channel.label' | trans }}</th>
+        <th class="activity-column">{{ 'winter.forum::lang.components.general.last_post' | trans }}</th>
     </tr>
 
     {% for topic in topics %}
@@ -12,10 +12,10 @@
             </td>
             <td>
                 <h5>
-                    {% if topic.sticky %}<strong>Sticky:</strong>{% endif %}
-                    {% if topic.locked %}<strong>Locked:</strong>{% endif %}
+                    {% if topic.is_sticky %}<strong>{{ 'winter.forum::lang.components.general.sticky' | trans }}:</strong>{% endif %}
+                    {% if topic.is_locked %}<strong>{{ 'winter.forum::lang.components.general.locked' | trans }}:</strong>{% endif %}
                     <a href="{{ topic.url }}">{{ topic.subject }}</a>
-                    <br/><small>by <a href="{{ topic.start_member.url }}">{{ topic.start_member.username }}</a></small>
+                    <br/><small>{{ 'winter.forum::lang.components.general.by' | trans }} <a href="{{ topic.start_member.url }}">{{ topic.start_member.username }}</a></small>
                 </h5>
             </td>
             <td>
@@ -25,10 +25,13 @@
                 <p>
                     <img src="{{ topic.last_post_member.user.avatarThumb(24) }}" class="member-avatar" />
                     <a href="{{ topic.last_post_member.url }}">{{ topic.last_post_member.username }}</a>
-                    posted
-                    <a href="{{ topic.url }}?page=last#post-{{ topic.last_post_id }}">
-                        {% partial __SELF__ ~ "::timestamp" date=topic.last_post_at %}
-                    </a>
+                    <br />
+                    <small>
+                        {{ 'winter.forum::lang.components.general.posted' | trans }}
+                        <a href="{{ topic.url }}?page=last#post-{{ topic.last_post_id }}">
+                            {% partial __SELF__ ~ "::timestamp" date=topic.last_post_at %}
+                        </a>
+                    </small>
                 </p>
             </td>
         </tr>
@@ -36,7 +39,7 @@
 
     {% if not topics|length %}
         <tr>
-            <td colspan="100">There are no latest posts in any topics.</td>
+            <td colspan="100">{{ 'winter.forum::lang.components.topics.no_topics_message' | trans }}</td>
         </tr>
     {% endif %}
 </table>

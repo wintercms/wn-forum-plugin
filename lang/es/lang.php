@@ -27,6 +27,14 @@ return [
             'hidden'    => 'Oculto',
             'is_hidden' => 'Ocultar esta categoría de la lista principal categoría.',
         ],
+        'post' => [
+            'label' => 'Publicación',
+            'label_plural' => 'Publicaciones',
+        ],
+        'topic' => [
+            'label' => 'Tema',
+            'label_plural' => 'Temas',
+        ],
     ],
     'controllers' => [
         'channels' => [
@@ -42,23 +50,116 @@ return [
     ],
     'components' => [
         'general' => [
+            'back_to' => 'Volver a',
+            'by' => 'por',
+            'cancel' => 'Cancelar',
+            'can_use_syntax' => 'Puede usar la sintaxis :syntax',
+            'delete' => 'Borrar',
+            'edit' => 'Editar',
+            'last_post' => 'Última publicación',
+            'locked' => 'Bloqueado',
+            'posted' => 'Publicado',
+            'posted_in' => 'Publicado en',
+            'quote' => 'Citar',
+            'save' => 'Guardar',
+            'sticky' => 'Fijado',
+            'when' => 'Cuándo',
+            'pagination' => [
+                'previous' => 'Anterior',
+                'next' => 'Siguiente',
+                'first' => 'Primero',
+                'last' => 'Último',
+                'of' => 'de',
+            ],
             'properties' => [
                 'includeStyles' => 'Habilitar CSS',
                 'includeStyles_desc' => 'Incluir los archivos CSS con los estilos predeterminados para el foro',
+                'posts_per_page' => 'Publicaciones por página',
+                'posts_per_page_validation' => 'Las publicaciones por página deben ser un número',
+                'channel_page' => 'Página del Canal',
+                'channel_page_desc'  => 'Nombre de la página que se utilizará al hacer clic en un canal.',
+                'member_page' => 'Página de miembro',
+                'member_page_desc' => 'La página para enlazar a los perfiles de los miembros.',
+                'topic_page' => 'Página de tema',
+                'topic_page_desc' => 'La página para enlazar a los temas.',
             ],
         ],
         'channel' => [
             'name' => 'Canal',
             'description' => 'Muestra un listado de temas que pertenecen a un canal.',
+            'replies' => 'Respuestas',
+            'views' => 'Vistas',
+            'no_topic' => 'No hay temas en este canal.',
+            'search_placeholder' => 'Buscar temas...',
+            'no_topics_message' => 'No hay publicaciones recientes en ningún tema.',
+            'log_to_post' => 'Inicie sesión para publicar un nuevo tema',
+            'post_new_topic' => 'Publicar un nuevo tema',
+        ],
+        'channels' => [
+            'name' => 'Listado de canales',
+            'description' => 'Muestra un listado de todos los canales visibles.',
+            'recent_topic' => 'Tema Reciente',
+        ],
+        'member' => [
+            'name' => 'Miembro',
+            'description' => 'Muestra información y la actividad de un miembro del foro.',
+            'member_not_found' => 'Miembro del foro no encontrado.',
+            'approve' => 'Aprobar miembro',
+            'unapprove' => 'Desaprobar miembro',
+            'ban' => 'Prohibir miembro',
+            'unban' => 'Desprohibir miembro',
+            'report' => 'Reportar spammer',
+            'report_confirm' => '¿Está seguro de que desea marcar a este miembro como spammer?',
+            'purge_posts' => 'Eliminar publicaciones',
+            'purge_posts_confirm' => '¿Está seguro? Esto eliminará todas las publicaciones de este miembro.',
+            'edit' => 'Editar detalles',
+            'member_since' => 'Miembro desde',
+            'recent_posts' => 'Publicaciones recientes',
+            'no_recent_posts' => 'Este miembro no ha participado en el foro.',
+            'is_not_approved' => ':name requiere aprobación antes de publicar en canales protegidos',
+            'is_banned' => ':name ha sido prohibido de publicar',
+            'is_moderator' => ':name es un moderador del foro',
+            'username' => 'Nombre de usuario',
+            'notify_me' => 'Notificarme sobre respuestas a los temas que estoy siguiendo',
+            'banned' => 'Prohibido',
+            'unapproved' => 'No aprobado',
+            'moderator' => 'Moderador',
+        ],
+        'posts' => [
+            'name' => 'Listado de publicaciones',
+            'description' => 'Muestra un listado de todas las publicaciones.',
+            'no_posts_message' => 'No hay publicaciones para mostrar.',
+        ],
+        'topic'  => [
+            'name'          => 'Tema',
+            'description' => 'Muestra un tema y sus publicaciones.',
+            'banned_account' => 'Su cuenta está prohibida.',
+            'content' => 'Contenido',
+            'must_login' => 'Debe iniciar sesión antes de poder publicar.',
+            'new_topic' => 'Crear un nuevo tema de discusión',
+            'no_reply_message' => 'No puede editar publicaciones ni hacer respuestas:',
+            'no_topic_message' => 'Tema no encontrado.',
+            'reply_to' => 'Responder a esta discusión',
+            'save_topic' => 'Guardar este tema',
+            'subject' => 'Asunto',
+            'topic_locked' => 'Este tema está bloqueado.',
+            'properties' => [
+                'slug' => 'Nombre del parámetro Slug',
+                'slug_desc' => 'El parámetro de la ruta URL usado para buscar un tema por su slug. Un slug prefijado también puede ser usado.',
+            ],
+        ],
+        'topics'     => [
+            'name'        => 'Listado de temas',
+            'description' => 'Muestra un listado de todos los temas.',
+            'search_placeholder' => 'Buscar temas...',
+            'no_topics_message' => 'No hay publicaciones recientes en ningún tema.',
+            'properties' => [
+                'per_page'              => 'Temas por pagina',
+                'per_page_validation'   => 'Formato incorrecto de los temas por valor de página'
+            ],
         ],
     ],
 
-    'topics'     => [
-        'component_name'        => 'Listado de temas',
-        'component_description' => 'Muestra un listado de todos los temas.',
-        'per_page'              => 'Temas por pagina',
-        'per_page_validation'   => 'Formato incorrecto de los temas por valor de página'
-    ],
     'topic'      => [
         'page_name' => 'Página del Tema',
         'page_help' => 'Nombre de la página que se utilizará al hacer clic en un tema de conversación.'
@@ -93,8 +194,6 @@ return [
         'savenclose'   => 'Guardar y Cerrar',
         'deleting'     => 'Borrando Canal...',
         'really'       => '¿Realmente desea eliminar este canal?',
-        'list_name'    => 'Lista de canales',
-        'list_desc'    => 'Muestra un listado de todos los canales visibles.'
     ],
     'slug'       => [
         'name' => 'Slug nombre del parámetro',
@@ -133,8 +232,6 @@ return [
         'embed_desc'      => 'Un código único para el tema o canal generado. También se puede utilizar un parámetro de enrutamiento.'
     ],
     'memberpage' => [
-        'name'        => 'Miembro',
-        'self_desc'   => 'Muestra información y la actividad de un miembro del foro.',
         'slug_name'   => 'Nombre del parámetro Slug',
         'slug_desc'   => 'El parámetro de la ruta URL usado para buscar un miembro del foro por slug. Un slug prefijado también puede ser usado.',
         'view_title'  => 'Modo de visualización',
@@ -144,13 +241,4 @@ return [
         'topic_title' => 'Página del Tema',
         'topic_desc'  => 'Nombre de la página que se utilizará al hacer clic en un tema de conversación.'
     ],
-    'topicpage'  => [
-        'name'          => 'Tema',
-        'desc'          => 'Muestra la información de un tema del foro.',
-        'self'          => 'Muestra un tema y mensajes.',
-        'slug_name'     => 'Nombre del parámetro Slug',
-        'slug_desc'     => 'El parámetro de la ruta URL usado para buscar un tema por su slug. Un slug prefijado también puede ser usado.',
-        'channel_title' => 'Página del Canal',
-        'channel_desc'  => 'Nombre de la página que se utilizará al hacer clic en un canal.'
-    ]
 ];

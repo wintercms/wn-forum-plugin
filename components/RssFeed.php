@@ -62,11 +62,13 @@ class RssFeed extends ComponentBase
                 'description' => 'winter.forum::lang.settings.rssfeed_forum_description',
                 'type'        => 'dropdown',
                 'default'     => 'blog/post',
+                'group'       => 'Links',
             ],
             'topicPage' => [
-                'title'       => 'winter.forum::lang.topic.page_name',
-                'description' => 'winter.forum::lang.topic.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.topic_page',
+                'description' => 'winter.forum::lang.components.general.properties.topic_page_desc',
                 'type'        => 'dropdown',
+                'group'       => 'Links',
             ],
         ];
     }

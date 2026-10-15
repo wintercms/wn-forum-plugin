@@ -35,8 +35,8 @@ class EmbedTopic extends ComponentBase
                 'type'        => 'dropdown'
             ],
             'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],

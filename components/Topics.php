@@ -39,30 +39,32 @@ class Topics extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.topics.component_name',
-            'description' => 'winter.forum::lang.topics.component_description',
+            'name'        => 'winter.forum::lang.components.topics.name',
+            'description' => 'winter.forum::lang.components.topics.description',
         ];
     }
 
     public function defineProperties()
     {
         return [
-            'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
-                'type'        => 'dropdown'
-            ],
-            'topicPage' => [
-                'title'       => 'winter.forum::lang.topic.page_name',
-                'description' => 'winter.forum::lang.topic.page_help',
-                'type'        => 'dropdown',
-            ],
             'topicsPerPage' =>  [
-                'title'             => 'winter.forum::lang.topics.per_page',
+                'title'             => 'winter.forum::lang.components.topics.properties.per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'winter.forum::lang.topics.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.components.topics.properties.per_page_validation',
                 'default'           => '20',
+            ],
+            'memberPage' => [
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
+                'type'        => 'dropdown',
+                'group'       => 'Links',
+            ],
+            'topicPage' => [
+                'title'       => 'winter.forum::lang.components.general.properties.topic_page',
+                'description' => 'winter.forum::lang.components.general.properties.topic_page_desc',
+                'type'        => 'dropdown',
+                'group'       => 'Links',
             ],
             'includeStyles' => [
                 'title'       => 'winter.forum::lang.components.general.properties.includeStyles',

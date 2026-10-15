@@ -17,7 +17,8 @@
             <a href="javascript:;"
                 class="list-group-item"
                 data-request="onLock"
-                data-request-update="'@controlpanel': '#topicControlPanel'">
+                data-request-update="'@controlpanel': '#topicControlPanel'"
+            >
                 {% if topic.is_locked %}
                     Unlock topic
                 {% else %}
@@ -28,7 +29,8 @@
             <a href="javascript:;"
                 class="list-group-item"
                 data-request="onSticky"
-                data-request-update="'@controlpanel': '#topicControlPanel'">
+                data-request-update="'@controlpanel': '#topicControlPanel'"
+            >
                 {% if topic.is_sticky %}
                     Unsticky topic
                 {% else %}
@@ -52,7 +54,7 @@
 
         {% if topic.is_locked %}
             <div class="list-group-item">
-                <span class="text text-danger"><i class="icon icon-lock"></i> This topic is locked</span>
+                <span class="text text-danger"><i class="icon icon-lock"></i> {{ 'winter.forum::lang.components.topic.topic_locked' | trans }}</span>
             </div>
         {% else %}
             <a href="#postForm" class="list-group-item">

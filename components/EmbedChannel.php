@@ -42,18 +42,18 @@ class EmbedChannel extends ComponentBase
                 'default'     => '{{ :topicSlug }}',
                 'group'       => 'Parameters',
             ],
-            'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
-                'type'        => 'dropdown',
-                'group'       => 'Links',
-            ],
             'isGuarded' => [
                 'title'       => 'Spam Guarded Channel',
                 'description' => 'Newly created channels will have spam guard enabled',
                 'type'        => 'checkbox',
                 'default'     => 0,
                 'group'       => 'Parameters',
+            ],
+            'memberPage' => [
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
+                'type'        => 'dropdown',
+                'group'       => 'Links',
             ],
         ];
     }

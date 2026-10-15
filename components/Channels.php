@@ -36,8 +36,8 @@ class Channels extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.channels.list_name',
-            'description' => 'winter.forum::lang.channels.list_desc'
+            'name'        => 'winter.forum::lang.components.channels.name',
+            'description' => 'winter.forum::lang.components.channels.description'
         ];
     }
 
@@ -45,19 +45,22 @@ class Channels extends ComponentBase
     {
         return [
             'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
+                'group'       => 'Links',
             ],
             'channelPage' => [
-                'title'       => 'winter.forum::lang.channel.page_name',
-                'description' => 'winter.forum::lang.channel.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.channel_page',
+                'description' => 'winter.forum::lang.components.general.properties.channel_page_desc',
                 'type'        => 'dropdown',
+                'group'       => 'Links',
             ],
             'topicPage' => [
-                'title'       => 'winter.forum::lang.topic.page_name',
-                'description' => 'winter.forum::lang.topic.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.topic_page',
+                'description' => 'winter.forum::lang.components.general.properties.topic_page_desc',
                 'type'        => 'dropdown',
+                'group'       => 'Links',
             ],
             'includeStyles' => [
                 'title'       => 'winter.forum::lang.components.general.properties.includeStyles',

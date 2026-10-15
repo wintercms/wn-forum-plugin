@@ -1,3 +1,5 @@
+// out: "../css/forum.css", compress: true, sourceMap: false
+
 @color-indicator-read: #999;
 @color-indicator-unread: #de6c26;
 @color-table-border: #ccc;
@@ -216,12 +218,18 @@
             }
 
             .actions {
+                display: flex;
+                gap: 2rem;
+                align-items: center;
+                justify-content: flex-start;
+
                 a {
                     display: inline-block;
                     margin: 0 3px 0 0;
                     color: rgba(0, 0, 0, 0.3);
                 }
-                a.active, a:hover {
+                a.active,
+                a:hover {
                     color: rgba(0, 0, 0, 0.6);
                 }
             }
