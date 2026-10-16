@@ -64,10 +64,10 @@ class Posts extends ComponentBase
                 'group'       => 'Links',
             ],
             'postsPerPage' =>  [
-                'title'             => 'winter.forum::lang.posts.per_page',
+                'title'             => 'winter.forum::lang.components.general.properties.posts_per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'winter.forum::lang.posts.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.components.general.properties.posts_per_page_validation',
                 'default'           => '20',
                 'group'             => 'Links',
             ],

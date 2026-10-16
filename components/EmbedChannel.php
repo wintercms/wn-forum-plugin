@@ -16,8 +16,8 @@ class EmbedChannel extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.embedch.channel_name',
-            'description' => 'winter.forum::lang.embedch.channel_self_desc'
+            'name'        => 'winter.forum::lang.components.embed_channel.name',
+            'description' => 'winter.forum::lang.components.embed_channel.description'
         ];
     }
 
@@ -25,26 +25,26 @@ class EmbedChannel extends ComponentBase
     {
         return [
             'embedCode' => [
-                'title'       => 'winter.forum::lang.embedch.embed_title',
-                'description' => 'winter.forum::lang.embedch.embed_desc',
+                'title'       => 'winter.forum::lang.components.embed_channel.embed_title',
+                'description' => 'winter.forum::lang.components.embed_channel.embed_desc',
                 'type'        => 'string',
                 'group'       => 'Parameters',
             ],
             'channelSlug' => [
-                'title'       => 'winter.forum::lang.embedch.channel_title',
-                'description' => 'winter.forum::lang.embedch.channel_desc',
+                'title'       => 'winter.forum::lang.components.embed_channel.channel_title',
+                'description' => 'winter.forum::lang.components.embed_channel.channel_desc',
                 'type'        => 'dropdown'
             ],
             'topicSlug' => [
-                'title'       => 'winter.forum::lang.embedch.topic_name',
-                'description' => 'winter.forum::lang.embedch.topic_desc',
+                'title'       => 'winter.forum::lang.components.embed_channel.topic_name',
+                'description' => 'winter.forum::lang.components.embed_channel.topic_desc',
                 'type'        => 'string',
                 'default'     => '{{ :topicSlug }}',
                 'group'       => 'Parameters',
             ],
             'isGuarded' => [
-                'title'       => 'Spam Guarded Channel',
-                'description' => 'Newly created channels will have spam guard enabled',
+                'title'       => 'winter.forum::lang.components.embed_channel.guarded_name',
+                'description' => 'winter.forum::lang.components.embed_channel.guarded_desc',
                 'type'        => 'checkbox',
                 'default'     => 0,
                 'group'       => 'Parameters',

@@ -59,21 +59,21 @@ class Plugin extends PluginBase
 
             $widget->addFields([
                 'forum_member[username]' => [
-                    'label'   => 'winter.forum::lang.settings.username',
                     'tab'     => 'winter.forum::lang.plugin.name',
+                    'label'   => 'winter.forum::lang.settings.username',
                     'comment' => 'winter.forum::lang.settings.username_comment'
                 ],
                 'forum_member[is_moderator]' => [
+                    'tab'     => 'winter.forum::lang.plugin.name',
                     'label'   => 'winter.forum::lang.settings.moderator',
                     'type'    => 'checkbox',
-                    'tab'     => 'winter.forum::lang.plugin.name',
                     'span'    => 'auto',
                     'comment' => 'winter.forum::lang.settings.moderator_comment'
                 ],
                 'forum_member[is_banned]' => [
+                    'tab'     => 'winter.forum::lang.plugin.name',
                     'label'   => 'winter.forum::lang.settings.banned',
                     'type'    => 'checkbox',
-                    'tab'     => 'winter.forum::lang.plugin.name',
                     'span'    => 'auto',
                     'comment' => 'winter.forum::lang.settings.banned_comment'
                 ]

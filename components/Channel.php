@@ -64,8 +64,8 @@ class Channel extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'winter.forum::lang.slug.name',
-                'description' => 'winter.forum::lang.slug.desc',
+                'title'       => 'winter.forum::lang.components.channel.properties.slug_name',
+                'description' => 'winter.forum::lang.components.channel.properties.slug_desc',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string',
             ],

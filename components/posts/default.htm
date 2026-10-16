@@ -1,8 +1,9 @@
 <div class="winter-forum">
-    <h4>Recent posts</h4>
+    <h4>{{ 'winter.forum::lang.components.general.recent_posts' | trans }}</h4>
     <div id="forumPosts">
         {% partial '@posts' %}
     </div>
 
-    {% partial "@pagination" %}
+
+    {% partial __SELF__ ~ "::pagination" records=posts %}
 </div>

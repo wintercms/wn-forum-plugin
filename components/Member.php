@@ -52,14 +52,14 @@ class Member extends ComponentBase
     {
         return [
             'slug' => [
-                'title'       => 'winter.forum::lang.memberpage.slug_name',
-                'description' => 'winter.forum::lang.memberpage.slug_desc',
+                'title'       => 'winter.forum::lang.components.member.properties.slug_name',
+                'description' => 'winter.forum::lang.components.member.properties.slug_desc',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string'
             ],
             'viewMode' => [
-                'title'       => 'winter.forum::lang.memberpage.view_title',
-                'description' => 'winter.forum::lang.memberpage.view_desc',
+                'title'       => 'winter.forum::lang.components.member.properties.view_title',
+                'description' => 'winter.forum::lang.components.member.properties.view_desc',
                 'type'        => 'dropdown',
                 'default'     => ''
             ],
@@ -70,14 +70,14 @@ class Member extends ComponentBase
                 'group'       => 'Links',
             ],
             'topicPage' => [
-                'title'       => 'winter.forum::lang.memberpage.topic_title',
-                'description' => 'winter.forum::lang.memberpage.topic_desc',
+                'title'       => 'winter.forum::lang.components.member.properties.topic_title',
+                'description' => 'winter.forum::lang.components.member.properties.topic_desc',
                 'type'        => 'dropdown',
                 'group'       => 'Links',
             ],
             'includeStyles' => [
-                'title'       => 'winter.forum::components.general.properties.includeStyles',
-                'description' => 'winter.forum::components.general.properties.includeStyles_desc',
+                'title'       => 'winter.forum::lang.components.general.properties.includeStyles',
+                'description' => 'winter.forum::lang.components.general.properties.includeStyles_desc',
                 'type'        => 'checkbox',
                 'default'     => true
             ],

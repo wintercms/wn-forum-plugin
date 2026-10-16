@@ -16,8 +16,8 @@ class EmbedTopic extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.embedtopic.topic_name',
-            'description' => 'winter.forum::lang.embedtopic.topic_self_desc'
+            'name'        => 'winter.forum::lang.components.embed_topic.topic_name',
+            'description' => 'winter.forum::lang.components.embed_topic.topic_self_desc'
         ];
     }
 
@@ -25,13 +25,13 @@ class EmbedTopic extends ComponentBase
     {
         return [
             'embedCode' => [
-                'title'       => 'winter.forum::lang.embedtopic.embed_title',
-                'description' => 'winter.forum::lang.embedtopic.embed_desc',
+                'title'       => 'winter.forum::lang.components.embed_topic.embed_title',
+                'description' => 'winter.forum::lang.components.embed_topic.embed_desc',
                 'type'        => 'string',
             ],
             'channelSlug' => [
-                'title'       => 'winter.forum::lang.embedtopic.target_name',
-                'description' => 'winter.forum::lang.embedtopic.target_desc',
+                'title'       => 'winter.forum::lang.components.embed_topic.target_name',
+                'description' => 'winter.forum::lang.components.embed_topic.target_desc',
                 'type'        => 'dropdown'
             ],
             'memberPage' => [

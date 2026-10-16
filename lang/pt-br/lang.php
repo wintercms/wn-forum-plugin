@@ -94,12 +94,37 @@ return [
             'search_placeholder' => 'Pesquisar tópicos...',
             'log_to_post' => 'Faça login para postar um novo tópico',
             'post_new_topic' => 'Postar um novo tópico',
+            'properties' => [
+                'slug_name' => 'Nome do parâmetro Slug',
+                'slug_desc' => 'A rota de parâmetro de URL usado para ver o tema por esse Slug. Um hard coded slug também pode ser usado.'
+            ],
         ],
         'channels' => [
             'name' => 'Lista de Temas',
             'description' => 'Mostra uma lista de todos os temas visíveis.',
+            'no_channels_message' => 'Não há temas para exibir.',
             'recent_topic' => 'Tópico Recente',
             'sub_channels' => 'Sub fóruns',
+        ],
+        'embed_channel' => [
+            'name' => 'Incorporar Tema',
+            'description' => 'Anexe um tema a qualquer página.',
+            'channel_title' => 'Tema Pai',
+            'channel_desc' => 'Especifique um tema para criar um novo tem em',
+            'embed_title' => 'Parâmetro de código de inserção',
+            'embed_desc' => 'Um código único para o tema criado. Um parâmetro de rota também pode ser usado.',
+            'guarded_name' => 'Canal protegido contra spam',
+            'guarded_desc' => 'Especifique se os canais recém-criados estão protegidos por um filtro de spam.',
+            'topic_name' => 'Parâmetro de código do Tópico',
+            'topic_desc' => 'O parâmetro da rota de URL usado para ver o tópico por esse slug.'
+        ],
+        'embed_topic' => [
+            'topic_name' => 'Incorporar Tópico',
+            'topic_self_desc' => 'Anexe um tópico a qualquer página.',
+            'target_name' => 'Tema Destino',
+            'target_desc' => 'Especifique o tema para criar um novo tópico ou tema em',
+            'embed_title' => 'Código de Inserção',
+            'embed_desc' => 'Um código único para o tópico ou tema criado. Um parâmetro de rota também pode ser usado.'
         ],
         'member' => [
             'name' => 'Membro',
@@ -125,11 +150,31 @@ return [
             'banned' => 'Banido',
             'unapproved' => 'Não aprovado',
             'moderator' => 'Moderador',
+            'properties' => [
+                'slug_name' => 'Nome do paramêtro Slug',
+                'slug_desc' => 'A rota de parâmetro de URL usado para ver o usuário por esse Slug. Um hard coded slug também pode ser usado.',
+                'view_title' => 'Modo de Visualização',
+                'view_desc' => 'Estabeleça manualmente o modo de visualização do membro.',
+                'topic_title' => 'Página do Tópico',
+                'topic_desc' => 'Nome da página para usar quando clicar no tópico.'
+            ],
         ],
         'posts' => [
             'name' => 'Lista de Postagens',
             'description' => 'Mostra uma lista de todas as postagens.',
             'no_posts_message' => 'Não há postagens para exibir.',
+            'report_spam' => 'Marcar como spam',
+            'report_spam_confirm' => 'Tem certeza? Isso irá deletar todas as postagens deste membro.',
+        ],
+        'rss_feed' => [
+            'name' => 'Feed RSS',
+            'description' => 'Gera um feed RSS contendo tópicos do fórum.',
+            'properties' => [
+                'channels_filter' => 'Filtro de canais',
+                'channels_filter_description' => 'Digite um slug de categoria ou um parâmetro de URL para filtrar os tópicos. Deixe vazio para mostrar todos os tópicos.',
+                'forum' => 'Página do fórum',
+                'forum_description' => 'Nome do arquivo da página principal do fórum para gerar links. Esta propriedade é usada pelo parcial do componente padrão.',
+            ],
         ],
         'topic' => [
             'name' => 'Tópico',
@@ -208,10 +253,6 @@ return [
         'deleting' => 'Deletando Tema...',
         'really' => 'Você realmente quer apagar esse tema?',
     ],
-    'slug' => [
-        'name' => 'Nome do parâmetro Slug',
-        'desc' => 'A rota de parâmetro de URL usado para ver o tema por esse Slug. Um hard coded slug também pode ser usado.'
-    ],
     'frontend' => [
         'notopic' => 'não existe tópicos neste tema.'
     ],
@@ -225,33 +266,5 @@ return [
         'forum_username' => 'Nome do Fórum',
         'channels' => 'Temas do Fórum',
         'channels_desc' => 'Administrar Temas Disponíveis.'
-    ],
-    'embedch' => [
-        'channel_name' => 'Incorporar Tema',
-        'channel_self_desc' => 'Anexe um tema a qualquer página.',
-        'channel_title' => 'Tema Pai',
-        'channel_desc' => 'Especifique um tema para criar um novo tem em',
-        'embed_title' => 'Parâmetro de código de inserção',
-        'embed_desc' => 'Um código único para o tema criado. Um parâmetro de rota também pode ser usado.',
-        'topic_name' => 'Parâmetro de código do Tópico',
-        'topic_desc' => 'O parâmetro da rota de URL usado para ver o tópico por esse slug.'
-    ],
-    'embedtopic' => [
-        'topic_name' => 'Incorporar Tópico',
-        'topic_self_desc' => 'Anexe um tópico a qualquer página.',
-        'target_name' => 'Tema Destino',
-        'target_desc' => 'Especifique o tema para criar um novo tópico ou tema em',
-        'embed_title' => 'Código de Inserção',
-        'embed_desc' => 'Um código único para o tópico ou tema criado. Um parâmetro de rota também pode ser usado.'
-    ],
-    'memberpage' => [
-        'slug_name' => 'Nome do paramêtro Slug',
-        'slug_desc' => 'A rota de parâmetro de URL usado para ver o usuário por esse Slug. Um hard coded slug também pode ser usado.',
-        'view_title' => 'Modo de Visualização',
-        'view_desc' => 'Estabeleça manualmente o modo de visualização do membro.',
-        'ch_title' => 'Página do Tema',
-        'ch_desc' => 'Nome da página para usar quando clicar no tema.',
-        'topic_title' => 'Página do Tópico',
-        'topic_desc' => 'Nome da página para usar quando clicar no tópico.'
     ],
 ];

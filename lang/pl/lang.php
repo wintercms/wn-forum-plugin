@@ -94,12 +94,37 @@ return [
             'search_placeholder' => 'Szukaj tematów...',
             'log_to_post' => 'Zaloguj się, aby opublikować nowy temat',
             'post_new_topic' => 'Opublikuj nowy temat',
+            'properties' => [
+                'slug_name' => 'Nazwa parametru slug',
+                'slug_desc' => 'Parametr URL używany do wyszukiwania kanału przez jego slug. Można również użyć twardo zakodowanego sluga.'
+            ],
         ],
         'channels' => [
             'name' => 'Lista kanałów',
             'description' => 'Wyświetla listę wszystkich widocznych kanałów.',
+            'no_channels_message' => 'Brak kanałów do wyświetlenia.',
             'recent_topic' => 'Ostatni temat',
             'sub_channels' => 'Sub fora',
+        ],
+        'embed_channel' => [
+            'name' => 'Osadź kanał',
+            'description' => 'Dołącz kanał do dowolnej strony.',
+            'channel_title' => 'Kanał rodzic',
+            'channel_desc' => 'Określ kanał, w którym chcesz utworzyć nowy kanał',
+            'embed_title' => 'Parametr kodu osadzenia',
+            'embed_desc' => 'Unikalny kod dla wygenerowanego kanału. Można również użyć parametru routingu.',
+            'guarded_name' => 'Kanał chroniony przed spamem',
+            'guarded_desc' => 'Określ, czy nowo utworzone kanały są chronione przed spamem.',
+            'topic_name' => 'Parametr kodu tematu',
+            'topic_desc' => 'Parametr URL używany do wyszukiwania tematu przez jego slug.'
+        ],
+        'embed_topic' => [
+            'topic_name' => 'Osadź temat',
+            'topic_self_desc' => 'Dołącz temat do dowolnej strony.',
+            'target_name' => 'Kanał rodzic',
+            'target_desc' => 'Określ kanał, w którym chcesz utworzyć nowy temat lub kanał',
+            'embed_title' => 'Kod osadzenia',
+            'embed_desc' => 'Unikalny kod dla wygenerowanego tematu lub kanału. Można również użyć parametru routingu.'
         ],
         'member' => [
             'name' => 'Użytkownik',
@@ -125,11 +150,31 @@ return [
             'banned' => 'Zablokowany',
             'unapproved' => 'Niezatwierdzony',
             'moderator' => 'Moderator',
+            'properties' => [
+                'slug_name' => 'Nazwa parametru slug',
+                'slug_desc' => 'Parametr URL używany do wyszukiwania użytkowników forum przez ich slug. Można również użyć twardo zakodowanego sluga.',
+                'view_title' => 'Sposób wyświetlania',
+                'view_desc' => 'Ustaw ręcznie tryb wyświetlania dla komponentu użytkownika.',
+                'topic_title' => 'Strona tematu',
+                'topic_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w temat.'
+            ],
         ],
         'posts' => [
             'name' => 'Lista postów',
             'description' => 'Wyświetla listę wszystkich postów.',
             'no_posts_message' => 'Brak postów do wyświetlenia.',
+            'report_spam' => 'Oznacz jako spam',
+            'report_spam_confirm' => 'Czy na pewno? Spowoduje to usunięcie wszystkich postów tego użytkownika.',
+        ],
+        'rss_feed' => [
+            'name' => 'Kanał RSS',
+            'description' => 'Generuje kanał RSS zawierający tematy z forum.',
+            'properties' => [
+                'channels_filter' => 'Filtr kanałów',
+                'channels_filter_description' => 'Wprowadź slug kategorii lub parametr URL, aby filtrować tematy. Pozostaw puste, aby wyświetlić wszystkie tematy.',
+                'forum' => 'Strona forum',
+                'forum_description' => 'Nazwa głównego pliku strony forum do generowania linków. Ta właściwość jest używana przez domyślny szablon komponentu.',
+            ],
         ],
         'topic' => [
             'name' => 'Temat',
@@ -208,10 +253,6 @@ return [
         'deleting' => 'Usuwanie kanału...',
         'really' => 'Czy na pewno chcesz usunąć ten kanał?',
     ],
-    'slug' => [
-        'name' => 'Nazwa parametru slug',
-        'desc' => 'Parametr URL używany do wyszukiwania kanału przez jego slug. Można również użyć twardo zakodowanego sluga.'
-    ],
     'frontend' => [
         'notopic' => 'Brak tematów w tym kanale.'
     ],
@@ -225,33 +266,5 @@ return [
         'forum_username' => 'Nazwa użytkownika na forum',
         'channels' => 'Kanały forum',
         'channels_desc' => 'Zarządzaj dostępnymi kanałami forum.'
-    ],
-    'embedch' => [
-        'channel_name' => 'Osadź kanał',
-        'channel_self_desc' => 'Dołącz kanał do dowolnej strony.',
-        'channel_title' => 'Kanał rodzic',
-        'channel_desc' => 'Określ kanał, w którym chcesz utworzyć nowy kanał',
-        'embed_title' => 'Parametr kodu osadzenia',
-        'embed_desc' => 'Unikalny kod dla wygenerowanego kanału. Można również użyć parametru routingu.',
-        'topic_name' => 'Parametr kodu tematu',
-        'topic_desc' => 'Parametr URL używany do wyszukiwania tematu przez jego slug.'
-    ],
-    'embedtopic' => [
-        'topic_name' => 'Osadź temat',
-        'topic_self_desc' => 'Dołącz temat do dowolnej strony.',
-        'target_name' => 'Kanał rodzic',
-        'target_desc' => 'Określ kanał, w którym chcesz utworzyć nowy temat lub kanał',
-        'embed_title' => 'Kod osadzenia',
-        'embed_desc' => 'Unikalny kod dla wygenerowanego tematu lub kanału. Można również użyć parametru routingu.'
-    ],
-    'memberpage' => [
-        'slug_name' => 'Nazwa parametru slug',
-        'slug_desc' => 'Parametr URL używany do wyszukiwania użytkowników forum przez ich slug. Można również użyć twardo zakodowanego sluga.',
-        'view_title' => 'Sposób wyświetlania',
-        'view_desc' => 'Ustaw ręcznie tryb wyświetlania dla komponentu użytkownika.',
-        'ch_title' => 'Strona kanału',
-        'ch_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w kanał.',
-        'topic_title' => 'Strona tematu',
-        'topic_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w temat.'
     ],
 ];

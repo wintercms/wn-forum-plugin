@@ -4,6 +4,6 @@
     {% partial __SELF__ ~ "::topics" %}
 
     {% if topics %}
-        {% partial __SELF__ ~ "::pagination" %}
+        {% partial __SELF__ ~ "::pagination" records=topics %}
     {% endif %}
 </div>

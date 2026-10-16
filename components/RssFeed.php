@@ -36,8 +36,8 @@ class RssFeed extends ComponentBase
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.settings.rssfeed_title',
-            'description' => 'winter.forum::lang.settings.rssfeed_description'
+            'name'        => 'winter.forum::lang.components.rss_feed.name',
+            'description' => 'winter.forum::lang.components.rss_feed.description'
         ];
     }
 
@@ -45,21 +45,21 @@ class RssFeed extends ComponentBase
     {
         return [
             'channelFilter' => [
-                'title'       => 'winter.forum::lang.settings.channels_filter',
-                'description' => 'winter.forum::lang.settings.channels_filter_description',
+                'title'       => 'winter.forum::lang.components.rss_feed.properties.channels_filter',
+                'description' => 'winter.forum::lang.components.rss_feed.properties.channels_filter_description',
                 'type'        => 'string',
                 'default'     => '',
             ],
             'topicsPerPage' => [
-                'title'             => 'winter.forum::lang.topics.per_page',
+                'title'             => 'winter.forum::lang.components.topics.properties.per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'winter.forum::lang.topics.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.components.topics.properties.per_page_validation',
                 'default'           => '20',
             ],
             'forumPage' => [
-                'title'       => 'winter.forum::lang.settings.rssfeed_forum',
-                'description' => 'winter.forum::lang.settings.rssfeed_forum_description',
+                'title'       => 'winter.forum::lang.components.rss_feed.properties.forum',
+                'description' => 'winter.forum::lang.components.rss_feed.properties.forum_description',
                 'type'        => 'dropdown',
                 'default'     => 'blog/post',
                 'group'       => 'Links',

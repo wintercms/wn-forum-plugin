@@ -10,7 +10,7 @@
                 <th class="activity-column">{{ 'winter.forum::lang.components.channels.recent_topic' | trans }}</th>
             </tr>
 
-            {% if channel.relations.children %}
+            {% if channel.relations.children or false %}
 
                 {% for channel in channel.children %}
 
@@ -65,7 +65,7 @@
 
             {% else %}
                 <tr>
-                    <td colspan="100"><p>There are no channels to show.</p></td>
+                    <td colspan="100"><p>{{ 'winter.forum::lang.components.channels.no_channels_message' | trans }}</p></td>
                 </tr>
             {% endif %}
 

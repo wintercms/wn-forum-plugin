@@ -95,12 +95,37 @@ return [
             'no_topics_message' => 'No hay publicaciones recientes en ningún tema.',
             'log_to_post' => 'Inicie sesión para publicar un nuevo tema',
             'post_new_topic' => 'Publicar un nuevo tema',
+            'properties' => [
+                'slug_name' => 'Slug nombre del parámetro',
+                'slug_desc' => 'El parametro de la ruta URL usado para buscar un canal por el slug. Un slug prefijado también puede usarse.'
+            ],
         ],
         'channels' => [
             'name' => 'Listado de canales',
             'description' => 'Muestra un listado de todos los canales visibles.',
+            'no_channels_message' => 'No hay canales para mostrar.',
             'recent_topic' => 'Tema Reciente',
             'sub_channels' => 'Sub foros',
+        ],
+        'embed_channel'    => [
+            'name' => 'Incrustar Canal',
+            'description' => 'Adjunta un canal a cualquier página.',
+            'channel_title' => 'Canal Padre',
+            'channel_desc' => 'Especifique el canal para crear el nuevo canal en',
+            'embed_title' => 'Parámetro de código de inserción',
+            'embed_desc' => 'Un código único para el canal generado. También se puede utilizar un parámetro de enrutamiento.',
+            'guarded_name' => 'Canal protegido contra spam',
+            'guarded_desc' => 'Especifique si los canales recién creados están protegidos por un filtro de spam.',
+            'topic_name' => 'Parámetro de código del Tema',
+            'topic_desc' => 'El parametro de la ruta URL usada para buscar un tema por su slug.'
+        ],
+        'embed_topic' => [
+            'topic_name'      => 'Incrustar Tema',
+            'topic_self_desc' => 'Adjunta un tema a cualquier página.',
+            'target_name'     => 'Canal de destino',
+            'target_desc'     => 'Especifique el canal para crear el nuevo tema o canal en',
+            'embed_title'     => 'Código De Inserción',
+            'embed_desc'      => 'Un código único para el tema o canal generado. También se puede utilizar un parámetro de enrutamiento.'
         ],
         'member' => [
             'name' => 'Miembro',
@@ -126,11 +151,31 @@ return [
             'banned' => 'Prohibido',
             'unapproved' => 'No aprobado',
             'moderator' => 'Moderador',
+            'properties' => [
+                'slug_name'   => 'Nombre del parámetro Slug',
+                'slug_desc'   => 'El parámetro de la ruta URL usado para buscar un miembro del foro por slug. Un slug prefijado también puede ser usado.',
+                'view_title'  => 'Modo de visualización',
+                'view_desc'   => 'Establezca manualmente el modo de visualización para el componente del miembro.',
+                'topic_title' => 'Página del Tema',
+                'topic_desc'  => 'Nombre de la página que se utilizará al hacer clic en un tema de conversación.'
+            ],
         ],
         'posts' => [
             'name' => 'Listado de publicaciones',
             'description' => 'Muestra un listado de todas las publicaciones.',
             'no_posts_message' => 'No hay publicaciones para mostrar.',
+            'report_spam' => 'Marcar como spam',
+            'report_spam_confirm' => '¿Está seguro? Esto eliminará todas las publicaciones de este miembro.',
+        ],
+        'rss_feed' => [
+            'name' => 'RSS Feed',
+            'description' => 'Genera un feed RSS que contiene temas del foro.',
+            'properties' => [
+                'channels_filter' => 'Filtro de canales',
+                'channels_filter_description' => 'Ingrese un slug de categoría o un parámetro de URL para filtrar los temas. Déjelo vacío para mostrar todos los temas.',
+                'forum' => 'Página del foro',
+                'forum_description' => 'Nombre del archivo de la página principal del foro para generar enlaces. Esta propiedad es utilizada por la parcial del componente por defecto.',
+            ],
         ],
         'topic'  => [
             'name'          => 'Tema',
@@ -209,10 +254,6 @@ return [
         'deleting'     => 'Borrando Canal...',
         'really'       => '¿Realmente desea eliminar este canal?',
     ],
-    'slug'       => [
-        'name' => 'Slug nombre del parámetro',
-        'desc' => 'El parametro de la ruta URL usado para buscar un canal por el slug. Un slug prefijado también puede usarse.'
-    ],
     'frontend'   => [
         'notopic' => 'No hay temas en este canal.'
     ],
@@ -226,33 +267,5 @@ return [
         'forum_username'    => 'Nombre de usuario del foro',
         'channels'          => 'Canales del Foro',
         'channels_desc'     => 'Administrar los canales disponibles en el foro.'
-    ],
-    'embedch'    => [
-        'channel_name'      => 'Incrustar Canal',
-        'channel_self_desc' => 'Adjunta un canal a cualquier página.',
-        'channel_title'     => 'Canal Padre',
-        'channel_desc'      => 'Especifique el canal para crear el nuevo canal en',
-        'embed_title'       => 'Parámetro de código de inserción',
-        'embed_desc'        => 'Un código único para el canal generado. También se puede utilizar un parámetro de enrutamiento.',
-        'topic_name'        => 'Parámetro de código del Tema',
-        'topic_desc'        => 'El parametro de la ruta URL usada para buscar un tema por su slug.'
-    ],
-    'embedtopic' => [
-        'topic_name'      => 'Incrustar Tema',
-        'topic_self_desc' => 'Adjunta un tema a cualquier página.',
-        'target_name'     => 'Canal de destino',
-        'target_desc'     => 'Especifique el canal para crear el nuevo tema o canal en',
-        'embed_title'     => 'Código De Inserción',
-        'embed_desc'      => 'Un código único para el tema o canal generado. También se puede utilizar un parámetro de enrutamiento.'
-    ],
-    'memberpage' => [
-        'slug_name'   => 'Nombre del parámetro Slug',
-        'slug_desc'   => 'El parámetro de la ruta URL usado para buscar un miembro del foro por slug. Un slug prefijado también puede ser usado.',
-        'view_title'  => 'Modo de visualización',
-        'view_desc'   => 'Establezca manualmente el modo de visualización para el componente del miembro.',
-        'ch_title'    => 'Página del Canal',
-        'ch_desc'     => 'Nombre de la página que se utilizará al hacer clic en un canal.',
-        'topic_title' => 'Página del Tema',
-        'topic_desc'  => 'Nombre de la página que se utilizará al hacer clic en un tema de conversación.'
     ],
 ];

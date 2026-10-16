@@ -17,15 +17,17 @@
                                     data-request="onFlagSpam"
                                     data-request-data="post: {{ post.id }}"
                                     data-request-update="'@posts': '#forumPosts'"
-                                    data-request-confirm="Are you sure? This will delete all posts by this member.">
-                                    Flag as Spam
+                                    data-request-confirm="{{ 'winter.forum::lang.components.posts.report_spam_confirm' | trans }}"
+                                >
+                                    {{ 'winter.forum::lang.components.posts.report_spam' | trans }}
                                 </a>
                                 <a href="javascript:;"
                                     class="approve pull-right"
                                     data-request="onApprove"
                                     data-request-data="post: {{ post.id }}"
-                                    data-request-update="'@posts': '#forumPosts'">
-                                    Approve Member
+                                    data-request-update="'@posts': '#forumPosts'"
+                                >
+                                    {{ 'winter.forum::lang.components.member.approve' | trans }}
                                 </a>
                             </div>
                             <br />
