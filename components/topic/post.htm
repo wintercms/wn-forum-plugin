@@ -2,10 +2,10 @@
     <img src="{{ post.member.user.avatarThumb(50) }}" alt="{{ post.member.username }}" />
 </a>
 <div class="content">
-    <a href="{{ post.member.url }}" class="author">{{ post.member.username }}</a>
     <div class="metadata">
-        <div class="date">
-            <a href="#post-{{ post.id }}">
+        <div class="user-date">
+            <a href="{{ post.member.url }}" class="author">{{ post.member.username }}</a>
+            - <a href="#post-{{ post.id }}">
                 {% partial __SELF__ ~ "::timestamp" date=post.created_at %}
             </a>
         </div>
@@ -45,9 +45,18 @@
                     data-request="{{ __SELF__ }}::onUpdate"
                     data-request-data="post: {{ post.id }}"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    class="save"
+                    class="btn btn-primary btn-sm save"
                 >
                     {{ 'winter.forum::lang.components.general.save' | trans }}
+                </a>
+
+                <a href="javascript:;"
+                    data-request="{{ __SELF__ }}::onUpdate"
+                    data-request-data="post: {{ post.id }}, mode: 'view'"
+                    data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
+                    class="btn btn-link btn-sm cancel"
+                >
+                    {{ 'winter.forum::lang.components.general.cancel' | trans }}
                 </a>
 
                 <a href="javascript:;"
@@ -55,18 +64,9 @@
                     data-request-data="post: {{ post.id }}, mode: 'delete'"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
                     data-request-confirm="Are you sure?"
-                    class="delete"
+                    class="btn btn-danger btn-sm delete"
                 >
                     {{ 'winter.forum::lang.components.general.delete' | trans }}
-                </a>
-
-                <a href="javascript:;"
-                    data-request="{{ __SELF__ }}::onUpdate"
-                    data-request-data="post: {{ post.id }}, mode: 'view'"
-                    data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    class="cancel"
-                >
-                    {{ 'winter.forum::lang.components.general.cancel' | trans }}
                 </a>
             </div>
         {{ form_close() }}
