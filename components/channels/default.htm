@@ -29,7 +29,7 @@
                             {% if channel.children|length %}
                                 <div class="forum-subchannel">
                                     <ul>
-                                        <li><span>Subforum</span></li>
+                                        <li><span>{{ 'winter.forum::lang.components.channels.sub_channels' | trans }}</span></li>
                                         {% for channel in channel.children %}
                                             <li>
                                                 <a href="{{ channel.url }}" title="{{ channel.description }}">

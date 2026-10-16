@@ -63,7 +63,7 @@
                     data-request="{{ __SELF__ }}::onUpdate"
                     data-request-data="post: {{ post.id }}, mode: 'delete'"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    data-request-confirm="Are you sure?"
+                    data-request-confirm="{{ 'winter.forum::lang.components.topic.delete_confirm' | trans }}"
                     class="btn btn-danger btn-sm delete"
                 >
                     {{ 'winter.forum::lang.components.general.delete' | trans }}
@@ -73,15 +73,15 @@
 
     {% elseif mode == 'delete' %}
         <div class="text">
-            <p><em>Post has been deleted</em></p>
+            <p><em>{{ 'winter.forum::lang.components.topic.post_deleted' | trans }}</em></p>
         </div>
     {% else %}
         <div class="text">
-            {{ post.content_html|raw }}
+            {{ post.content_html | raw }}
 
             {% if post.created_at != post.updated_at %}
                 <p><small class="text text-muted">
-                    Last updated {% partial __SELF__ ~ "::timestamp" date=post.updated_at %}
+                    {{ 'winter.forum::lang.components.general.last_updated' | trans }} {% partial __SELF__ ~ "::timestamp" date=post.updated_at %}
                 </small></p>
             {% endif %}
         </div>

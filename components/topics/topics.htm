@@ -12,8 +12,8 @@
             </td>
             <td>
                 <h5>
-                    {% if topic.is_sticky %}<strong>{{ 'winter.forum::lang.components.general.sticky' | trans }}:</strong>{% endif %}
-                    {% if topic.is_locked %}<strong>{{ 'winter.forum::lang.components.general.locked' | trans }}:</strong>{% endif %}
+                    {% if topic.is_sticky %}<strong>{{ 'winter.forum::lang.components.general.sticky' | trans }}</strong> {% endif %}
+                    {% if topic.is_locked %}<strong>{{ 'winter.forum::lang.components.general.locked' | trans }}</strong> {% endif %}
                     <a href="{{ topic.url }}">{{ topic.subject }}</a>
                     <br/><small>{{ 'winter.forum::lang.components.general.by' | trans }} <a href="{{ topic.start_member.url }}">{{ topic.start_member.username }}</a></small>
                 </h5>
