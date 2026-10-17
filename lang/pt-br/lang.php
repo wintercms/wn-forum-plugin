@@ -165,7 +165,12 @@ return [
                 'view_title' => 'Modo de Visualização',
                 'view_desc' => 'Estabeleça manualmente o modo de visualização do membro.',
                 'topic_title' => 'Página do Tópico',
-                'topic_desc' => 'Nome da página para usar quando clicar no tópico.'
+                'topic_desc' => 'Nome da página para usar quando clicar no tópico.',
+                'view_options' => [
+                    '' => '- nenhum -',
+                    'view' => 'Visualizar',
+                    'edit' => 'Editar'
+                ],
             ],
         ],
         'posts' => [

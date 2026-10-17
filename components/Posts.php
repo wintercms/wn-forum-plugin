@@ -1,27 +1,30 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Auth;
-use Request;
-use Redirect;
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
-use Winter\Forum\Models\Post as PostModel;
+namespace Winter\Forum\Components;
+
+use Exception;
+use Winter\Forum\Classes\ForumBaseComponent;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
 use Winter\Forum\Models\Member as MemberModel;
+use Winter\Forum\Models\Post as PostModel;
+use Winter\Storm\Exception\ApplicationException;
+use Winter\Storm\Support\Facades\Flash;
 
 /**
  * Post list component
  *
  * Displays a list of all posts.
  */
-class Posts extends ComponentBase
+class Posts extends ForumBaseComponent
 {
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Authenticated member cache
      */
     protected $member = null;
 
     /**
-     * @var Winter\Forum\Models\Member Other member cache
+     * @var \Winter\Forum\Models\Member Other member cache
      */
     protected $otherMember = null;
 
@@ -40,6 +43,9 @@ class Posts extends ComponentBase
      */
     public $postsPerPage;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
@@ -48,6 +54,9 @@ class Posts extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
@@ -80,11 +89,6 @@ class Posts extends ComponentBase
         ];
     }
 
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
-    }
-
     public function onRun()
     {
         if ($this->property('includeStyles', true)) {
@@ -103,18 +107,24 @@ class Posts extends ComponentBase
         /*
          * Page links
          */
-        $this->topicPage = $this->page['topicPage'] = $this->property('topicPage');
-        $this->memberPage = $this->page['memberPage'] = $this->property('memberPage');
-        $this->postsPerPage = $this->page['postsPerPage'] = $this->property('postsPerPage');
+        $this->setVar('topicPage', $this->property('topicPage'));
+        $this->setVar('memberPage', $this->property('memberPage'));
+        $this->setVar('postsPerPage', $this->property('postsPerPage'));
     }
 
+    /**
+     * Prepares the list of posts for display on the page. This includes handling pagination,
+     * search filtering, and setting URLs for related topics and members.
+     *
+     * @return void
+     */
     protected function preparePostList()
     {
         $currentPage = (int) input('page');
         $searchString = trim(input('search'));
 
         $posts = PostModel::with('member', 'topic');
-        $posts = $posts->whereHas('member', function($member) {
+        $posts = $posts->whereHas('member', function ($member) {
             $member->where('is_approved', false);
             $member->where('is_banned', false);
         });
@@ -130,7 +140,7 @@ class Posts extends ComponentBase
         /*
          * Add a "url" helper attribute for linking to each topic
          */
-        $posts->each(function($post) {
+        $posts->each(function ($post) {
             if ($post->topic) {
                 $post->topic->setUrl($this->topicPage, $this->controller);
             }
@@ -170,6 +180,11 @@ class Posts extends ComponentBase
         }
     }
 
+    /**
+     * Prepares the post list for AJAX updates.
+     *
+     * @return array
+     */
     public function onApprove()
     {
         try {
@@ -193,10 +208,19 @@ class Posts extends ComponentBase
             return $this->preparePostList();
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 
+    /**
+     * Flags a post as spam and deletes all posts by the member.
+     *
+     * @return array
+     */
     public function onFlagSpam()
     {
         try {
@@ -224,10 +248,19 @@ class Posts extends ComponentBase
             return $this->preparePostList();
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 
+    /**
+     * Retrieves the currently logged-in member, if available.
+     *
+     * @return \Winter\Forum\Models\Member|null
+     */
     public function getOtherMember()
     {
         if ($this->otherMember !== null) {

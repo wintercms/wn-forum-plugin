@@ -166,7 +166,12 @@ return [
                 'view_title'  => 'Modo de visualización',
                 'view_desc'   => 'Establezca manualmente el modo de visualización para el componente del miembro.',
                 'topic_title' => 'Página del Tema',
-                'topic_desc'  => 'Nombre de la página que se utilizará al hacer clic en un tema de conversación.'
+                'topic_desc'  => 'Nombre de la página que se utilizará al hacer clic en un tema de conversación.',
+                'view_options' => [
+                    '' => '- ninguno -',
+                    'view' => 'Ver',
+                    'edit' => 'Editar'
+                ],
             ],
         ],
         'posts' => [

@@ -1,14 +1,13 @@
-<?php namespace Winter\Forum\Models;
+<?php
 
-use Config;
-use Db;
-use App;
-use Model;
+namespace Winter\Forum\Models;
+
 use Carbon\Carbon;
-use ApplicationException;
-use Url;
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
+use Winter\Storm\Database\Model;
+use Winter\Storm\Support\Facades\Config;
+use Winter\Storm\Support\Facades\DB;
 
 /**
  * Topic Model
@@ -40,7 +39,7 @@ class Topic extends Model
      protected $purgeable = ['url'];
 
     /**
-     * @var array Validation rules
+     * @var array The validation rules
      */
     public $rules = [
         'subject'         => 'required',
@@ -112,7 +111,7 @@ class Topic extends Model
         $post->member = $member;
         $post->content = array_get($data, 'content');
 
-        Db::transaction(function() use ($topic, $post) {
+        DB::transaction(function () use ($topic, $post) {
             $topic->save();
             $post->save();
         });
@@ -128,7 +127,7 @@ class Topic extends Model
      * again. Maximum 3 posts every 15 minutes.
      * @return bool
      */
-    public static function checkThrottle($member)
+    public static function checkThrottle(\Winter\Forum\Models\Member$member)
     {
         if (!$member) {
             return false;
@@ -145,7 +144,7 @@ class Topic extends Model
         return $count > $throttleCount;
     }
 
-    public function scopeForEmbed($query, $channel, $code)
+    public function scopeForEmbed(\Winter\Storm\Database\Builder $query, \Winter\Forum\Models\Channel $channel, string $code)
     {
         return $query
             ->where('embed_code', $code)
@@ -185,7 +184,7 @@ class Topic extends Model
      *                        - search    Search query
      * @return self
      */
-    public function scopeListFrontEnd($query, $options)
+    public function scopeListFrontEnd(\Winter\Storm\Database\Builder $query, $options)
     {
         /*
          * Default options
@@ -218,8 +217,8 @@ class Topic extends Model
          */
         $search = trim($search);
         if (strlen($search)) {
-            $query->where(function($query) use ($search) {
-                $query->whereHas('posts', function($query) use ($search) {
+            $query->where(function ($query) use ($search) {
+                $query->whereHas('posts', function ($query) use ($search) {
                     $query->searchWhere($search, ['subject', 'content']);
                 });
 
@@ -241,7 +240,7 @@ class Topic extends Model
         return $query->paginate($perPage, $page);
     }
 
-    public function moveToChannel($channel)
+    public function moveToChannel(\Winter\Forum\Models\Channel $channel)
     {
         $oldChannel = $this->channel;
         $this->timestamps = false;
@@ -298,7 +297,7 @@ class Topic extends Model
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName
-     * @param Cms\Classes\Controller $controller
+     * @param \Cms\Classes\Controller $controller
      */
     public function setUrl($pageName, $controller)
     {

@@ -1,10 +1,11 @@
-<?php namespace Winter\Forum\Models;
+<?php
 
-use Url;
-use Model;
-use ApplicationException;
+namespace Winter\Forum\Models;
+
 use Cms\Classes\Page as CmsPage;
 use Cms\Classes\Theme;
+use Winter\Storm\Database\Model;
+use Winter\Storm\Support\Facades\Url;
 
 /**
  * Channel Model
@@ -45,7 +46,7 @@ class Channel extends Model
      protected $purgeable = ['url'];
 
     /**
-     * @var array Validation rules
+     * @var array The validation rules for attributes
      */
     public $rules = [
         'title' => 'required'
@@ -298,10 +299,10 @@ class Channel extends Model
         return $url;
     }
 
-   /**
+    /**
     * Apply embed code to channel.
     */
-    public function scopeForEmbed($query, $channel, $code)
+    public function scopeForEmbed(\Winter\Storm\Database\Builder $query, Channel $channel, string $code)
     {
         return $query
             ->where('embed_code', $code)
@@ -333,7 +334,7 @@ class Channel extends Model
 
     /**
      * Rebuilds the statistics for the channel
-     * @return void
+     * @return self
      */
     public function rebuildStats()
     {
@@ -346,7 +347,7 @@ class Channel extends Model
     /**
      * Filters if the channel should be visible on the front-end.
      */
-    public function scopeIsVisible($query)
+    public function scopeIsVisible(\Winter\Storm\Database\Builder $query)
     {
         return $query->where('is_hidden', '<>', true);
     }
@@ -361,7 +362,7 @@ class Channel extends Model
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName
-     * @param Cms\Classes\Controller $controller
+     * @param \Cms\Classes\Controller $controller
      */
     public function setUrl($pageName, $controller)
     {

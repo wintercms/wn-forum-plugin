@@ -165,7 +165,12 @@ return [
                 'view_title' => 'Sposób wyświetlania',
                 'view_desc' => 'Ustaw ręcznie tryb wyświetlania dla komponentu użytkownika.',
                 'topic_title' => 'Strona tematu',
-                'topic_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w temat.'
+                'topic_desc' => 'Nazwa strony wyświetlającej się po kliknięciu w temat.',
+                'view_options' => [
+                    '' => '- brak -',
+                    'view' => 'Wyświetl',
+                    'edit' => 'Edytuj'
+                ],
             ],
         ],
         'posts' => [

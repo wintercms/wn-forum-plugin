@@ -1,4 +1,6 @@
-<?php namespace Winter\Forum\Controllers;
+<?php
+
+namespace Winter\Forum\Controllers;
 
 use Flash;
 use BackendMenu;

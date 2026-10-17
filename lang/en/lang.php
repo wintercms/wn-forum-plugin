@@ -168,6 +168,11 @@ return [
                 'view_desc' => 'Manually set the view mode for the member component.',
                 'topic_title' => 'Topic page',
                 'topic_desc' => 'Page name to use for clicking on a conversation topic.',
+                'view_options' => [
+                    '' => '- none -',
+                    'view' => 'View',
+                    'edit' => 'Edit'
+                ],
             ],
         ],
         'posts' => [

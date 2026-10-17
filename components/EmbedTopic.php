@@ -1,18 +1,22 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
+namespace Winter\Forum\Components;
+
+use Winter\Forum\Classes\ForumBaseComponent;
 use Winter\Forum\Models\Topic as TopicModel;
 use Winter\Forum\Models\Channel as ChannelModel;
 use Exception;
 
-class EmbedTopic extends ComponentBase
+class EmbedTopic extends ForumBaseComponent
 {
     /**
      * @var boolean Determine if this component is being used by the EmbedChannel component.
      */
     public $embedMode = true;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
@@ -21,6 +25,9 @@ class EmbedTopic extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
@@ -43,14 +50,14 @@ class EmbedTopic extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the options for the channelSlug property dropdown
+     *
+     * @return array
+     */
     public function getChannelSlugOptions()
     {
         return ChannelModel::listsNested('title', 'slug', ' - ');
-    }
-
-    public function getMemberPageOptions()
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function init()
@@ -87,7 +94,7 @@ class EmbedTopic extends ComponentBase
          * if the page returns 404 a topic should not be generated.
          */
         if (!$topic) {
-            $this->controller->bindEvent('page.end', function() use ($component, $channel, $code) {
+            $this->controller->bindEvent('page.end', function () use ($component, $channel, $code) {
                 if ($component->embedMode !== false) {
                     $topic = TopicModel::createForEmbed($code, $channel, $this->page->title);
                     $component->setProperty('slug', $topic->slug);

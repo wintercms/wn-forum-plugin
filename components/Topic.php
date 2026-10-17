@@ -1,24 +1,25 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Auth;
-use Flash;
-use Event;
-use Request;
-use Redirect;
-use Cms\Classes\Page;
-use Winter\User\Models\User as UserModel;
-use Winter\User\Models\MailBlocker;
-use Cms\Classes\ComponentBase;
-use ApplicationException;
-use Winter\Forum\Models\Topic as TopicModel;
+namespace Winter\Forum\Components;
+
+use Exception;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Winter\Forum\Classes\ForumBaseComponent;
+use Winter\Forum\Classes\TopicTracker;
 use Winter\Forum\Models\Channel as ChannelModel;
 use Winter\Forum\Models\Member as MemberModel;
 use Winter\Forum\Models\Post as PostModel;
+use Winter\Forum\Models\Topic as TopicModel;
 use Winter\Forum\Models\TopicFollow;
-use Winter\Forum\Classes\TopicTracker;
-use Exception;
+use Winter\Storm\Exception\ApplicationException;
+use Winter\Storm\Support\Facades\Event;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\User\Facades\Auth;
+use Winter\User\Models\MailBlocker;
+use Winter\User\Models\User as UserModel;
 
-class Topic extends ComponentBase
+class Topic extends ForumBaseComponent
 {
     /**
      * @var boolean Determine if this component is being used by the EmbedChannel component.
@@ -26,17 +27,17 @@ class Topic extends ComponentBase
     public $embedMode = false;
 
     /**
-     * @var Winter\Forum\Models\Topic Topic cache
+     * @var \Winter\Forum\Models\Topic Topic cache
      */
     protected $topic = null;
 
     /**
-     * @var Winter\Forum\Models\Channel Channel cache
+     * @var \Winter\Forum\Models\Channel Channel cache
      */
     protected $channel = null;
 
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
@@ -56,10 +57,13 @@ class Topic extends ComponentBase
     public $returnUrl;
 
     /**
-     * @var Collection Posts cache for Twig access.
+     * @var \Illuminate\Support\Collection Posts cache for Twig access.
      */
     public $posts = null;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
@@ -68,6 +72,9 @@ class Topic extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
@@ -103,11 +110,6 @@ class Topic extends ComponentBase
                 'default'     => true
             ],
         ];
-    }
-
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRun()
@@ -211,9 +213,10 @@ class Topic extends ComponentBase
             /*
              * Add a "url" helper attribute for linking to each member
              */
-            $posts->each(function($post){
-                if ($post->member)
+            $posts->each(function ($post) {
+                if ($post->member) {
                     $post->member->setUrl($this->memberPage, $this->controller);
+                }
             });
 
             $this->page['posts'] = $this->posts = $posts;
@@ -257,15 +260,21 @@ class Topic extends ComponentBase
                 $returnUrl = $this->channel->url;
             }
 
-             $this->returnUrl = $this->page['returnUrl'] = $returnUrl;
-         }
+            $this->returnUrl = $this->page['returnUrl'] = $returnUrl;
+        }
     }
 
     protected function handleOptOutLinks()
     {
-        if (!$topic = $this->getTopic()) return;
-        if (!$action = post('action')) return;
-        if (!in_array($action, ['unfollow', 'unsubscribe'])) return;
+        if (!$topic = $this->getTopic()) {
+            return;
+        }
+        if (!$action = post('action')) {
+            return;
+        }
+        if (!in_array(post('action'), ['unfollow', 'unsubscribe'])) {
+            return;
+        }
 
         /*
          * Attempt to find member using dry authentication
@@ -304,7 +313,6 @@ class Topic extends ComponentBase
             MailBlocker::addBlock('winter.forum::mail.topic_reply', $member->user);
             Flash::success('You will no longer receive notifications about any topics in this forum.');
         }
-
     }
 
     public function onCreate()
@@ -489,7 +497,11 @@ class Topic extends ComponentBase
             $member->touchActivity();
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 
@@ -509,7 +521,11 @@ class Topic extends ComponentBase
             $this->page['topic']  = $topic;
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 
@@ -529,7 +545,11 @@ class Topic extends ComponentBase
             $this->page['topic']  = $topic;
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 }

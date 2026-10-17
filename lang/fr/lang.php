@@ -168,6 +168,11 @@ return [
                 'view_desc' => 'Définissez manuellement le mode de vue pour le composant membre.',
                 'topic_title' => 'Page sujet',
                 'topic_desc' => 'Nom de la page à utiliser lors du clic sur un sujet.',
+                'view_options' => [
+                    '' => '- aucun -',
+                    'view' => 'Voir',
+                    'edit' => 'Modifier'
+                ],
             ],
         ],
         'posts' => [

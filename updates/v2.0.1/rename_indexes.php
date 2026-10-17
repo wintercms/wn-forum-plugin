@@ -1,4 +1,6 @@
-<?php namespace Winter\Forum\Updates;
+<?php
+
+namespace Winter\Forum\Updates;
 
 use Db;
 use Schema;

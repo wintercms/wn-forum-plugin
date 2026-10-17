@@ -1,27 +1,28 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Auth;
-use Mail;
-use Flash;
-use Request;
-use Redirect;
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
-use ApplicationException;
-use Winter\Forum\Models\Member as MemberModel;
-use Winter\User\Models\User as UserModel;
-use Winter\User\Models\MailBlocker;
+namespace Winter\Forum\Components;
+
 use Exception;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Winter\Forum\Classes\ForumBaseComponent;
+use Winter\Forum\Models\Member as MemberModel;
+use Winter\Storm\Exception\ApplicationException;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\Storm\Support\Facades\Mail;
+use Winter\User\Facades\Auth;
+use Winter\User\Models\MailBlocker;
+use Winter\User\Models\User as UserModel;
 
-class Member extends ComponentBase
+class Member extends ForumBaseComponent
 {
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
     /**
-     * @var Winter\Forum\Models\Member Other member cache
+     * @var \Winter\Forum\Models\Member Other member cache
      */
     protected $otherMember = null;
 
@@ -40,6 +41,9 @@ class Member extends ComponentBase
      */
     public $channelPage;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
@@ -48,6 +52,9 @@ class Member extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
@@ -61,6 +68,7 @@ class Member extends ComponentBase
                 'title'       => 'winter.forum::lang.components.member.properties.view_title',
                 'description' => 'winter.forum::lang.components.member.properties.view_desc',
                 'type'        => 'dropdown',
+                'options'     => 'winter.forum::lang.components.member.properties.view_options',
                 'default'     => ''
             ],
             'channelPage' => [
@@ -84,16 +92,6 @@ class Member extends ComponentBase
         ];
     }
 
-    public function getViewModeOptions()
-    {
-        return ['' => '- none -', 'view' => 'View', 'edit' => 'Edit'];
-    }
-
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
-    }
-
     public function onRun()
     {
         if ($this->property('includeStyles', true)) {
@@ -114,8 +112,8 @@ class Member extends ComponentBase
         /*
          * Page links
          */
-        $this->topicPage = $this->page['topicPage'] = $this->property('topicPage');
-        $this->channelPage = $this->page['channelPage'] = $this->property('channelPage');
+        $this->setVar('topicPage', $this->property('topicPage'));
+        $this->setVar('channelPage', $this->property('channelPage'));
     }
 
     public function getRecentPosts()
@@ -123,13 +121,18 @@ class Member extends ComponentBase
         $member = $this->getMember();
         $posts = $member->posts()->with('topic')->limit(10)->get();
 
-        $posts->each(function($post) {
+        $posts->each(function ($post) {
             $post->topic->setUrl($this->topicPage, $this->controller);
         });
 
         return $posts;
     }
 
+    /**
+     * Get the current member based on the slug or logged-in user.
+     *
+     * @return \Winter\Forum\Models\Member|null
+     */
     public function getMember()
     {
         if ($this->member !== null) {
@@ -146,6 +149,11 @@ class Member extends ComponentBase
         return $this->member = $member;
     }
 
+    /**
+     * Get the currently logged-in forum member.
+     *
+     * @return \Winter\Forum\Models\Member|null
+     */
     public function getOtherMember()
     {
         if ($this->otherMember !== null) {
@@ -155,6 +163,11 @@ class Member extends ComponentBase
         return $this->otherMember = MemberModel::getFromUser();
     }
 
+    /**
+     * Get the mail preferences for the current logged-in member.
+     *
+     * @return array
+     */
     public function getMailPreferences()
     {
         if ($this->mailPreferences !== null) {
@@ -175,11 +188,21 @@ class Member extends ComponentBase
         return $this->mailPreferences = $preferences;
     }
 
+    /**
+     * Get the current view mode for the member component.
+     *
+     * @return string
+     */
     public function getMode()
     {
         return $this->property('viewMode') ?: input('mode', 'view');
     }
 
+    /**
+     * Determine if the current member can edit their profile.
+     *
+     * @return bool
+     */
     public function canEdit()
     {
         if ($this->property('viewMode') == 'view') {
@@ -193,6 +216,11 @@ class Member extends ComponentBase
         return $member->canEdit(MemberModel::getFromUser());
     }
 
+    /**
+     * Handle the update action for the member component.
+     *
+     * @return void
+     */
     public function onUpdate()
     {
         try {
@@ -232,11 +260,21 @@ class Member extends ComponentBase
         }
     }
 
+    /**
+     * Get the mail templates used for the member component.
+     *
+     * @return array
+     */
     protected function getMailTemplates()
     {
         return ['topic_reply' => 'winter.forum::mail.topic_reply'];
     }
 
+    /**
+     * Handle the purge posts action for the member component.
+     *
+     * @return void
+     */
     public function onPurgePosts()
     {
         try {
@@ -260,6 +298,11 @@ class Member extends ComponentBase
         }
     }
 
+    /**
+     * Handle the approve action for the member component.
+     *
+     * @return void
+     */
     public function onApprove()
     {
         try {
@@ -275,10 +318,19 @@ class Member extends ComponentBase
             $this->prepareVars();
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 
+    /**
+     * Handle the ban action for the member component.
+     *
+     * @return void
+     */
     public function onBan()
     {
         try {
@@ -294,10 +346,19 @@ class Member extends ComponentBase
             $this->prepareVars();
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 
+    /**
+     * Handle the report action for the member component.
+     *
+     * @return void
+     */
     public function onReport()
     {
         if (!Auth::check()) {
@@ -306,7 +367,7 @@ class Member extends ComponentBase
 
         Flash::success(post('flash', 'User has been reported for spamming, thank-you for your assistance!'));
 
-        $moderators = UserModel::whereHas('forum_member', function($member) {
+        $moderators = UserModel::whereHas('forum_member', function ($member) {
             $member->where('is_moderator', true);
         })->lists('name', 'email');
 
@@ -327,6 +388,11 @@ class Member extends ComponentBase
         return $this->redirectToSelf();
     }
 
+    /**
+     * Redirect the user to the current member page.
+     *
+     * @return \Illuminate\Http\RedirectResponse|false
+     */
     protected function redirectToSelf()
     {
         if (!$member = $this->getMember()) {

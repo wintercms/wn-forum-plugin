@@ -168,6 +168,11 @@ return [
                 'view_desc' => 'Üye gösterim modunu belirleyin.',
                 'topic_title' => 'Konu sayfası',
                 'topic_desc' => 'Konu için bir sayfa adı belirleyin.',
+                'view_options' => [
+                    '' => '- none -',
+                    'view' => 'Görüntüle',
+                    'edit' => 'Düzenle'
+                ],
             ],
         ],
         'posts' => [

@@ -1,4 +1,6 @@
-<?php namespace Winter\Forum;
+<?php
+
+namespace Winter\Forum;
 
 use Backend\Facades\Backend;
 use Backend\Models\UserRole;

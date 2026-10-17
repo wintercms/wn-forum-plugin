@@ -1,23 +1,23 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Auth;
-use Request;
-use Redirect;
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
-use Winter\Forum\Models\Topic as TopicModel;
-use Winter\Forum\Models\Member as MemberModel;
+namespace Winter\Forum\Components;
+
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Winter\Forum\Classes\ForumBaseComponent;
 use Winter\Forum\Classes\TopicTracker;
+use Winter\Forum\Models\Member as MemberModel;
+use Winter\Forum\Models\Topic as TopicModel;
 
 /**
  * Topic list component
  *
  * Displays a list of all topics.
  */
-class Topics extends ComponentBase
+class Topics extends ForumBaseComponent
 {
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
@@ -36,6 +36,9 @@ class Topics extends ComponentBase
      */
     public $topicsPerPage;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
@@ -44,6 +47,9 @@ class Topics extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
@@ -73,11 +79,6 @@ class Topics extends ComponentBase
                 'default'     => true
             ],
         ];
-    }
-
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRun()
@@ -115,7 +116,7 @@ class Topics extends ComponentBase
         /*
          * Add a "url" helper attribute for linking to each topic
          */
-        $topics->each(function($topic) {
+        $topics->each(function ($topic) {
             $topic->setUrl($this->topicPage, $this->controller);
 
             if ($topic->last_post_member) {

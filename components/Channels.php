@@ -1,20 +1,21 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
+namespace Winter\Forum\Components;
+
+use Winter\Forum\Classes\ForumBaseComponent;
 use Winter\Forum\Models\Channel;
 use Winter\Forum\Models\Member as MemberModel;
 use Winter\Forum\Classes\TopicTracker;
 
-class Channels extends ComponentBase
+class Channels extends ForumBaseComponent
 {
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Member cache
      */
     protected $member;
 
     /**
-     * @var Winter\Forum\Models\Channel Channel collection cache
+     * @var \Winter\Forum\Models\Channel Channel collection cache
      */
     protected $channels;
 
@@ -33,6 +34,9 @@ class Channels extends ComponentBase
      */
     public $channelPage;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
@@ -41,6 +45,9 @@ class Channels extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
@@ -71,11 +78,6 @@ class Channels extends ComponentBase
         ];
     }
 
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
-    }
-
     public function onRun()
     {
         if ($this->property('includeStyles', true)) {
@@ -91,11 +93,14 @@ class Channels extends ComponentBase
         /*
          * Page links
          */
-        $this->memberPage = $this->page['memberPage'] = $this->property('memberPage');
-        $this->channelPage = $this->page['channelPage'] = $this->property('channelPage');
-        $this->topicPage = $this->page['topicPage'] = $this->property('topicPage');
+        $this->setVar('memberPage', $this->property('memberPage'));
+        $this->setVar('channelPage', $this->property('channelPage'));
+        $this->setVar('topicPage', $this->property('topicPage'));
     }
 
+    /**
+     * Returns a list of channels for the component
+     */
     public function listChannels()
     {
         if ($this->channels !== null) {
@@ -107,7 +112,7 @@ class Channels extends ComponentBase
         /*
          * Add a "url" helper attribute for linking to each channel
          */
-        $channels->each(function($channel) {
+        $channels->each(function ($channel) {
             $channel->setUrl($this->channelPage, $this->controller);
 
             if ($channel->first_topic) {

@@ -168,6 +168,11 @@ return [
                 'view_desc' => 'Ročna nastavitev načina pogleda za komponento člana.',
                 'topic_title' => 'Stran teme',
                 'topic_desc' => 'Ime strani za klik na temo pogovora.',
+                'view_options' => [
+                    '' => '- nobeno -',
+                    'view' => 'Pogled',
+                    'edit' => 'Uredi'
+                ],
             ],
         ],
         'posts' => [

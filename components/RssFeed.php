@@ -1,23 +1,23 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Lang;
-use Response;
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
-use Winter\Forum\Models\Topic as ForumTopic;
+namespace Winter\Forum\Components;
+
+use Illuminate\Support\Facades\Response;
+use Winter\Forum\Classes\ForumBaseComponent;
 use Winter\Forum\Models\Channel as ForumChannel;
+use Winter\Forum\Models\Topic as ForumTopic;
 
-class RssFeed extends ComponentBase
+class RssFeed extends ForumBaseComponent
 {
     /**
      * A collection of topics to display
-     * @var Collection
+     * @var \Illuminate\Support\Collection
      */
     public $topics;
 
     /**
      * If the post list should be filtered by a channel, the model to use.
-     * @var Model
+     * @var \Winter\Forum\Models\Channel
      */
     public $channel;
 
@@ -33,6 +33,9 @@ class RssFeed extends ComponentBase
      */
     public $topicPage;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
@@ -41,6 +44,9 @@ class RssFeed extends ComponentBase
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
@@ -61,7 +67,7 @@ class RssFeed extends ComponentBase
                 'title'       => 'winter.forum::lang.components.rss_feed.properties.forum',
                 'description' => 'winter.forum::lang.components.rss_feed.properties.forum_description',
                 'type'        => 'dropdown',
-                'default'     => 'blog/post',
+                'options'     => self::allPages(),
                 'group'       => 'Links',
             ],
             'topicPage' => [
@@ -71,11 +77,6 @@ class RssFeed extends ComponentBase
                 'group'       => 'Links',
             ],
         ];
-    }
-
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRun()
@@ -89,15 +90,20 @@ class RssFeed extends ComponentBase
 
     protected function prepareVars()
     {
-        $this->forumPage = $this->page['forumPage'] = $this->property('forumPage');
-        $this->topicPage = $this->page['topicPage'] = $this->property('topicPage');
-        $this->channel = $this->page['channel'] = $this->loadChannel();
-        $this->topics = $this->page['topics'] = $this->listTopics();
+        $this->setVar('forumPage', $this->property('forumPage'));
+        $this->setVar('topicPage', $this->property('topicPage'));
+        $this->setVar('channel', $this->loadChannel());
+        $this->setVar('topics', $this->listTopics());
 
         $this->page['link'] = $this->pageUrl($this->forumPage);
         $this->page['rssLink'] = $this->currentPageUrl();
     }
 
+    /**
+     * Lists the topics for the RSS feed based on the current channel filter and pagination settings.
+     *
+     * @return void
+     */
     protected function listTopics()
     {
         $channel = $this->channel ? $this->channel->id : null;
@@ -114,13 +120,18 @@ class RssFeed extends ComponentBase
         /*
          * Add a "url" helper attribute for linking to each post and channel
          */
-        $topics->each(function($post) {
+        $topics->each(function ($post) {
             $post->setUrl($this->topicPage, $this->controller);
         });
 
         return $topics;
     }
 
+    /**
+     * Loads the current channel based on the channel filter property.
+     *
+     * @return \Winter\Forum\Models\Channel|null
+     */
     protected function loadChannel()
     {
         if (!$channelId = $this->property('channelFilter')) {
