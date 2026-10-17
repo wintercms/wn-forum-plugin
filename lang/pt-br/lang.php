@@ -35,6 +35,15 @@ return [
             'label' => 'Tópico',
             'label_plural' => 'Tópicos',
         ],
+        'user' => [
+            'username' => 'Usuário',
+            'username_comment' => 'Um nome que representará o usuário no fórum.',
+            'moderator' => 'Moderador do Fórum',
+            'moderator_comment' => 'Marque isso se você quer que este usuário seja moderador do fórum.',
+            'banned' => 'Banido do fórum',
+            'banned_comment' => 'Marque isso se você quer que este usuário não possa mais postar no fórum.',
+            'forum_username' => 'Nome do Fórum',
+        ],
     ],
     'controllers' => [
         'channels' => [
@@ -217,54 +226,13 @@ return [
             ],
         ],
     ],
-
-    'topic'      => [
-        'page_name' => 'Página do Tópico',
-        'page_help' => 'Nome da página para usar ao clicar em um tópico de discussão.'
-    ],
-    'member'     => [
-        'page_name' => 'Página do membro',
-        'page_help' => 'Nome da página para usar ao clicar em um membro.'
-    ],
-    'channel'    => [
-        'page_name' => 'Página do Tema',
-        'page_help' => 'Nome da página para usar ao clicar em um tema.'
-    ],
-    'channels'   => [
-        'new_channel' => 'Novo Tema',
-        'sure' => 'Você tem certeza?',
-        'delete' => 'Apagar',
-        'manage' => 'Escolher Ordem dos Temas',
-        'return' => 'Voltar para Temas',
-        'name' => 'Temas',
-        'create' => 'Criar Temas',
-        'update' => 'Editar Temas',
-        'preview' => 'Visualizar Temas',
-        'manage' => 'Administrar Temas',
-        'creating' => 'Criando Tema...',
-        'create' => 'Criar',
-        'createnclose' => 'Criar e Fechar',
-        'cancel' => 'Cancelar',
-        'or' => 'ou',
-        'returnlist' => 'Voltar para Lista de Temas',
-        'saving' => 'Salvando Tema...',
-        'save' => 'Salvar',
-        'savenclose' => 'Salvar e Fechar',
-        'deleting' => 'Deletando Tema...',
-        'really' => 'Você realmente quer apagar esse tema?',
-    ],
-    'frontend' => [
-        'notopic' => 'não existe tópicos neste tema.'
-    ],
     'settings' => [
-        'username' => 'Usuário',
-        'username_comment' => 'Um nome que representará o usuário no fórum.',
-        'moderator' => 'Moderador do Fórum',
-        'moderator_comment' => 'Marque isso se você quer que este usuário seja moderador do fórum.',
-        'banned' => 'Banido do fórum',
-        'banned_comment' => 'Marque isso se você quer que este usuário não possa mais postar no fórum.',
-        'forum_username' => 'Nome do Fórum',
         'channels' => 'Temas do Fórum',
         'channels_desc' => 'Administrar Temas Disponíveis.'
+    ],
+    'menuitem' => [
+        'forum_channel' => 'Canal do fórum',
+        'all_forum_channels' => 'Todos os canais do fórum',
+        'all_forum_topics' => 'Todos os tópicos do fórum',
     ],
 ];

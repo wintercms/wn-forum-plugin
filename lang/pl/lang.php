@@ -35,6 +35,15 @@ return [
             'label' => 'Temat',
             'label_plural' => 'Tematy',
         ],
+        'user' => [
+            'username' => 'Nazwa użytkownika',
+            'username_comment' => 'Nazwa użytkownika na forum.',
+            'moderator' => 'Moderator forum',
+            'moderator_comment' => 'Zaznacz to pole, jeśli ten użytkownik ma moderować całe forum.',
+            'banned' => 'Zbanowany na forum',
+            'banned_comment' => 'W tym polu zaznacz pole wyboru, jeśli użytkownik ma zakaz publikowania na forum.',
+            'forum_username' => 'Nazwa użytkownika na forum',
+        ],
     ],
     'controllers' => [
         'channels' => [
@@ -217,54 +226,13 @@ return [
             ],
         ],
     ],
-
-    'topic' => [
-        'page_name' => 'Strona tematu',
-        'page_help' => 'Nazwa strony wyświetlającej się po kliknięciu w temat.'
-    ],
-    'member' => [
-        'page_name' => 'Strona użytkownika',
-        'page_help' => 'Nazwa strony wyświetlającej się po kliknięciu w użytkownika.'
-    ],
-    'channel' => [
-        'page_name' => 'Strona kanału',
-        'page_help' => 'Nazwa strony wyświetlającej się po kliknięciu w kanał.'
-    ],
-    'channels' => [
-        'new_channel' => 'Nowy kanał',
-        'delete_selected_confirm' => 'Jesteś pewien?',
-        'delete' => 'Usuń',
-        'manage' => 'Ustaw kolejność kanałów',
-        'return' => 'Wróć do kanałów',
-        'name' => 'Kanały',
-        'create' => 'Stwórz kanały',
-        'update' => 'Edytuj kanały',
-        'preview' => 'Podejrzyj kanały',
-        'manage' => 'Zarządzaj kanałami',
-        'creating' => 'Tworzenie kanału...',
-        'create' => 'Stwórz',
-        'createnclose' => 'Stwórz i zamknij',
-        'cancel' => 'Anuluj',
-        'or' => 'lub',
-        'returnlist' => 'Wróć do listy kanałów',
-        'saving' => 'Zapisywanie kanału...',
-        'save' => 'Zapisz',
-        'savenclose' => 'Zapisz i zamknij',
-        'deleting' => 'Usuwanie kanału...',
-        'really' => 'Czy na pewno chcesz usunąć ten kanał?',
-    ],
-    'frontend' => [
-        'notopic' => 'Brak tematów w tym kanale.'
-    ],
     'settings' => [
-        'username' => 'Nazwa użytkownika',
-        'username_comment' => 'Nazwa użytkownika na forum.',
-        'moderator' => 'Moderator forum',
-        'moderator_comment' => 'Zaznacz to pole, jeśli ten użytkownik ma moderować całe forum.',
-        'banned' => 'Zbanowany na forum',
-        'banned_comment' => 'W tym polu zaznacz pole wyboru, jeśli użytkownik ma zakaz publikowania na forum.',
-        'forum_username' => 'Nazwa użytkownika na forum',
         'channels' => 'Kanały forum',
         'channels_desc' => 'Zarządzaj dostępnymi kanałami forum.'
+    ],
+    'menuitem' => [
+        'forum_channel' => 'Kanał forum',
+        'all_forum_channels' => 'Wszystkie kanały forum',
+        'all_forum_topics' => 'Wszystkie tematy forum',
     ],
 ];

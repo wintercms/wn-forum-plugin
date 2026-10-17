@@ -35,6 +35,15 @@ return [
             'label' => 'Tema',
             'label_plural' => 'Temas',
         ],
+        'user' => [
+            'username'          => 'Nombre de usuario',
+            'username_comment'  => 'La visualización para representar este usuario en el foro.',
+            'moderator'         => 'Moderador del Foro',
+            'moderator_comment' => 'Coloque una marca en esta casilla si este usuario puede moderar todo el foro.',
+            'banned'            => 'Expulsado de foro',
+            'banned_comment'    => 'Coloque una marca en esta casilla si este usuario tiene prohibido publicar en el foro.',
+            'forum_username'    => 'Nombre de usuario del foro',
+        ],
     ],
     'controllers' => [
         'channels' => [
@@ -218,54 +227,13 @@ return [
             ],
         ],
     ],
-
-    'topic'      => [
-        'page_name' => 'Página del Tema',
-        'page_help' => 'Nombre de la página que se utilizará al hacer clic en un tema de conversación.'
-    ],
-    'member'     => [
-        'page_name' => 'Página del Miembro',
-        'page_help' => 'Nombre de la página que se utilizará al hacer clic en un miembro.'
-    ],
-    'channel'    => [
-        'page_name'             => 'Página del Canal',
-        'page_help'             => 'Nombre de la página que se utilizará al hacer clic en un canal.'
-    ],
-    'channels'   => [
-        'new_channel'  => 'Nuevo Canal',
-        'delete_selected_confirm' => '¿Está seguro?',
-        'delete'       => 'Borrar',
-        'manage'       => 'Administrar orden del canal',
-        'return'       => 'Volver a Canales',
-        'name'         => 'Canales',
-        'create'       => 'Crear Canales',
-        'update'       => 'Editar Canales',
-        'preview'      => 'Previsualizar Canales',
-        'manage'       => 'Administrar Canales',
-        'creating'     => 'Creando Canal...',
-        'create'       => 'Crear',
-        'createnclose' => 'Crear y Cerrar',
-        'cancel'       => 'Cancelar',
-        'or'           => 'o',
-        'returnlist'   => 'Regresar al listado de canales',
-        'saving'       => 'Guardando Canal...',
-        'save'         => 'Guardar',
-        'savenclose'   => 'Guardar y Cerrar',
-        'deleting'     => 'Borrando Canal...',
-        'really'       => '¿Realmente desea eliminar este canal?',
-    ],
-    'frontend'   => [
-        'notopic' => 'No hay temas en este canal.'
-    ],
     'settings'   => [
-        'username'          => 'Nombre de usuario',
-        'username_comment'  => 'La visualización para representar este usuario en el foro.',
-        'moderator'         => 'Moderador del Foro',
-        'moderator_comment' => 'Coloque una marca en esta casilla si este usuario puede moderar todo el foro.',
-        'banned'            => 'Expulsado de foro',
-        'banned_comment'    => 'Coloque una marca en esta casilla si este usuario tiene prohibido publicar en el foro.',
-        'forum_username'    => 'Nombre de usuario del foro',
         'channels'          => 'Canales del Foro',
         'channels_desc'     => 'Administrar los canales disponibles en el foro.'
+    ],
+    'menuitem' => [
+        'forum_channel' => 'Canal del foro',
+        'all_forum_channels' => 'Todos los canales del foro',
+        'all_forum_topics' => 'Todos los temas del foro',
     ],
 ];

@@ -37,6 +37,15 @@ return [
             'label' => 'Topic',
             'label_plural' => 'Topics',
         ],
+        'user' => [
+            'username' => 'Username',
+            'username_comment' => 'The display to represent this user on the forum.',
+            'moderator' => 'Forum moderator',
+            'moderator_comment' => 'Place a tick in this box if this user can moderate the entire forum.',
+            'banned' => 'Banned from forum',
+            'banned_comment' => 'Place a tick in this box if this user is banned from posting to the forum.',
+            'forum_username' => 'Forum Username',
+        ],
     ],
     'controllers' => [
         'channels' => [
@@ -219,47 +228,7 @@ return [
             ],
         ],
     ],
-
-    'topic' => [
-        'page_name' => 'Topic Page',
-        'page_help' => 'Page name to use for clicking on a conversation topic.',
-    ],
-    'member' => [
-        'page_name' => 'Member Page',
-        'page_help' => 'Page name to use for clicking on a Member.',
-    ],
-    'channel' => [
-        'page_name' => 'Channel Page',
-        'page_help' => 'Page name to use for clicking on a Channel.',
-    ],
-    'channels' => [
-        'return' => 'Return to Channels',
-        'name' => 'Channels',
-        'create' => 'Create Channel',
-        'update' => 'Edit Channel',
-        'preview' => 'Preview Channel',
-        'creating' => 'Creating Channel...',
-        'createnclose' => 'Create and Close',
-        'cancel' => 'Cancel',
-        'or' => 'or',
-        'returnlist' => 'Return to channels list',
-        'saving' => 'Saving Channel...',
-        'save' => 'Save',
-        'savenclose' => 'Save and Close',
-        'deleting' => 'Deleting Channel...',
-        'really' => 'Do you really want to delete this channel?',
-    ],
-    'frontend' => [
-        'notopic' => 'There are no topics in this channel.',
-    ],
     'settings' => [
-        'username' => 'Username',
-        'username_comment' => 'The display to represent this user on the forum.',
-        'moderator' => 'Forum moderator',
-        'moderator_comment' => 'Place a tick in this box if this user can moderate the entire forum.',
-        'banned' => 'Banned from forum',
-        'banned_comment' => 'Place a tick in this box if this user is banned from posting to the forum.',
-        'forum_username' => 'Forum Username',
         'channels' => 'Forum channels',
         'channels_desc' => 'Manage available forum channels.',
     ],

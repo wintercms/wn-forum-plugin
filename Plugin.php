@@ -60,22 +60,22 @@ class Plugin extends PluginBase
             $widget->addFields([
                 'forum_member[username]' => [
                     'tab'     => 'winter.forum::lang.plugin.name',
-                    'label'   => 'winter.forum::lang.settings.username',
-                    'comment' => 'winter.forum::lang.settings.username_comment'
+                    'label'   => 'winter.forum::lang.models.user.username',
+                    'comment' => 'winter.forum::lang.models.user.username_comment'
                 ],
                 'forum_member[is_moderator]' => [
                     'tab'     => 'winter.forum::lang.plugin.name',
-                    'label'   => 'winter.forum::lang.settings.moderator',
+                    'label'   => 'winter.forum::lang.models.user.moderator',
                     'type'    => 'checkbox',
                     'span'    => 'auto',
-                    'comment' => 'winter.forum::lang.settings.moderator_comment'
+                    'comment' => 'winter.forum::lang.models.user.moderator_comment'
                 ],
                 'forum_member[is_banned]' => [
                     'tab'     => 'winter.forum::lang.plugin.name',
-                    'label'   => 'winter.forum::lang.settings.banned',
+                    'label'   => 'winter.forum::lang.models.user.banned',
                     'type'    => 'checkbox',
                     'span'    => 'auto',
-                    'comment' => 'winter.forum::lang.settings.banned_comment'
+                    'comment' => 'winter.forum::lang.models.user.banned_comment'
                 ]
             ], 'primary');
         });
@@ -87,7 +87,7 @@ class Plugin extends PluginBase
 
             $widget->addColumns([
                 'forum_member_username' => [
-                    'label'      => 'winter.forum::lang.settings.forum_username',
+                    'label'      => 'winter.forum::lang.models.user.forum_username',
                     'relation'   => 'forum_member',
                     'select'     => 'username',
                     'searchable' => false,
