@@ -147,7 +147,7 @@ class Plugin extends PluginBase
     public function registerPermissions(): array
     {
         return [
-            'winter.forum.manage_categories' => [
+            'winter.forum.manage_channels' => [
                 'tab'   => 'winter.forum::lang.plugin.name',
                 'label' => 'winter.forum::lang.permissions.manage_categories',
                 'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
@@ -168,7 +168,7 @@ class Plugin extends PluginBase
                 'url'         => Backend::url('winter/forum/channels'),
                 'category'    => 'winter.forum::lang.plugin.name',
                 'order'       => 500,
-                'permissions' => ['winter.forum.manage_categories'],
+                'permissions' => ['winter.forum.manage_channels'],
             ]
         ];
     }

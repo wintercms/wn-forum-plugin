@@ -29,7 +29,7 @@ class Channels extends Controller
     /**
      * @var array Permissions required to view this page.
      */
-    public $requiredPermissions = ['winter.forum.manage_categories'];
+    public $requiredPermissions = ['winter.forum.manage_channels'];
 
     public function __construct()
     {
