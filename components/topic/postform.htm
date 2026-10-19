@@ -8,11 +8,9 @@
         </div>
 
         <div class="post-area">
-            <textarea
-                id="topicContent"
-                name="content"
-                rows="6"
-                class="form-control">{{ form_value('content') }}</textarea>
+            <textarea id="topicContent" name="content" rows="6" class="form-control">
+                {{- form_value('content') -}}
+            </textarea>
             <span class="help-block">{{ 'winter.forum::lang.components.general.can_use_syntax' | trans({ syntax: '<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a>' }) | raw }}</span>
             <div class="post-buttons">
                 <button type="submit" class="btn btn-primary">{{ 'winter.forum::lang.components.topic.post_reply' | trans }}</button>

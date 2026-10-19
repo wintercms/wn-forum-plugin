@@ -8,7 +8,7 @@
     <div class="form-group">
         <label for="topicContent" class="control-label">{{ 'winter.forum::lang.components.topic.content' | trans }}</label>
         <textarea id="topicContent" name="content" rows="8" type="text" class="form-control">
-        {{ post('content') }}
+            {{- post('content') -}}
         </textarea>
         <span class="help-block">
         {{ 'winter.forum::lang.components.general.can_use_syntax' | trans({ syntax: '<a href="http://daringfireball.net/projects/markdown/syntax" target="_blank">Markdown</a>' }) | raw }}
