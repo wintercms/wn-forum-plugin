@@ -6,7 +6,7 @@ return [
         'description' => 'Un forum basique intégrable.',
     ],
     'permissions' => [
-        'manage_categories' => 'Gérer les catégories du forum',
+        'manage_channels' => 'Gérer les catégories du forum',
     ],
     'models' => [
         'general' => [

@@ -6,7 +6,7 @@ return [
         'description' => 'Un sencillo y poderoso foro embebible.'
     ],
     'permissions' => [
-        'manage_categories' => 'Administrar categorías del foro',
+        'manage_channels' => 'Administrar categorías del foro',
     ],
     'models' => [
         'general' => [

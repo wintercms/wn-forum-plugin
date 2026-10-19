@@ -6,7 +6,7 @@ return [
         'description' => 'Basit, sayfa içerisine gömülebilir forum',
     ],
     'permissions' => [
-        'manage_categories' => 'Forum kategorilerini yönet',
+        'manage_channels' => 'Forum kategorilerini yönet',
     ],
     'models' => [
         'general' => [

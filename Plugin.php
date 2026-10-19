@@ -149,7 +149,7 @@ class Plugin extends PluginBase
         return [
             'winter.forum.manage_channels' => [
                 'tab'   => 'winter.forum::lang.plugin.name',
-                'label' => 'winter.forum::lang.permissions.manage_categories',
+                'label' => 'winter.forum::lang.permissions.manage_channels',
                 'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
             ],
         ];

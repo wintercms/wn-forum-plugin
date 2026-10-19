@@ -6,7 +6,7 @@ return [
         'description' => 'Простой встраиваемый форум'
     ],
     'permissions' => [
-        'manage_categories' => 'Управление категориями форума',
+        'manage_channels' => 'Управление категориями форума',
     ],
     'models' => [
         'general' => [

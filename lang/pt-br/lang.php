@@ -6,7 +6,7 @@ return [
         'description' => 'Um simples fórum incorporável'
     ],
     'permissions' => [
-        'manage_categories' => 'Gerenciar categorias do fórum',
+        'manage_channels' => 'Gerenciar categorias do fórum',
     ],
     'models' => [
         'general' => [

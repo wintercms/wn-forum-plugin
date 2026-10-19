@@ -6,7 +6,7 @@ return [
         'description' => 'انجمن ساده جهت درج در سایت'
     ],
     'permissions' => [
-        'manage_categories' => 'مدیریت دسته بندی های انجمن',
+        'manage_channels' => 'مدیریت دسته بندی های انجمن',
     ],
     'models' => [
         'general' => [

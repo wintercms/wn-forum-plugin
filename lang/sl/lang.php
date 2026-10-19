@@ -6,7 +6,7 @@ return [
         'description' => 'Enostavni vdelani forum',
     ],
     'permissions' => [
-        'manage_categories' => 'Upravljanje kategorij foruma',
+        'manage_channels' => 'Upravljanje kategorij foruma',
     ],
     'models' => [
         'general' => [

@@ -6,7 +6,7 @@ return [
         'description' => 'Proste forum do osadzania'
     ],
     'permissions' => [
-        'manage_categories' => 'Zarządzaj kategoriami forum',
+        'manage_channels' => 'Zarządzaj kategoriami forum',
     ],
     'models' => [
         'general' => [

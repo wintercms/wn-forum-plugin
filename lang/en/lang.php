@@ -6,7 +6,7 @@ return [
         'description' => 'A simple embeddable forum',
     ],
     'permissions' => [
-        'manage_categories' => 'Manage forum categories',
+        'manage_channels' => 'Manage forum categories',
     ],
     'models' => [
         'general' => [
