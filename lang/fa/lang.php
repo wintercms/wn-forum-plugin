@@ -75,6 +75,10 @@ return [
             'save' => 'ذخیره',
             'sticky' => 'چسبان',
             'when' => 'کی',
+            'groups' => [
+                'links' => 'پیوندها',
+                'parameters' => 'پارامترها',
+            ],
             'pagination' => [
                 'previous' => 'قبلی',
                 'next' => 'بعدی',

@@ -77,6 +77,10 @@ return [
             'save' => 'Save',
             'sticky' => 'Sticky',
             'when' => 'When',
+            'groups' => [
+                'links' => 'Links',
+                'parameters' => 'Parameters',
+            ],
             'pagination' => [
                 'previous' => 'Previous',
                 'next' => 'Next',

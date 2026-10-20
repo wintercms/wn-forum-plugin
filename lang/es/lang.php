@@ -75,6 +75,10 @@ return [
             'recent_posts' => 'Publicaciones recientes',
             'sticky' => 'Fijado',
             'when' => 'Cuándo',
+            'groups' => [
+                'links' => 'Enlaces',
+                'parameters' => 'Parámetros',
+            ],
             'pagination' => [
                 'previous' => 'Anterior',
                 'next' => 'Siguiente',

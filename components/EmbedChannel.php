@@ -34,7 +34,7 @@ class EmbedChannel extends ForumBaseComponent
                 'title'       => 'winter.forum::lang.components.embed_channel.embed_title',
                 'description' => 'winter.forum::lang.components.embed_channel.embed_desc',
                 'type'        => 'string',
-                'group'       => 'Parameters',
+                'group'       => 'winter.forum::lang.components.general.groups.parameters',
             ],
             'channelSlug' => [
                 'title'       => 'winter.forum::lang.components.embed_channel.channel_title',
@@ -46,21 +46,21 @@ class EmbedChannel extends ForumBaseComponent
                 'description' => 'winter.forum::lang.components.embed_channel.topic_desc',
                 'type'        => 'string',
                 'default'     => '{{ :topicSlug }}',
-                'group'       => 'Parameters',
+                'group'       => 'winter.forum::lang.components.general.groups.parameters',
             ],
             'isGuarded' => [
                 'title'       => 'winter.forum::lang.components.embed_channel.guarded_name',
                 'description' => 'winter.forum::lang.components.embed_channel.guarded_desc',
                 'type'        => 'checkbox',
                 'default'     => 0,
-                'group'       => 'Parameters',
+                'group'       => 'winter.forum::lang.components.general.groups.parameters',
             ],
             'memberPage' => [
                 'title'       => 'winter.forum::lang.components.general.properties.member_page',
                 'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
                 'default'     => 'forum/member',
-                'group'       => 'Links',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
         ];
     }

@@ -77,6 +77,10 @@ return [
             'save' => 'Enregistrer',
             'sticky' => 'Épinglé',
             'when' => 'Quand',
+            'groups' => [
+                'links' => 'Liens',
+                'parameters' => 'Paramètres',
+            ],
             'pagination' => [
                 'previous' => 'Précédent',
                 'next' => 'Suivant',

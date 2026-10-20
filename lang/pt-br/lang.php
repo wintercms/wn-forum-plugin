@@ -75,6 +75,10 @@ return [
             'save' => 'Salvar',
             'sticky' => 'Fixado',
             'when' => 'Quando',
+            'groups' => [
+                'links' => 'Links',
+                'parameters' => 'Parâmetros',
+            ],
             'pagination' => [
                 'previous' => 'Anterior',
                 'next' => 'Próximo',

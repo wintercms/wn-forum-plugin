@@ -77,6 +77,10 @@ return [
             'save' => 'Shrani',
             'sticky' => 'Pripeto',
             'when' => 'Kdaj',
+            'groups' => [
+                'links' => 'Povezave',
+                'parameters' => 'Parametri',
+            ],
             'pagination' => [
                 'previous' => 'Prejšnja',
                 'next' => 'Naslednja',

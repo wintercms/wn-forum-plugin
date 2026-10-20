@@ -65,14 +65,14 @@ class Topics extends ForumBaseComponent
                 'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
                 'default'     => 'forum/member',
-                'group'       => 'Links',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'topicPage' => [
                 'title'       => 'winter.forum::lang.components.general.properties.topic_page',
                 'description' => 'winter.forum::lang.components.general.properties.topic_page_desc',
                 'type'        => 'dropdown',
                 'default'     => 'forum/topic',
-                'group'       => 'Links',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'includeStyles' => [
                 'title'       => 'winter.forum::lang.components.general.properties.includeStyles',

@@ -46,7 +46,7 @@ class EmbedTopic extends ForumBaseComponent
                 'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
                 'default'     => 'forum/member',
-                'group'       => 'Links',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
         ];
     }

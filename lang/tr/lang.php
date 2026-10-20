@@ -77,6 +77,10 @@ return [
             'save' => 'Kaydet',
             'sticky' => 'Sabit',
             'when' => 'Ne zaman',
+            'groups' => [
+                'links' => 'Bağlantılar',
+                'parameters' => 'Parametreler',
+            ],
             'pagination' => [
                 'previous' => 'Önceki',
                 'next' => 'Sonraki',

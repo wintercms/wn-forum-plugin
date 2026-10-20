@@ -77,6 +77,10 @@ return [
             'save' => 'Сохранить',
             'sticky' => 'Прикреплено',
             'when' => 'Когда',
+            'groups' => [
+                'links' => 'Ссылки',
+                'parameters' => 'Параметры',
+            ],
             'pagination' => [
                 'previous' => 'Предыдущая',
                 'next' => 'Следующая',

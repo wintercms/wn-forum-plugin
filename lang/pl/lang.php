@@ -75,6 +75,10 @@ return [
             'save' => 'Zapisz',
             'sticky' => 'Przypięty',
             'when' => 'Kiedy',
+            'groups' => [
+                'links' => 'Linki',
+                'parameters' => 'Parametry',
+            ],
             'pagination' => [
                 'previous' => 'Poprzednia',
                 'next' => 'Następna',
