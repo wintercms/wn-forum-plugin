@@ -127,7 +127,7 @@ class Topic extends Model
      * again. Maximum 3 posts every 15 minutes.
      * @return bool
      */
-    public static function checkThrottle(\Winter\Forum\Models\Member$member)
+    public static function checkThrottle(\Winter\Forum\Models\Member $member)
     {
         if (!$member) {
             return false;
