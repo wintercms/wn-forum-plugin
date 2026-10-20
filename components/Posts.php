@@ -102,6 +102,9 @@ class Posts extends ForumBaseComponent
         return $this->preparePostList();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         $this->page['otherMember'] = $this->getOtherMember();
@@ -155,13 +158,13 @@ class Posts extends ForumBaseComponent
         /*
          * Signed in member
          */
-        $this->page['member'] = $this->member = MemberModel::getFromUser();
+        $this->setVar('member', MemberModel::getFromUser());
 
         if ($this->member) {
             $this->member->setUrl($this->memberPage, $this->controller);
         }
 
-        $this->page['posts'] = $this->posts = $posts;
+        $this->setVar('posts', $posts);
 
         /*
          * Pagination

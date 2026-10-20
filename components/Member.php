@@ -103,6 +103,9 @@ class Member extends ForumBaseComponent
         $this->prepareVars();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         $this->page['member'] = $this->getMember();

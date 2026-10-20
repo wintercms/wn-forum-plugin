@@ -91,6 +91,9 @@ class Channels extends ForumBaseComponent
         $this->page['channels'] = $this->listChannels();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         /*

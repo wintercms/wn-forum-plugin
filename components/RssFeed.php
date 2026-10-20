@@ -90,6 +90,9 @@ class RssFeed extends ForumBaseComponent
         return Response::make($xmlFeed, '200')->header('Content-Type', 'text/xml');
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         $this->setVar('forumPage', $this->property('forumPage'));

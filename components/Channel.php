@@ -111,6 +111,9 @@ class Channel extends ForumBaseComponent
         return $this->prepareTopicList();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         /*

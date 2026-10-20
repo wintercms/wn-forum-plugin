@@ -94,16 +94,22 @@ class Topics extends ForumBaseComponent
         return $this->prepareTopicList();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         /*
          * Page links
          */
-        $this->topicPage = $this->page['topicPage'] = $this->property('topicPage');
-        $this->memberPage = $this->page['memberPage'] = $this->property('memberPage');
-        $this->topicsPerPage = $this->page['topicsPerPage'] = $this->property('topicsPerPage');
+        $this->setVar('topicPage', $this->property('topicPage'));
+        $this->setVar('memberPage', $this->property('memberPage'));
+        $this->setVar('topicsPerPage', $this->property('topicsPerPage'));
     }
 
+    /**
+     * Prepares the list of topics for the component.
+     */
     protected function prepareTopicList()
     {
         $currentPage = input('page');
@@ -133,14 +139,14 @@ class Topics extends ForumBaseComponent
         /*
          * Signed in member
          */
-        $this->page['member'] = $this->member = MemberModel::getFromUser();
+        $this->setVar('member', MemberModel::getFromUser());
 
         if ($this->member) {
             $this->member->setUrl($this->memberPage, $this->controller);
             $topics = TopicTracker::instance()->setFlagsOnTopics($topics, $this->member);
         }
 
-        $this->page['topics'] = $this->topics = $topics;
+        $this->setVar('topics', $topics);
 
         /*
          * Pagination

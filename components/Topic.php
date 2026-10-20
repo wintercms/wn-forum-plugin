@@ -123,22 +123,30 @@ class Topic extends ForumBaseComponent
 
         $this->prepareVars();
         $this->page['channel'] = $this->getChannel();
-        $this->page['topic']   = $topic = $this->getTopic();
-        $this->page['member']  = $member = $this->getMember();
+        $this->setVar('topic', $this->getTopic());
+        $this->setVar('member', $this->getMember());
         $this->handleOptOutLinks();
 
         return $this->preparePostList();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         /*
          * Page links
          */
-        $this->memberPage   = $this->page['memberPage']  = $this->property('memberPage');
-        $this->channelPage  = $this->page['channelPage'] = $this->property('channelPage');
+        $this->setVar('memberPage', $this->property('memberPage'));
+        $this->setVar('channelPage', $this->property('channelPage'));
     }
 
+    /**
+     * Returns the currently loaded topic.
+     *
+     * @return \Winter\Forum\Models\Topic|null
+     */
     public function getTopic()
     {
         if ($this->topic !== null) {
@@ -158,6 +166,11 @@ class Topic extends ForumBaseComponent
         return $this->topic = $topic;
     }
 
+    /**
+     * Returns the currently logged in member.
+     *
+     * @return \Winter\Forum\Models\Member|null
+     */
     public function getMember()
     {
         if ($this->member !== null) {
@@ -167,6 +180,11 @@ class Topic extends ForumBaseComponent
         return $this->member = MemberModel::getFromUser();
     }
 
+    /**
+     * Returns the currently loaded channel.
+     *
+     * @return \Winter\Forum\Models\Channel|null
+     */
     public function getChannel()
     {
         if ($this->channel !== null) {
@@ -191,11 +209,21 @@ class Topic extends ForumBaseComponent
         return $this->channel = $channel;
     }
 
+    /**
+     * Returns a list of all root channels.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function getChannelList()
     {
         return ChannelModel::make()->getRootList('title', 'id');
     }
 
+    /**
+     * Prepares the list of posts for the currently loaded topic.
+     *
+     * @return void
+     */
     protected function preparePostList()
     {
         /*
@@ -221,7 +249,7 @@ class Topic extends ForumBaseComponent
                 }
             });
 
-            $this->page['posts'] = $this->posts = $posts;
+            $this->setVar('posts', $posts);
 
             /*
              * Pagination
@@ -262,10 +290,15 @@ class Topic extends ForumBaseComponent
                 $returnUrl = $this->channel->url;
             }
 
-            $this->returnUrl = $this->page['returnUrl'] = $returnUrl;
+            $this->setVar('returnUrl', $returnUrl);
         }
     }
 
+    /**
+     * Handles opt-out links for the currently loaded topic.
+     *
+     * @return void
+     */
     protected function handleOptOutLinks()
     {
         if (!$topic = $this->getTopic()) {
@@ -317,6 +350,11 @@ class Topic extends ForumBaseComponent
         }
     }
 
+    /**
+     * Handles the creation of a new topic.
+     *
+     * @return \Illuminate\Http\RedirectResponse|null
+     */
     public function onCreate()
     {
         try {
@@ -362,6 +400,11 @@ class Topic extends ForumBaseComponent
         }
     }
 
+    /**
+     * Handles the creation of a new post in the currently loaded topic.
+     *
+     * @return \Illuminate\Http\RedirectResponse|null
+     */
     public function onPost()
     {
         try {
@@ -400,6 +443,11 @@ class Topic extends ForumBaseComponent
         }
     }
 
+    /**
+     * Handles the update of an existing post in the currently loaded topic.
+     *
+     * @return void
+     */
     public function onUpdate()
     {
         $this->page['member'] = $member = $this->getMember();
@@ -450,6 +498,11 @@ class Topic extends ForumBaseComponent
         $this->page['topic'] = $topic;
     }
 
+    /**
+     * Handles quoting a post in the currently loaded topic.
+     *
+     * @return array
+     */
     public function onQuote()
     {
         if (!$user = Auth::getUser()) {
@@ -466,6 +519,11 @@ class Topic extends ForumBaseComponent
         return $result;
     }
 
+    /**
+     * Handles moving the currently loaded topic to a different channel.
+     *
+     * @return void
+     */
     public function onMove()
     {
         $member = $this->getMember();
@@ -485,6 +543,11 @@ class Topic extends ForumBaseComponent
         }
     }
 
+    /**
+     * Handles following or unfollowing the currently loaded topic.
+     *
+     * @return void
+     */
     public function onFollow()
     {
         try {
@@ -506,7 +569,11 @@ class Topic extends ForumBaseComponent
             }
         }
     }
-
+    /**
+     * Handles sticking or unsticking the currently loaded topic.
+     *
+     * @return void
+     */
     public function onSticky()
     {
         try {
@@ -531,6 +598,11 @@ class Topic extends ForumBaseComponent
         }
     }
 
+    /**
+     * Handles locking or unlocking the currently loaded topic.
+     *
+     * @return void
+     */
     public function onLock()
     {
         try {
