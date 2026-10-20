@@ -95,12 +95,14 @@ class Topic extends ForumBaseComponent
                 'title'       => 'winter.forum::lang.components.general.properties.member_page',
                 'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/member',
                 'group'       => 'Links',
             ],
             'channelPage' => [
                 'title'       => 'winter.forum::lang.components.general.properties.channel_page',
                 'description' => 'winter.forum::lang.components.general.properties.channel_page_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/channel',
                 'group'       => 'Links',
             ],
             'includeStyles' => [

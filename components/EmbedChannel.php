@@ -59,6 +59,7 @@ class EmbedChannel extends ForumBaseComponent
                 'title'       => 'winter.forum::lang.components.general.properties.member_page',
                 'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/member',
                 'group'       => 'Links',
             ],
         ];

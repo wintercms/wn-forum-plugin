@@ -75,12 +75,14 @@ class Member extends ForumBaseComponent
                 'title'       => 'winter.forum::lang.components.general.properties.channel_page',
                 'description' => 'winter.forum::lang.components.general.properties.channel_page_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/channel',
                 'group'       => 'Links',
             ],
             'topicPage' => [
                 'title'       => 'winter.forum::lang.components.member.properties.topic_title',
                 'description' => 'winter.forum::lang.components.member.properties.topic_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/topic',
                 'group'       => 'Links',
             ],
             'includeStyles' => [
