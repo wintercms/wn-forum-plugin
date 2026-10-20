@@ -72,6 +72,7 @@ return [
             'posted_in' => 'Publicado en',
             'quote' => 'Citar',
             'save' => 'Guardar',
+            'recent_posts' => 'Publicaciones recientes',
             'sticky' => 'Fijado',
             'when' => 'Cuándo',
             'pagination' => [
@@ -150,7 +151,6 @@ return [
             'purge_posts_confirm' => '¿Está seguro? Esto eliminará todas las publicaciones de este miembro.',
             'edit' => 'Editar detalles',
             'member_since' => 'Miembro desde',
-            'recent_posts' => 'Publicaciones recientes',
             'no_recent_posts' => 'Este miembro no ha participado en el foro.',
             'is_not_approved' => ':name requiere aprobación antes de publicar en canales protegidos',
             'is_banned' => ':name ha sido prohibido de publicar',
