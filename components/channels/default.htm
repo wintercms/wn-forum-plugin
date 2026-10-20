@@ -4,15 +4,13 @@
         {% for channel in channels %}
 
             <tr class="root-channel">
-                <th colspan="2">
-                    {{ channel.title }}
-                </th>
-                <th class="counter-column">Topics</th>
-                <th class="counter-column">Posts</th>
-                <th class="activity-column">Recent topic</th>
+                <th colspan="2">{{ channel.title }}</th>
+                <th class="counter-column">{{ 'winter.forum::lang.models.topic.label_plural' | trans }}</th>
+                <th class="counter-column">{{ 'winter.forum::lang.models.post.label_plural' | trans }}</th>
+                <th class="activity-column">{{ 'winter.forum::lang.components.channels.recent_topic' | trans }}</th>
             </tr>
 
-            {% if channel.relations.children %}
+            {% if channel.relations.children or false %}
 
                 {% for channel in channel.children %}
 
@@ -31,7 +29,7 @@
                             {% if channel.children|length %}
                                 <div class="forum-subchannel">
                                     <ul>
-                                        <li><span>Subforum</span></li>
+                                        <li><span>{{ 'winter.forum::lang.components.channels.sub_channels' | trans }}</span></li>
                                         {% for channel in channel.children %}
                                             <li>
                                                 <a href="{{ channel.url }}" title="{{ channel.description }}">
@@ -55,6 +53,7 @@
                                     <a href="{{ channel.first_topic.url }}?page=last#post-{{ channel.first_topic.last_post_id }}">
                                         {{ channel.first_topic.subject }}
                                     </a>
+                                    <br />
                                     <small>
                                         {% partial __SELF__ ~ "::timestamp" date=channel.first_topic.last_post_at %}
                                     </small>
@@ -66,7 +65,7 @@
 
             {% else %}
                 <tr>
-                    <td colspan="100"><p>There are no channels to show.</p></td>
+                    <td colspan="100"><p>{{ 'winter.forum::lang.components.channels.no_channels_message' | trans }}</p></td>
                 </tr>
             {% endif %}
 

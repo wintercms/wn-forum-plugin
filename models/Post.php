@@ -1,9 +1,11 @@
-<?php namespace Winter\Forum\Models;
+<?php
 
-use Html;
-use Model;
+namespace Winter\Forum\Models;
+
 use Carbon\Carbon;
-use Markdown;
+use Winter\Storm\Database\Model;
+use Winter\Storm\Support\Facades\Html;
+use Winter\Storm\Support\Facades\Markdown;
 
 /**
  * Post Model
@@ -33,7 +35,7 @@ class Post extends Model
     protected $visible = ['subject', 'content', 'member', 'topic'];
 
     /**
-     * @var array Validation rules
+     * @var array The validation rules for attributes
      */
     public $rules = [
         'topic_id'  => 'required',
@@ -81,7 +83,7 @@ class Post extends Model
      *                        - search    Search query
      * @return self
      */
-    public function scopeListFrontEnd($query, $options)
+    public function scopeListFrontEnd(\Winter\Storm\Database\Builder $query, $options)
     {
         /*
          * Default options
@@ -130,7 +132,7 @@ class Post extends Model
         return $query->paginate($perPage, $page);
     }
 
-    public function canEdit($member = null)
+    public function canEdit(\Winter\Forum\Models\Member $member = null)
     {
         if ($member === null) {
             $member = Member::getFromUser();

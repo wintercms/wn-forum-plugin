@@ -3,7 +3,7 @@
 # ===================================
 
 # Record name
-name: winter.forum::lang.channel.label
+name: winter.forum::lang.models.channel.label
 
 # Model Form Field configuration
 form: ~/plugins/winter/forum/models/channel/fields.yaml
@@ -16,16 +16,16 @@ defaultRedirect: winter/forum/channels
 
 # Create page
 create:
-    title: winter.forum::lang.channels.create
+    title: winter.forum::lang.controllers.channels.create
     redirect: winter/forum/channels/update/:id
     redirectClose: winter/forum/channels
 
 # Update page
 update:
-    title: winter.forum::lang.channels.update
+    title: winter.forum::lang.controllers.channels.update
     redirect: winter/forum/channels
     redirectClose: winter/forum/channels
 
 # Preview page
 preview:
-    title: winter.forum::lang.channels.preview
+    title: winter.forum::lang.controllers.channels.preview

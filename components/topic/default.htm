@@ -8,12 +8,12 @@
     {% endflash %}
 
     {% if returnUrl %}
-        <p>&larr; <a href="{{ returnUrl }}">Back to {{ channel.title }}</a></p>
+        <p>&larr; <a href="{{ returnUrl }}">{{ 'winter.forum::lang.components.general.back_to' | trans }} &nbsp; <b>{{ channel.title }}</b></a></p>
     {% endif %}
 
     {% if topic %}
 
-        <h4>{{ topic.subject }}</h4>
+        <h2>{{ topic.subject }}</h2>
 
         <div class="row">
             <div class="col-md-3 col-md-push-9">
@@ -29,13 +29,15 @@
 
                 {% partial "@pagination" %}
 
-                <h4>Reply to this discussion</h4>
+                <h4>{{ 'winter.forum::lang.components.topic.reply_to' | trans }}</h4>
                 {% if not topic.canPost %}
                     <p>
-                        You cannot edit posts or make replies:
-                        {% if not member %}You should be logged in before you can post.{% endif %}
-                        {% if member.is_banned %}Your account is banned.{% endif %}
-                        {% if topic.is_locked %}This topic is locked.{% endif %}
+                        {{ 'winter.forum::lang.components.topic.no_reply_message' | trans }}
+                        <b>
+                        {% if not member %}{{ 'winter.forum::lang.components.topic.must_login' | trans }}{% endif %}
+                        {% if member.is_banned %}{{ 'winter.forum::lang.components.topic.banned_account' | trans }}{% endif %}
+                        {% if topic.is_locked %}{{ 'winter.forum::lang.components.topic.topic_locked' | trans }}{% endif %}
+                        </b>
                     </p>
                 {% else %}
                     {% partial "@postform" %}
@@ -46,12 +48,12 @@
 
     {% elseif channel %}
 
-        <h4>Create a new discussion topic</h4>
+        <h2>{{ 'winter.forum::lang.components.topic.new_topic' | trans }}</h2>
         {% partial "@createform" %}
 
     {% else %}
 
-        <p>Topic not found</p>
+        <p>{{ 'winter.forum::lang.components.topic.no_topic_message' | trans }}</p>
 
     {% endif %}
 </div>

@@ -1,4 +1,6 @@
-<?php namespace Winter\Forum\Classes;
+<?php
+
+namespace Winter\Forum\Classes;
 
 use Db;
 use Carbon\Carbon;

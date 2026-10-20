@@ -1,20 +1,21 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
+namespace Winter\Forum\Components;
+
+use Winter\Forum\Classes\ForumBaseComponent;
 use Winter\Forum\Models\Channel;
 use Winter\Forum\Models\Member as MemberModel;
 use Winter\Forum\Classes\TopicTracker;
 
-class Channels extends ComponentBase
+class Channels extends ForumBaseComponent
 {
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Member cache
      */
     protected $member;
 
     /**
-     * @var Winter\Forum\Models\Channel Channel collection cache
+     * @var \Winter\Forum\Models\Channel Channel collection cache
      */
     protected $channels;
 
@@ -33,31 +34,43 @@ class Channels extends ComponentBase
      */
     public $channelPage;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.channels.list_name',
-            'description' => 'winter.forum::lang.channels.list_desc'
+            'name'        => 'winter.forum::lang.components.channels.name',
+            'description' => 'winter.forum::lang.components.channels.description'
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
             'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/member',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'channelPage' => [
-                'title'       => 'winter.forum::lang.channel.page_name',
-                'description' => 'winter.forum::lang.channel.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.channel_page',
+                'description' => 'winter.forum::lang.components.general.properties.channel_page_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/channel',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'topicPage' => [
-                'title'       => 'winter.forum::lang.topic.page_name',
-                'description' => 'winter.forum::lang.topic.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.topic_page',
+                'description' => 'winter.forum::lang.components.general.properties.topic_page_desc',
                 'type'        => 'dropdown',
+                'default'     => 'forum/topic',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'includeStyles' => [
                 'title'       => 'winter.forum::lang.components.general.properties.includeStyles',
@@ -66,11 +79,6 @@ class Channels extends ComponentBase
                 'default'     => true
             ],
         ];
-    }
-
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRun()
@@ -83,16 +91,22 @@ class Channels extends ComponentBase
         $this->page['channels'] = $this->listChannels();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         /*
          * Page links
          */
-        $this->memberPage = $this->page['memberPage'] = $this->property('memberPage');
-        $this->channelPage = $this->page['channelPage'] = $this->property('channelPage');
-        $this->topicPage = $this->page['topicPage'] = $this->property('topicPage');
+        $this->setVar('memberPage', $this->property('memberPage'));
+        $this->setVar('channelPage', $this->property('channelPage'));
+        $this->setVar('topicPage', $this->property('topicPage'));
     }
 
+    /**
+     * Returns a list of channels for the component
+     */
     public function listChannels()
     {
         if ($this->channels !== null) {
@@ -104,7 +118,7 @@ class Channels extends ComponentBase
         /*
          * Add a "url" helper attribute for linking to each channel
          */
-        $channels->each(function($channel) {
+        $channels->each(function ($channel) {
             $channel->setUrl($this->channelPage, $this->controller);
 
             if ($channel->first_topic) {

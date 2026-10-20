@@ -1,7 +1,9 @@
-<?php namespace Winter\Forum\Models;
+<?php
+
+namespace Winter\Forum\Models;
 
 use Mail;
-use Model;
+use Winter\Storm\Database\Model;
 use Carbon\Carbon;
 
 /**
@@ -80,7 +82,7 @@ class TopicFollow extends Model
      * @param  Post $post
      * @return void
      */
-    public static function sendNotifications($topic, $post, $postUrl)
+    public static function sendNotifications(\Winter\Forum\Models\Topic $topic, \Winter\Forum\Models\Post $post, string $postUrl)
     {
         $members = $topic->followers;
 
@@ -129,8 +131,7 @@ class TopicFollow extends Model
                 'email' => $member->user->email
             ];
 
-            Mail::queue('winter.forum::mail.topic_reply', $data, function($message) use ($vars)
-            {
+            Mail::queue('winter.forum::mail.topic_reply', $data, function ($message) use ($vars) {
                 extract($vars);
                 $message->to($email, $name);
             });
@@ -139,7 +140,7 @@ class TopicFollow extends Model
         static::where('topic_id', $topic->id)->update(['updated_at' => Carbon::now()]);
     }
 
-    public static function makeAuthCode($action, $topic, $member)
+    public static function makeAuthCode(string $action, \Winter\Forum\Models\Topic $topic, \Winter\Forum\Models\Member $member)
     {
         $hash = md5(
             $action

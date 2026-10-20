@@ -4,9 +4,9 @@
 
 columns:
     title:
-        label: winter.forum::lang.data.title
+        label: winter.forum::lang.models.channel.title
         searchable: true
 
     description:
-        label: winter.forum::lang.data.desc
+        label: winter.forum::lang.models.channel.desc
         searchable: true

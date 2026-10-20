@@ -1,8 +1,8 @@
 <div class="forum-posts">
     <table class="forum-table">
         <tr>
-            <th>Post</th>
-            <th class="activity-column">When</th>
+            <th>{{ 'winter.forum::lang.models.post.label' | trans }}</th>
+            <th class="activity-column">{{ 'winter.forum::lang.components.general.when' | trans }}</th>
         </tr>
 
         {% for post in posts %}
@@ -17,15 +17,17 @@
                                     data-request="onFlagSpam"
                                     data-request-data="post: {{ post.id }}"
                                     data-request-update="'@posts': '#forumPosts'"
-                                    data-request-confirm="Are you sure? This will delete all posts by this member.">
-                                    Flag as Spam
+                                    data-request-confirm="{{ 'winter.forum::lang.components.posts.report_spam_confirm' | trans }}"
+                                >
+                                    {{ 'winter.forum::lang.components.posts.report_spam' | trans }}
                                 </a>
                                 <a href="javascript:;"
                                     class="approve pull-right"
                                     data-request="onApprove"
                                     data-request-data="post: {{ post.id }}"
-                                    data-request-update="'@posts': '#forumPosts'">
-                                    Approve Member
+                                    data-request-update="'@posts': '#forumPosts'"
+                                >
+                                    {{ 'winter.forum::lang.components.member.approve' | trans }}
                                 </a>
                             </div>
                             <br />
@@ -39,9 +41,11 @@
                     <p>
                         <img src="{{ post.member.user.avatarThumb(24) }}" class="member-avatar" />
                         <a href="{{ post.member.url }}">{{ post.member.username }}</a>
-                        posted in
+                        <br />
+                        {{ 'winter.forum::lang.components.general.posted_in' | trans | lower }}
                         <a href="{{ topic.url }}?page=last#post-{{ post.id }}">{{ topic.subject }}</a>
-                        {% partial __SELF__ ~ "::timestamp" date=post.updated_at %}
+                        <br />
+                        <small>{% partial __SELF__ ~ "::timestamp" date=post.updated_at %}</small>
                     </p>
                 </td>
             </tr>
@@ -49,7 +53,7 @@
 
         {% if not posts|length %}
             <tr>
-                <td colspan="100">There are no posts to display.</td>
+                <td colspan="100">{{ 'winter.forum::lang.components.posts.no_posts_message' | trans }}</td>
             </tr>
         {% endif %}
     </table>

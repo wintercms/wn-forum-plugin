@@ -1,56 +1,64 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
+namespace Winter\Forum\Components;
+
+use Winter\Forum\Classes\ForumBaseComponent;
 use Winter\Forum\Models\Topic as TopicModel;
 use Winter\Forum\Models\Channel as ChannelModel;
 use Exception;
 
-class EmbedTopic extends ComponentBase
+class EmbedTopic extends ForumBaseComponent
 {
     /**
      * @var boolean Determine if this component is being used by the EmbedChannel component.
      */
     public $embedMode = true;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.embedtopic.topic_name',
-            'description' => 'winter.forum::lang.embedtopic.topic_self_desc'
+            'name'        => 'winter.forum::lang.components.embed_topic.topic_name',
+            'description' => 'winter.forum::lang.components.embed_topic.topic_self_desc'
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
             'embedCode' => [
-                'title'       => 'winter.forum::lang.embedtopic.embed_title',
-                'description' => 'winter.forum::lang.embedtopic.embed_desc',
+                'title'       => 'winter.forum::lang.components.embed_topic.embed_title',
+                'description' => 'winter.forum::lang.components.embed_topic.embed_desc',
                 'type'        => 'string',
             ],
             'channelSlug' => [
-                'title'       => 'winter.forum::lang.embedtopic.target_name',
-                'description' => 'winter.forum::lang.embedtopic.target_desc',
+                'title'       => 'winter.forum::lang.components.embed_topic.target_name',
+                'description' => 'winter.forum::lang.components.embed_topic.target_desc',
                 'type'        => 'dropdown'
             ],
             'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
-                'group'       => 'Links',
+                'default'     => 'forum/member',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
         ];
     }
 
+    /**
+     * Returns the options for the channelSlug property dropdown
+     *
+     * @return array
+     */
     public function getChannelSlugOptions()
     {
         return ChannelModel::listsNested('title', 'slug', ' - ');
-    }
-
-    public function getMemberPageOptions()
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function init()
@@ -87,7 +95,7 @@ class EmbedTopic extends ComponentBase
          * if the page returns 404 a topic should not be generated.
          */
         if (!$topic) {
-            $this->controller->bindEvent('page.end', function() use ($component, $channel, $code) {
+            $this->controller->bindEvent('page.end', function () use ($component, $channel, $code) {
                 if ($component->embedMode !== false) {
                     $topic = TopicModel::createForEmbed($code, $channel, $this->page->title);
                     $component->setProperty('slug', $topic->slug);

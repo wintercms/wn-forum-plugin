@@ -1,7 +1,7 @@
 {{ form_open({ request: 'onUpdate', model: member }) }}
 
     <div class="form-group">
-        <label for="memberUsername">Username</label>
+        <label for="memberUsername">{{ 'winter.forum::lang.components.member.username' | trans }}</label>
         <input name="username" type="text" class="form-control" id="memberUsername" value="{{ form_value('username') }}">
     </div>
 
@@ -15,11 +15,11 @@
                     {{ mailPreferences.topic_reply ? 'checked' }}
                     type="checkbox"
                     value="1" />
-                Notify me about replies to topics I am watching
+                {{ 'winter.forum::lang.components.member.notify_me' | trans }}
             </label>
         </div>
     </div>
 
-    <button type="submit" class="btn btn-default">Save</button>
+    <button type="submit" class="btn btn-success">{{ 'winter.forum::lang.components.general.save' | trans }}</button>
 
 {{ form_close() }}

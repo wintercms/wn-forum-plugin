@@ -4,39 +4,39 @@
 
 fields:
     parent:
-        label: winter.forum::lang.data.parent
+        label: winter.forum::lang.models.channel.parent
         type: relation
         nameFrom: title
-        emptyOption: winter.forum::lang.data.noparent
+        emptyOption: winter.forum::lang.models.channel.noparent
 
     title:
-        label: winter.forum::lang.data.title
+        label: winter.forum::lang.models.channel.title
         span: left
 
     slug:
-        label: winter.forum::lang.data.slug
+        label: winter.forum::lang.models.channel.slug
         span: right
         preset: title
 
     description:
-        label: winter.forum::lang.data.desc
+        label: winter.forum::lang.models.channel.desc
         type: textarea
         size: tiny
 
     is_moderated:
-        label: winter.forum::lang.data.moderated
-        comment: winter.forum::lang.data.is_mod
+        label: winter.forum::lang.models.channel.moderated
+        comment: winter.forum::lang.models.channel.is_mod
         type: checkbox
         span: auto
 
     is_hidden:
-        label: winter.forum::lang.data.hidden
-        comment: winter.forum::lang.data.is_hidden
+        label: winter.forum::lang.models.channel.hidden
+        comment: winter.forum::lang.models.channel.is_hidden
         type: checkbox
         span: auto
 
     is_guarded:
-        label: winter.forum::lang.data.guarded
-        comment: winter.forum::lang.data.is_guarded
+        label: winter.forum::lang.models.channel.guarded
+        comment: winter.forum::lang.models.channel.is_guarded
         type: checkbox
         span: full

@@ -1,21 +1,23 @@
 <div class="winter-forum">
-    <h5>
-        {{ member.username }}
-    </h5>
-    <p>
-        <img src="{{ member.user.avatarThumb(50) }}" />
-    </p>
-    <p>Member since: {{ member.created_at|date('M Y') }}</p>
-    {% if not member.is_approved %}
-        <p>{{ member.username }} requires approval before posting in guarded channels</p>
-    {% endif %}
-    {% if member.is_banned %}
-        <p>{{ member.username }} has been banned from posting</p>
-    {% endif %}
-    {% if member.is_moderator %}
-        <p>{{ member.username }} is a forum moderator</p>
-    {% endif %}
+    <div class="row">
+        <div class="col-md-2">
+            <img src="{{ member.user.avatarThumb(50) }}" class="w-100" />
+        </div>
+        <div class="col-md-10">
+            <h3 class="m-t-0">{{ member.username }}</h3>
+            <p>{{ 'winter.forum::lang.components.member.member_since' | trans }}: {{ member.created_at.format('M Y') }}</p>
+            {% if not member.is_approved %}
+                <p>{{ 'winter.forum::lang.components.member.is_not_approved' | trans({'name': member.username}) }}</p>
+            {% endif %}
+            {% if member.is_banned %}
+                <p>{{ 'winter.forum::lang.components.member.is_banned' | trans({'name': member.username}) }}</p>
+            {% endif %}
+            {% if member.is_moderator %}
+                <p>{{ 'winter.forum::lang.components.member.is_moderator' | trans({'name': member.username}) }}</p>
+            {% endif %}
+        </div>
+    </div>
 
-    <h4>Recent posts</h4>
+    <h4>{{ 'winter.forum::lang.components.general.recent_posts' | trans }}</h4>
     {% partial '@recentposts' %}
 </div>

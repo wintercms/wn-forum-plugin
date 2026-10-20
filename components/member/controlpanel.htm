@@ -6,30 +6,33 @@
                 href="javascript:;"
                 class="list-group-item"
                 data-request="onApprove"
-                data-request-update="'@controlpanel': '#memberControlPanel'">
+                data-request-update="'@controlpanel': '#memberControlPanel'"
+            >
                 {% if not member.is_approved %}
-                    Approve member
+                    {{ 'winter.forum::lang.components.member.approve' | trans }}
                 {% else %}
-                    Unapprove member
+                    {{ 'winter.forum::lang.components.member.unapprove' | trans }}
                 {% endif %}
             </a>
             <a
                 href="javascript:;"
                 class="list-group-item"
                 data-request="onBan"
-                data-request-update="'@controlpanel': '#memberControlPanel'">
+                data-request-update="'@controlpanel': '#memberControlPanel'"
+            >
                 {% if member.is_banned %}
-                    Unban member
+                    {{ 'winter.forum::lang.components.member.unban' | trans }}
                 {% else %}
-                    Ban member
+                    {{ 'winter.forum::lang.components.member.ban' | trans }}
                 {% endif %}
             </a>
             <a
                 href="javascript:;"
                 class="list-group-item"
                 data-request="onPurgePosts"
-                data-request-confirm="Are you sure? This will delete all posts by this member.">
-                Purge posts
+                data-request-confirm="{{ 'winter.forum::lang.components.member.purge_posts_confirm' | trans }}"
+            >
+                {{ 'winter.forum::lang.components.member.purge_posts' | trans }}
             </a>
         {% else %}
             <a
@@ -37,21 +40,23 @@
                 class="list-group-item"
                 data-request="onReport"
                 data-request-update="'@controlpanel': '#memberControlPanel'"
-                data-request-confirm="Are you sure you want to flag this member as a spammer?">
-                Report spammer
+                data-request-confirm="{{ 'winter.forum::lang.components.member.report_confirm' | trans }}"
+            >
+                {{ 'winter.forum::lang.components.member.report' | trans }}
             </a>
         {% endif %}
 
         {% if canEdit %}
             <a
                 href="{{ this.page.baseFileName|page }}?mode=edit"
-                class="list-group-item">
-                Edit details
+                class="list-group-item"
+            >
+                {{ 'winter.forum::lang.components.member.edit' | trans }}
             </a>
         {% endif %}
 
         <div class="list-group-item">
-            <i class="fa fa-eye icon-comments"></i> {{ member.count_posts }} posts
+            <i class="fa fa-eye icon-comments"></i> {{ member.count_posts }} {{ ('winter.forum::lang.models.post.label' ~ (member.count_posts == 1 ? '' : '_plural')) | trans }}
         </div>
 
     </div>

@@ -1,13 +1,16 @@
-<?php namespace Winter\Forum;
+<?php
 
-use Event;
-use Backend;
-use Winter\Forum\Models\Channel;
-use Winter\Forum\Models\Topic;
-use Winter\User\Models\User;
-use Winter\Forum\Models\Member;
+namespace Winter\Forum;
+
+use Backend\Facades\Backend;
+use Backend\Models\UserRole;
 use System\Classes\PluginBase;
+use Winter\Forum\Models\Channel;
+use Winter\Forum\Models\Member;
+use Winter\Forum\Models\Topic;
+use Winter\Storm\Support\Facades\Event;
 use Winter\User\Controllers\Users as UsersController;
+use Winter\User\Models\User;
 
 /**
  * Forum Plugin Information File
@@ -31,17 +34,20 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * Boot method, called right before the request route.
+     */
     public function boot(): void
     {
-        User::extend(function($model) {
+        User::extend(function ($model) {
             $model->hasOne['forum_member'] = ['Winter\Forum\Models\Member'];
 
-            $model->bindEvent('model.beforeDelete', function() use ($model) {
+            $model->bindEvent('model.beforeDelete', function () use ($model) {
                 $model->forum_member && $model->forum_member->delete();
             });
         });
 
-        UsersController::extendFormFields(function($widget, $model, $context) {
+        UsersController::extendFormFields(function ($widget, $model, $context) {
             // Prevent extending of related form instead of the intended User form
             if (!$widget->model instanceof \Winter\User\Models\User) {
                 return;
@@ -55,35 +61,35 @@ class Plugin extends PluginBase
 
             $widget->addFields([
                 'forum_member[username]' => [
-                    'label'   => 'winter.forum::lang.settings.username',
                     'tab'     => 'winter.forum::lang.plugin.name',
-                    'comment' => 'winter.forum::lang.settings.username_comment'
+                    'label'   => 'winter.forum::lang.models.user.username',
+                    'comment' => 'winter.forum::lang.models.user.username_comment'
                 ],
                 'forum_member[is_moderator]' => [
-                    'label'   => 'winter.forum::lang.settings.moderator',
-                    'type'    => 'checkbox',
                     'tab'     => 'winter.forum::lang.plugin.name',
+                    'label'   => 'winter.forum::lang.models.user.moderator',
+                    'type'    => 'checkbox',
                     'span'    => 'auto',
-                    'comment' => 'winter.forum::lang.settings.moderator_comment'
+                    'comment' => 'winter.forum::lang.models.user.moderator_comment'
                 ],
                 'forum_member[is_banned]' => [
-                    'label'   => 'winter.forum::lang.settings.banned',
-                    'type'    => 'checkbox',
                     'tab'     => 'winter.forum::lang.plugin.name',
+                    'label'   => 'winter.forum::lang.models.user.banned',
+                    'type'    => 'checkbox',
                     'span'    => 'auto',
-                    'comment' => 'winter.forum::lang.settings.banned_comment'
+                    'comment' => 'winter.forum::lang.models.user.banned_comment'
                 ]
             ], 'primary');
         });
 
-        UsersController::extendListColumns(function($widget, $model) {
+        UsersController::extendListColumns(function ($widget, $model) {
             if (!$model instanceof \Winter\User\Models\User) {
                 return;
             }
 
             $widget->addColumns([
                 'forum_member_username' => [
-                    'label'      => 'winter.forum::lang.settings.forum_username',
+                    'label'      => 'winter.forum::lang.models.user.forum_username',
                     'relation'   => 'forum_member',
                     'select'     => 'username',
                     'searchable' => false,
@@ -117,6 +123,9 @@ class Plugin extends PluginBase
         });
     }
 
+    /**
+     * Registers any frontend components implemented in this plugin.
+     */
     public function registerComponents(): array
     {
         return [
@@ -132,16 +141,23 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * Registers any backend permissions used by this plugin.
+     */
     public function registerPermissions(): array
     {
         return [
-            'winter.forum::lang.settings.channels' => [
-                'tab'   => 'winter.forum::lang.settings.channels',
-                'label' => 'winter.forum::lang.settings.channels_desc'
-            ]
+            'winter.forum.manage_channels' => [
+                'tab'   => 'winter.forum::lang.plugin.name',
+                'label' => 'winter.forum::lang.permissions.manage_channels',
+                'roles' => [UserRole::CODE_DEVELOPER, UserRole::CODE_PUBLISHER],
+            ],
         ];
     }
 
+    /**
+     * Registers any backend settings implemented in this plugin.
+     */
     public function registerSettings(): array
     {
         return [
@@ -152,11 +168,16 @@ class Plugin extends PluginBase
                 'url'         => Backend::url('winter/forum/channels'),
                 'category'    => 'winter.forum::lang.plugin.name',
                 'order'       => 500,
-                'permissions' => ['winter.forum::lang.settings.channels'],
+                'permissions' => ['winter.forum.manage_channels'],
             ]
         ];
     }
 
+    /**
+     * Registers mail templates used by this plugin.
+     *
+     * @return array
+     */
     public function registerMailTemplates(): array
     {
         return [
@@ -165,12 +186,14 @@ class Plugin extends PluginBase
         ];
     }
 
+    /**
+     * Registers class aliases for compatibility with RainLab.Forum plugin.
+     * This allows plugins that extend RainLab.Forum to continue working with Winter.Forum.
+     *
+     * @return array
+     */
     public function registerClassAliases(): array
     {
-        /**
-         * To allow compatibility with plugins that extend the original RainLab.Forum plugin,
-         * this will alias those classes to use the new Winter.Forum classes.
-         */
         return [
             \Winter\Forum\Plugin::class                   => \RainLab\Forum\Plugin::class,
             \Winter\Forum\Classes\TopicTracker::class     => \RainLab\Forum\Classes\TopicTracker::class,

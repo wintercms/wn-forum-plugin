@@ -1,71 +1,78 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
-use Winter\Forum\Models\Topic as TopicModel;
+namespace Winter\Forum\Components;
+
 use Winter\Forum\Models\Channel as ChannelModel;
 use Exception;
+use Winter\Forum\Classes\ForumBaseComponent;
 
-class EmbedChannel extends ComponentBase
+class EmbedChannel extends ForumBaseComponent
 {
     /**
      * @var boolean Determine if this component is being used by the EmbedChannel component.
      */
     public $embedMode = true;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.embedch.channel_name',
-            'description' => 'winter.forum::lang.embedch.channel_self_desc'
+            'name'        => 'winter.forum::lang.components.embed_channel.name',
+            'description' => 'winter.forum::lang.components.embed_channel.description'
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
             'embedCode' => [
-                'title'       => 'winter.forum::lang.embedch.embed_title',
-                'description' => 'winter.forum::lang.embedch.embed_desc',
+                'title'       => 'winter.forum::lang.components.embed_channel.embed_title',
+                'description' => 'winter.forum::lang.components.embed_channel.embed_desc',
                 'type'        => 'string',
-                'group'       => 'Parameters',
+                'group'       => 'winter.forum::lang.components.general.groups.parameters',
             ],
             'channelSlug' => [
-                'title'       => 'winter.forum::lang.embedch.channel_title',
-                'description' => 'winter.forum::lang.embedch.channel_desc',
+                'title'       => 'winter.forum::lang.components.embed_channel.channel_title',
+                'description' => 'winter.forum::lang.components.embed_channel.channel_desc',
                 'type'        => 'dropdown'
             ],
             'topicSlug' => [
-                'title'       => 'winter.forum::lang.embedch.topic_name',
-                'description' => 'winter.forum::lang.embedch.topic_desc',
+                'title'       => 'winter.forum::lang.components.embed_channel.topic_name',
+                'description' => 'winter.forum::lang.components.embed_channel.topic_desc',
                 'type'        => 'string',
                 'default'     => '{{ :topicSlug }}',
-                'group'       => 'Parameters',
-            ],
-            'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
-                'type'        => 'dropdown',
-                'group'       => 'Links',
+                'group'       => 'winter.forum::lang.components.general.groups.parameters',
             ],
             'isGuarded' => [
-                'title'       => 'Spam Guarded Channel',
-                'description' => 'Newly created channels will have spam guard enabled',
+                'title'       => 'winter.forum::lang.components.embed_channel.guarded_name',
+                'description' => 'winter.forum::lang.components.embed_channel.guarded_desc',
                 'type'        => 'checkbox',
                 'default'     => 0,
-                'group'       => 'Parameters',
+                'group'       => 'winter.forum::lang.components.general.groups.parameters',
+            ],
+            'memberPage' => [
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
+                'type'        => 'dropdown',
+                'default'     => 'forum/member',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
         ];
     }
 
+    /**
+     * Returns the options for the channelSlug property dropdown
+     *
+     * @return array
+     */
     public function getChannelSlugOptions()
     {
         return ChannelModel::listsNested('title', 'slug', ' - ');
-    }
-
-    public function getMemberPageOptions()
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function init()
@@ -111,7 +118,7 @@ class EmbedChannel extends ComponentBase
              * if the page returns 404 a channel should not be generated.
              */
             if (!$channel) {
-                $this->controller->bindEvent('page.end', function() use ($component, $parentChannel, $code) {
+                $this->controller->bindEvent('page.end', function () use ($component, $parentChannel, $code) {
                     if ($component->embedMode !== false) {
                         $channel = ChannelModel::createForEmbed(
                             $code,

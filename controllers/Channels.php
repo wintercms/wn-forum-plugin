@@ -1,4 +1,6 @@
-<?php namespace Winter\Forum\Controllers;
+<?php
+
+namespace Winter\Forum\Controllers;
 
 use Flash;
 use BackendMenu;
@@ -11,6 +13,9 @@ use System\Classes\SettingsManager;
  */
 class Channels extends Controller
 {
+    /**
+     * @var array Behaviors that are implemented by this controller.
+     */
     public $implement = [
         'Backend.Behaviors.FormController',
         'Backend.Behaviors.ListController',
@@ -20,8 +25,11 @@ class Channels extends Controller
     public $formConfig = 'config_form.yaml';
     public $listConfig = 'config_list.yaml';
     public $reorderConfig = 'config_reorder.yaml';
-    
-    public $requiredPermissions = ['winter.forum::lang.settings.channels'];
+
+    /**
+     * @var array Permissions required to view this page.
+     */
+    public $requiredPermissions = ['winter.forum.manage_channels'];
 
     public function __construct()
     {

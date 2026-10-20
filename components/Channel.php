@@ -1,21 +1,22 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Auth;
-use Request;
-use Redirect;
-use Cms\Classes\Page;
-use Cms\Classes\ComponentBase;
-use Winter\Forum\Models\Topic as TopicModel;
+namespace Winter\Forum\Components;
+
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Winter\Forum\Classes\ForumBaseComponent;
+use Winter\Forum\Classes\TopicTracker;
 use Winter\Forum\Models\Channel as ChannelModel;
 use Winter\Forum\Models\Member as MemberModel;
-use Winter\Forum\Classes\TopicTracker;
+use Winter\Forum\Models\Topic as TopicModel;
+use Winter\User\Facades\Auth;
 
 /**
  * Channel component
  *
  * Displays a list of posts belonging to a channel.
  */
-class Channel extends ComponentBase
+class Channel extends ForumBaseComponent
 {
     /**
      * @var boolean Determine if this component is being used by the EmbedChannel component.
@@ -28,12 +29,12 @@ class Channel extends ComponentBase
     public $embedTopicParam = 'topicSlug';
 
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
     /**
-     * @var Winter\Forum\Models\Channel Channel cache
+     * @var \Winter\Forum\Models\Channel Channel cache
      */
     protected $channel = null;
 
@@ -48,38 +49,46 @@ class Channel extends ComponentBase
     public $topicPage;
 
     /**
-     * @var Collection Topics cache for Twig access.
+     * @var \Illuminate\Support\Collection Topics cache for Twig access.
      */
     public $topics = null;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.channel.component_name',
-            'description' => 'winter.forum::lang.channel.component_description',
+            'name'        => 'winter.forum::lang.components.channel.name',
+            'description' => 'winter.forum::lang.components.channel.description',
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
             'slug' => [
-                'title'       => 'winter.forum::lang.slug.name',
-                'description' => 'winter.forum::lang.slug.desc',
+                'title'       => 'winter.forum::lang.components.channel.properties.slug_name',
+                'description' => 'winter.forum::lang.components.channel.properties.slug_desc',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string',
             ],
             'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
-                'group'       => 'Links',
+                'default'     => 'forum/member',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'topicPage' => [
-                'title'       => 'winter.forum::lang.topic.page_name',
-                'description' => 'winter.forum::lang.topic.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.topic_page',
+                'description' => 'winter.forum::lang.components.general.properties.topic_page_desc',
                 'type'        => 'dropdown',
-                'group'       => 'Links',
+                'default'     => 'forum/topic',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'includeStyles' => [
                 'title'       => 'winter.forum::lang.components.general.properties.includeStyles',
@@ -88,11 +97,6 @@ class Channel extends ComponentBase
                 'default'     => true
             ],
         ];
-    }
-
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRun()
@@ -107,15 +111,21 @@ class Channel extends ComponentBase
         return $this->prepareTopicList();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         /*
          * Page links
          */
-        $this->topicPage = $this->page['topicPage'] = $this->property('topicPage');
-        $this->memberPage = $this->page['memberPage'] = $this->property('memberPage');
+        $this->setVar('topicPage', $this->property('topicPage'));
+        $this->setVar('memberPage', $this->property('memberPage'));
     }
 
+    /**
+     * Returns the current channel based on the slug property
+     */
     public function getChannel()
     {
         if ($this->channel !== null) {
@@ -129,6 +139,9 @@ class Channel extends ComponentBase
         return $this->channel = ChannelModel::whereSlug($slug)->first();
     }
 
+    /**
+     * Prepares the topic list for the current channel
+     */
     protected function prepareTopicList()
     {
         /*
@@ -147,7 +160,7 @@ class Channel extends ComponentBase
             /*
              * Add a "url" helper attribute for linking to each topic
              */
-            $topics->each(function($topic) {
+            $topics->each(function ($topic) {
                 if ($this->embedMode) {
                     $topic->url = $this->pageUrl($this->topicPage, [$this->embedTopicParam => $topic->slug]);
                 }

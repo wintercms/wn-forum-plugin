@@ -1,24 +1,25 @@
-<?php namespace Winter\Forum\Components;
+<?php
 
-use Auth;
-use Flash;
-use Event;
-use Request;
-use Redirect;
-use Cms\Classes\Page;
-use Winter\User\Models\User as UserModel;
-use Winter\User\Models\MailBlocker;
-use Cms\Classes\ComponentBase;
-use ApplicationException;
-use Winter\Forum\Models\Topic as TopicModel;
+namespace Winter\Forum\Components;
+
+use Exception;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Request;
+use Winter\Forum\Classes\ForumBaseComponent;
+use Winter\Forum\Classes\TopicTracker;
 use Winter\Forum\Models\Channel as ChannelModel;
 use Winter\Forum\Models\Member as MemberModel;
 use Winter\Forum\Models\Post as PostModel;
+use Winter\Forum\Models\Topic as TopicModel;
 use Winter\Forum\Models\TopicFollow;
-use Winter\Forum\Classes\TopicTracker;
-use Exception;
+use Winter\Storm\Exception\ApplicationException;
+use Winter\Storm\Support\Facades\Event;
+use Winter\Storm\Support\Facades\Flash;
+use Winter\User\Facades\Auth;
+use Winter\User\Models\MailBlocker;
+use Winter\User\Models\User as UserModel;
 
-class Topic extends ComponentBase
+class Topic extends ForumBaseComponent
 {
     /**
      * @var boolean Determine if this component is being used by the EmbedChannel component.
@@ -26,17 +27,17 @@ class Topic extends ComponentBase
     public $embedMode = false;
 
     /**
-     * @var Winter\Forum\Models\Topic Topic cache
+     * @var \Winter\Forum\Models\Topic Topic cache
      */
     protected $topic = null;
 
     /**
-     * @var Winter\Forum\Models\Channel Channel cache
+     * @var \Winter\Forum\Models\Channel Channel cache
      */
     protected $channel = null;
 
     /**
-     * @var Winter\Forum\Models\Member Member cache
+     * @var \Winter\Forum\Models\Member Member cache
      */
     protected $member = null;
 
@@ -56,45 +57,53 @@ class Topic extends ComponentBase
     public $returnUrl;
 
     /**
-     * @var Collection Posts cache for Twig access.
+     * @var \Illuminate\Support\Collection Posts cache for Twig access.
      */
     public $posts = null;
 
+    /**
+     * Gets the details for the component
+     */
     public function componentDetails()
     {
         return [
-            'name'        => 'winter.forum::lang.topicpage.name',
-            'description' => 'winter.forum::lang.topicpage.self_desc'
+            'name'        => 'winter.forum::lang.components.topic.name',
+            'description' => 'winter.forum::lang.components.topic.description'
         ];
     }
 
+    /**
+     * Returns the properties provided by the component
+     */
     public function defineProperties()
     {
         return [
             'slug' => [
-                'title'       => 'winter.forum::lang.topicpage.slug_name',
-                'description' => 'winter.forum::lang.topicpage.slug_desc',
+                'title'       => 'winter.forum::lang.components.topic.properties.slug',
+                'description' => 'winter.forum::lang.components.topic.properties.slug_desc',
                 'default'     => '{{ :slug }}',
                 'type'        => 'string',
             ],
             'postsPerPage' => [
-                'title'             => 'winter.forum::lang.posts.per_page',
+                'title'             => 'winter.forum::lang.components.general.properties.posts_per_page',
                 'type'              => 'string',
                 'validationPattern' => '^[0-9]+$',
-                'validationMessage' => 'winter.forum::lang.posts.per_page_validation',
+                'validationMessage' => 'winter.forum::lang.components.general.properties.posts_per_page_validation',
                 'default'           => '20',
             ],
             'memberPage' => [
-                'title'       => 'winter.forum::lang.member.page_name',
-                'description' => 'winter.forum::lang.member.page_help',
+                'title'       => 'winter.forum::lang.components.general.properties.member_page',
+                'description' => 'winter.forum::lang.components.general.properties.member_page_desc',
                 'type'        => 'dropdown',
-                'group'       => 'Links',
+                'default'     => 'forum/member',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'channelPage' => [
-                'title'       => 'winter.forum::lang.topicpage.channel_title',
-                'description' => 'winter.forum::lang.topicpage.channel_desc',
+                'title'       => 'winter.forum::lang.components.general.properties.channel_page',
+                'description' => 'winter.forum::lang.components.general.properties.channel_page_desc',
                 'type'        => 'dropdown',
-                'group'       => 'Links',
+                'default'     => 'forum/channel',
+                'group'       => 'winter.forum::lang.components.general.groups.links',
             ],
             'includeStyles' => [
                 'title'       => 'winter.forum::lang.components.general.properties.includeStyles',
@@ -103,11 +112,6 @@ class Topic extends ComponentBase
                 'default'     => true
             ],
         ];
-    }
-
-    public function getPropertyOptions($property)
-    {
-        return Page::sortBy('baseFileName')->lists('baseFileName', 'baseFileName');
     }
 
     public function onRun()
@@ -119,22 +123,30 @@ class Topic extends ComponentBase
 
         $this->prepareVars();
         $this->page['channel'] = $this->getChannel();
-        $this->page['topic']   = $topic = $this->getTopic();
-        $this->page['member']  = $member = $this->getMember();
+        $this->setVar('topic', $this->getTopic());
+        $this->setVar('member', $this->getMember());
         $this->handleOptOutLinks();
 
         return $this->preparePostList();
     }
 
+    /**
+     * Prepares component's variables.
+     */
     protected function prepareVars()
     {
         /*
          * Page links
          */
-        $this->memberPage   = $this->page['memberPage']  = $this->property('memberPage');
-        $this->channelPage  = $this->page['channelPage'] = $this->property('channelPage');
+        $this->setVar('memberPage', $this->property('memberPage'));
+        $this->setVar('channelPage', $this->property('channelPage'));
     }
 
+    /**
+     * Returns the currently loaded topic.
+     *
+     * @return \Winter\Forum\Models\Topic|null
+     */
     public function getTopic()
     {
         if ($this->topic !== null) {
@@ -154,6 +166,11 @@ class Topic extends ComponentBase
         return $this->topic = $topic;
     }
 
+    /**
+     * Returns the currently logged in member.
+     *
+     * @return \Winter\Forum\Models\Member|null
+     */
     public function getMember()
     {
         if ($this->member !== null) {
@@ -163,6 +180,11 @@ class Topic extends ComponentBase
         return $this->member = MemberModel::getFromUser();
     }
 
+    /**
+     * Returns the currently loaded channel.
+     *
+     * @return \Winter\Forum\Models\Channel|null
+     */
     public function getChannel()
     {
         if ($this->channel !== null) {
@@ -187,11 +209,21 @@ class Topic extends ComponentBase
         return $this->channel = $channel;
     }
 
+    /**
+     * Returns a list of all root channels.
+     *
+     * @return \Illuminate\Database\Eloquent\Collection
+     */
     public function getChannelList()
     {
         return ChannelModel::make()->getRootList('title', 'id');
     }
 
+    /**
+     * Prepares the list of posts for the currently loaded topic.
+     *
+     * @return void
+     */
     protected function preparePostList()
     {
         /*
@@ -211,12 +243,13 @@ class Topic extends ComponentBase
             /*
              * Add a "url" helper attribute for linking to each member
              */
-            $posts->each(function($post){
-                if ($post->member)
+            $posts->each(function ($post) {
+                if ($post->member) {
                     $post->member->setUrl($this->memberPage, $this->controller);
+                }
             });
 
-            $this->page['posts'] = $this->posts = $posts;
+            $this->setVar('posts', $posts);
 
             /*
              * Pagination
@@ -257,15 +290,26 @@ class Topic extends ComponentBase
                 $returnUrl = $this->channel->url;
             }
 
-             $this->returnUrl = $this->page['returnUrl'] = $returnUrl;
-         }
+            $this->setVar('returnUrl', $returnUrl);
+        }
     }
 
+    /**
+     * Handles opt-out links for the currently loaded topic.
+     *
+     * @return void
+     */
     protected function handleOptOutLinks()
     {
-        if (!$topic = $this->getTopic()) return;
-        if (!$action = post('action')) return;
-        if (!in_array($action, ['unfollow', 'unsubscribe'])) return;
+        if (!$topic = $this->getTopic()) {
+            return;
+        }
+        if (!$action = post('action')) {
+            return;
+        }
+        if (!in_array(post('action'), ['unfollow', 'unsubscribe'])) {
+            return;
+        }
 
         /*
          * Attempt to find member using dry authentication
@@ -304,9 +348,13 @@ class Topic extends ComponentBase
             MailBlocker::addBlock('winter.forum::mail.topic_reply', $member->user);
             Flash::success('You will no longer receive notifications about any topics in this forum.');
         }
-
     }
 
+    /**
+     * Handles the creation of a new topic.
+     *
+     * @return \Illuminate\Http\RedirectResponse|null
+     */
     public function onCreate()
     {
         try {
@@ -352,6 +400,11 @@ class Topic extends ComponentBase
         }
     }
 
+    /**
+     * Handles the creation of a new post in the currently loaded topic.
+     *
+     * @return \Illuminate\Http\RedirectResponse|null
+     */
     public function onPost()
     {
         try {
@@ -390,6 +443,11 @@ class Topic extends ComponentBase
         }
     }
 
+    /**
+     * Handles the update of an existing post in the currently loaded topic.
+     *
+     * @return void
+     */
     public function onUpdate()
     {
         $this->page['member'] = $member = $this->getMember();
@@ -440,6 +498,11 @@ class Topic extends ComponentBase
         $this->page['topic'] = $topic;
     }
 
+    /**
+     * Handles quoting a post in the currently loaded topic.
+     *
+     * @return array
+     */
     public function onQuote()
     {
         if (!$user = Auth::getUser()) {
@@ -456,6 +519,11 @@ class Topic extends ComponentBase
         return $result;
     }
 
+    /**
+     * Handles moving the currently loaded topic to a different channel.
+     *
+     * @return void
+     */
     public function onMove()
     {
         $member = $this->getMember();
@@ -475,6 +543,11 @@ class Topic extends ComponentBase
         }
     }
 
+    /**
+     * Handles following or unfollowing the currently loaded topic.
+     *
+     * @return void
+     */
     public function onFollow()
     {
         try {
@@ -489,10 +562,18 @@ class Topic extends ComponentBase
             $member->touchActivity();
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
-
+    /**
+     * Handles sticking or unsticking the currently loaded topic.
+     *
+     * @return void
+     */
     public function onSticky()
     {
         try {
@@ -509,10 +590,19 @@ class Topic extends ComponentBase
             $this->page['topic']  = $topic;
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 
+    /**
+     * Handles locking or unlocking the currently loaded topic.
+     *
+     * @return void
+     */
     public function onLock()
     {
         try {
@@ -529,7 +619,11 @@ class Topic extends ComponentBase
             $this->page['topic']  = $topic;
         }
         catch (Exception $ex) {
-            if (Request::ajax()) throw $ex; else Flash::error($ex->getMessage());
+            if (Request::ajax()) {
+                throw $ex;
+            } else {
+                Flash::error($ex->getMessage());
+            }
         }
     }
 }

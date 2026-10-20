@@ -1,9 +1,11 @@
-<?php namespace Winter\Forum\Models;
+<?php
 
-use Str;
-use Auth;
-use Model;
+namespace Winter\Forum\Models;
+
 use Carbon\Carbon;
+use Winter\Storm\Database\Model;
+use Winter\Storm\Support\Str;
+use Winter\User\Facades\Auth;
 
 /**
  * Member Model
@@ -58,8 +60,8 @@ class Member extends Model
 
     /**
      * Automatically creates a forum member for a user if not one already.
-     * @param  Winter\User\Models\User $user
-     * @return Winter\Forum\Models\Member
+     * @param  \Winter\User\Models\User $user
+     * @return \Winter\Forum\Models\Member
      */
     public static function getFromUser($user = null)
     {
@@ -157,7 +159,7 @@ class Member extends Model
     /**
      * Sets the "url" attribute with a URL to this object
      * @param string $pageName
-     * @param Cms\Classes\Controller $controller
+     * @param \Cms\Classes\Controller $controller
      */
     public function setUrl($pageName, $controller)
     {
@@ -180,5 +182,4 @@ class Member extends Model
         $this->is_banned = ($this->is_banned == 1 ? 0 : 1);
         $this->save();
     }
-
 }

@@ -1,0 +1,14 @@
+{% set paginationEnabled =
+	records.currentPage > 1 or
+	records.lastPage > 1 or
+	records.lastPage > records.currentPage
+%}
+
+<div class="row forum-pagination {{ paginationEnabled ? "enabled" : "disabled" }}">
+    <div class="col-md-8">
+        {% partial __SELF__ ~ "::pagination-list" records=records %}
+    </div>
+    <div class="text-right col-md-4 posts-total-summary">
+        <p>{{ records.firstItem }}-{{ records.lastItem }} {{ 'winter.forum::lang.components.general.pagination.of' | trans }} {{ records.total }}</p>
+    </div>
+</div>

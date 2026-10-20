@@ -2,24 +2,24 @@
     <img src="{{ post.member.user.avatarThumb(50) }}" alt="{{ post.member.username }}" />
 </a>
 <div class="content">
-    <a href="{{ post.member.url }}" class="author">{{ post.member.username }}</a>
     <div class="metadata">
-        <div class="date">
-            <a href="#post-{{ post.id }}">
+        <div class="user-date">
+            <a href="{{ post.member.url }}" class="author">{{ post.member.username }}</a>
+            - <a href="#post-{{ post.id }}">
                 {% partial __SELF__ ~ "::timestamp" date=post.created_at %}
             </a>
         </div>
         {% if post.member.is_banned %}
             <div class="status text-danger">
-                <i class="icon-exclamation"></i> Banned
+                <i class="icon-exclamation"></i> {{ 'winter.forum::lang.components.member.banned' | trans }}
             </div>
         {% elseif topic.channel.is_guarded and not post.member.is_approved %}
             <div class="status text-warning">
-                <i class="icon-lock"></i> Unapproved
+                <i class="icon-lock"></i> {{ 'winter.forum::lang.components.member.unapproved' | trans }}
             </div>
         {% elseif post.member.is_moderator %}
             <div class="status">
-                <i class="icon-star"></i> Moderator
+                <i class="icon-star"></i> {{ 'winter.forum::lang.components.member.moderator' | trans }}
             </div>
         {% endif %}
     </div>
@@ -36,53 +36,52 @@
             {% endif %}
 
             <div class="text">
-                <textarea
-                    rows="5"
-                    name="content"
-                    class="form-control"
-                    >{{ post.content }}</textarea>
+                <textarea rows="5" name="content" class="form-control">
+                    {{- post.content -}}
+                </textarea>
             </div>
             <div class="actions">
-                <a
-                    href="javascript:;"
+                <a href="javascript:;"
                     data-request="{{ __SELF__ }}::onUpdate"
                     data-request-data="post: {{ post.id }}"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    class="save">
-                    Save
-                </a>
-
-                <a
-                    href="javascript:;"
-                    data-request="{{ __SELF__ }}::onUpdate"
-                    data-request-data="post: {{ post.id }}, mode: 'delete'"
-                    data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    data-request-confirm="Are you sure?"
-                    class="delete">
-                    Delete
+                    class="btn btn-primary btn-sm save"
+                >
+                    {{ 'winter.forum::lang.components.general.save' | trans }}
                 </a>
 
                 <a href="javascript:;"
                     data-request="{{ __SELF__ }}::onUpdate"
                     data-request-data="post: {{ post.id }}, mode: 'view'"
                     data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
-                    class="cancel">
-                    Cancel
+                    class="btn btn-link btn-sm cancel"
+                >
+                    {{ 'winter.forum::lang.components.general.cancel' | trans }}
+                </a>
+
+                <a href="javascript:;"
+                    data-request="{{ __SELF__ }}::onUpdate"
+                    data-request-data="post: {{ post.id }}, mode: 'delete'"
+                    data-request-update="'{{ __SELF__ }}::post': '#post-{{ post.id }}'"
+                    data-request-confirm="{{ 'winter.forum::lang.components.topic.delete_confirm' | trans }}"
+                    class="btn btn-danger btn-sm delete"
+                >
+                    {{ 'winter.forum::lang.components.general.delete' | trans }}
                 </a>
             </div>
         {{ form_close() }}
 
     {% elseif mode == 'delete' %}
         <div class="text">
-            <p><em>Post has been deleted</em></p>
+            <p><em>{{ 'winter.forum::lang.components.topic.post_deleted' | trans }}</em></p>
         </div>
     {% else %}
         <div class="text">
-            {{ post.content_html|raw }}
+            {{ post.content_html | raw }}
 
             {% if post.created_at != post.updated_at %}
                 <p><small class="text text-muted">
-                    Last updated {% partial __SELF__ ~ "::timestamp" date=post.updated_at %}
+                    {{ 'winter.forum::lang.components.general.last_updated' | trans }} {% partial __SELF__ ~ "::timestamp" date=post.updated_at %}
                 </small></p>
             {% endif %}
         </div>
@@ -91,8 +90,9 @@
                 <a href="javascript:;"
                     class="quote"
                     data-request-data="post: {{ post.id }}"
-                    data-quote-button>
-                    Quote
+                    data-quote-button
+                >
+                    {{ 'winter.forum::lang.components.general.quote' | trans }}
                 </a>
             {% endif %}
             {% if topic.canPost and post.canEdit and mode != 'edit' and mode != 'delete' %}
@@ -100,8 +100,9 @@
                     class="edit"
                     data-request="onUpdate"
                     data-request-data="post: {{ post.id }}"
-                    data-request-update="'{{ __SELF__ ~ '::post' }}': '#post-{{ post.id }}'">
-                    Edit
+                    data-request-update="'{{ __SELF__ ~ '::post' }}': '#post-{{ post.id }}'"
+                >
+                    {{ 'winter.forum::lang.components.general.edit' | trans }}
                 </a>
             {% endif %}
         </div>
