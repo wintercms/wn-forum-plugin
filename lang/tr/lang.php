@@ -101,7 +101,7 @@ return [
             'description' => 'Bir kanala ait mesajların listesini görüntüler.',
             'replies' => 'Yanıtlar',
             'views' => 'Görüntülemeler',
-            'no_topic' => 'Bu kanalda konu bulunmamaktadır.',
+            'no_topics' => 'Bu kanalda konu bulunmamaktadır.',
             'search_placeholder' => 'Konu ara...',
             'log_to_post' => 'Yeni bir konu göndermek için giriş yapın',
             'post_new_topic' => 'Yeni bir konu gönder',

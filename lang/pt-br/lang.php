@@ -99,7 +99,7 @@ return [
             'description' => 'Mostra uma lista de postagens pertecentes à um tema.',
             'replies' => 'Respostas',
             'views' => 'Visualizações',
-            'no_topic' => 'Não há tópicos neste tema.',
+            'no_topics' => 'Não há tópicos neste tema.',
             'search_placeholder' => 'Pesquisar tópicos...',
             'log_to_post' => 'Faça login para postar um novo tópico',
             'post_new_topic' => 'Postar um novo tópico',

@@ -101,7 +101,7 @@ return [
             'description' => 'Prikaže seznam objav, ki pripadajo kanalu.',
             'replies' => 'Odgovori',
             'views' => 'Ogledi',
-            'no_topic' => 'V tem kanalu ni tem.',
+            'no_topics' => 'V tem kanalu ni tem.',
             'search_placeholder' => 'Išči teme...',
             'log_to_post' => 'Prijavite se, da objavite novo temo',
             'post_new_topic' => 'Objavite novo temo',

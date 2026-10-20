@@ -99,7 +99,7 @@ return [
             'description' => 'Muestra un listado de temas que pertenecen a un canal.',
             'replies' => 'Respuestas',
             'views' => 'Vistas',
-            'no_topic' => 'No hay temas en este canal.',
+            'no_topics' => 'No hay temas en este canal.',
             'search_placeholder' => 'Buscar temas...',
             'no_topics_message' => 'No hay publicaciones recientes en ningún tema.',
             'log_to_post' => 'Inicie sesión para publicar un nuevo tema',

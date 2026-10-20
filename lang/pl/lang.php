@@ -99,7 +99,7 @@ return [
             'description' => 'Wyświetla listę postów należących do kanału.',
             'replies' => 'Odpowiedzi',
             'views' => 'Wyświetlenia',
-            'no_topic' => 'W tym kanale nie ma żadnych tematów.',
+            'no_topics' => 'W tym kanale nie ma żadnych tematów.',
             'search_placeholder' => 'Szukaj tematów...',
             'log_to_post' => 'Zaloguj się, aby opublikować nowy temat',
             'post_new_topic' => 'Opublikuj nowy temat',

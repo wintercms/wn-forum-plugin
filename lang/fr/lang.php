@@ -101,7 +101,7 @@ return [
             'description' => 'Affiche la liste des sujets appartenant à une catégorie.',
             'replies' => 'Réponses',
             'views' => 'Vues',
-            'no_topic' => 'Il n\'y a aucun sujet dans cette catégorie.',
+            'no_topics' => 'Il n\'y a aucun sujet dans cette catégorie.',
             'search_placeholder' => 'Rechercher des sujets...',
             'log_to_post' => 'Connectez-vous pour créer un nouveau sujet',
             'post_new_topic' => 'Publier un nouveau sujet',

@@ -102,7 +102,7 @@ return [
             'description' => 'Displays a list of posts belonging to a channel.',
             'replies' => 'Replies',
             'views' => 'Views',
-            'no_topic' => 'There are no topics in this channel.',
+            'no_topics' => 'There are no topics in this channel.',
             'search_placeholder' => 'Search topics...',
             'log_to_post' => 'Log in to post a new topic',
             'post_new_topic' => 'Post a new topic',
